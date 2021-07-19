@@ -15,7 +15,7 @@ def main2(request):
     return render(request, "main2.html")
 
 
-def login(request):
+#def login(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST['password']
@@ -107,7 +107,7 @@ def bid(request):
             messages.success(request, 'Bid Placed Successfully!', fail_silently=True)
     return redirect("auctions:listing", item_id)
 
-def logout(request):
+#def logout(request):
     if request.method == "POST":
         auth.logout(request)
         return redirect("main.html")
