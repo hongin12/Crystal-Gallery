@@ -15,7 +15,7 @@ Including another URLconf
 """
 # from CrystalGallery.crystal.views import auction
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from crystal import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,12 +29,9 @@ urlpatterns = [
     path('mygallery/', views.mygallery, name="mygallery"),
     path('auction/<int:listings_id>', views.auction, name="auction"),
     path('auctionArts/', views.auctionArts, name="auctionArts"),
-    path('registerAuction/', views.registerAuction, name="registerAuction"),
     path('.auctionArts/', views.auctionArts2, name="auctionArts2"),
     path(',auctionArts/', views.auctionArts3, name="auctionArts3"),
     path('about/', views.about, name="about"),
     path('logout/', views.logout, name="logout"), 
-    path('create/', views.create, name="create"),
-    path(' ', views.main2, name="main2"),
-    path('.auction/2', views.auction2, name="auction2"),
+    path('upload/', include('profile_maker.urls')), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

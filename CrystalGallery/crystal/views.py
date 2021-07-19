@@ -5,8 +5,6 @@ from .models import User
 from .models import Listing
 from django.utils import timezone
 
-# Create your views here.
-
 def main(request):
     return render(request, "main.html")
 
@@ -61,9 +59,6 @@ def mypage(request):
 def mygallery(request):
     return render(request, "mygallery.html")
 
-def registerAuction(request):
-    return render(request, "registerAuction.html")
-
 def auctionArts(request):
     listing = Listing.objects.all()
     return render(request, "auctionArts.html", {'listing' : listing})
@@ -112,18 +107,3 @@ def logout(request):
         auth.logout(request)
         return redirect("main.html")
     return render(request, 'main.html')
-
-
-def create(requset):
-    new_listing = Listing()
-    new_listing.name = requset.POST['name']
-    new_listing.initial = requset.POST['initial']
-    # new_listing.user = requset.POST['initial']
-    new_listing.image = requset.POST['image']
-    new_listing.created = timezone.now()
-    new_listing.explain = requset.POST['explain']
-    new_listing.save()
-    return redirect('auctionArts')
-
-def auction2(request):
-    return render(request, "auction2.html")
