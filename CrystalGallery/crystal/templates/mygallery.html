@@ -1,0 +1,171 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="main.css" rel="stylesheet">
+  <title>mygallery</title>
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    pytho @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-light shadow-sm">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="{% url 'main' %}" class="navbar-brand">
+            <strong>Crystal Gallery</strong>
+          </a>
+        </div>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+          {% if user.is_authenticated %}
+          <div class="me-3 py-2 text-dark text-decoration-none">
+            Signed in as <strong style="color: var(--indigo)">{{ user.username }}</strong>
+          </div>
+          {% endif %}
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
+          {% if user.is_authenticated %}
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a>
+          {% else %}
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'signup' %}">join</a>
+          {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">My Gallery</h1>
+            <p class="lead text-muted">Create your own gallery here. An art museum will be born. </p>
+            <p>
+              <a href="#" class="btn btn-outline-secondary">Edit</a>
+              <a href="{% url 'registerAuction' %}" class="btn btn-outline-secondary">Register</a>
+              <!-- <a href="#" class="btn btn-outline-secondary">Edit
+              <a href="{% url 'registerAuction' %}" class="btn btn-secondary my-2">Register</a> -->
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+              <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
+                <div class="my-3 py-3">
+                  <h6 class="display-5"><strong>내가 올린 작품</strong></h6>
+                  <br><br>
+                  <div class="album py-5 bg-light">
+                    <div class="container">
+                      <div class="row row-cols-1 g-3">
+                        <div class="col">
+                          <div class="card shadow-sm">
+
+                            <img src="{% static '새로등록사진.jpg'%}" alt="새로등록사진" style="max-width: 100%; height: auto;">
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품사진</text>
+                            </svg>
+                            <div class="card-body">
+                              <p class="card-text">작품 설명 : i love Reggae</p>
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted"></small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+              <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
+                <div class="my-3 py-3">
+                  <h6 class="display-5"><strong>내가 낙찰한 작품</strong></h6>
+                  <br><br>
+                  <div class="album py-5 bg-light">
+                    <div class="container">
+                      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div role="contentinfo">
+      <div id="footcnt">
+        <div class="TCIWe" style="height: 106px;" id="fbarcnt">
+          <div class="fbar b2hzT">
+            <hr>
+            <center>
+              <p> ㈜ Team TLC ™ </p>
+              <small>_성신여자대학교 멋쟁이사자처럼 화요일사자_</small>
+            </center>
+          </div>
+
+          <div class="fbar" style="background: silver;">
+            <hr>
+            <h5>
+              <center>**Warning**</center>
+            </h5>
+            <p>
+              <center>crystal gallery 경매 체험 사이트로, 각 작품의 저작권은 게재자에게 있습니다. 작가의 동의 없는 무단배포는 저작권법에 의해 법적 처벌을 받을 수 있습니다.</center>
+            </p>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

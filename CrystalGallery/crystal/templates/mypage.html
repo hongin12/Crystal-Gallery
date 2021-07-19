@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>my page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+
+    <style>
+        body {
+            border-radius: 10px;
+        }
+
+        .card {
+            width: 500px;
+            border: none;
+            border-radius: 50px;
+            background-color: rgb(36, 27, 27);
+            border: 1px solid black;
+        }
+
+        .stats {
+            background: #f2f5f8 !important;
+            color: #000 !important;
+        }
+
+        .articles {
+            font-size: 14px;
+            color: lightgray;
+            text-align: center;
+        }
+
+        .number1 {
+            font-weight: 500;
+        }
+
+        .mygallerybtn {
+            float: right;
+            margin-top: 20px;
+            margin-right: 4rem;
+        }
+
+        .btn-outline-secondary {
+            padding: 2px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light shadow-sm">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{% url 'main' %}" class="navbar-brand">
+                        <strong>Crystal Gallery</strong>
+                    </a>
+                </div>
+                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                    {% if user.is_authenticated %}
+                    <div class="me-3 py-2 text-dark text-decoration-none">
+                        Signed in as <strong style="color: var(--indigo)">{{ user.username }}</strong>
+                    </div>
+                    {% endif %}
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
+                    {% if user.is_authenticated %}
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a> {% else %}
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'signup' %}">join</a> {% endif %}
+            </div>
+        </nav>
+    </header>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card p-3">
+            <div class="d-flex align-items-center">
+                <div class="image"> <img src="{% static 'mypage.jpg' %}" class="rounded" width="200" height="150">
+                </div>
+                <div class="ml-3 w-100">
+                    <h5 class="mb-0 mt-0">
+                        NICKNAME:
+                        <strong style="font-size: 17px;color:lightslategrey;">
+                            {{user.nickname}}
+                        </strong>
+                    </h5>
+                    <h5 class="mb-0 mt-0">
+                        ID: <strong
+                            style="font-size: 17px; color:lightslategrey;">{% if user.is_authenticated %}{{ user.email }}{% endif %}</strong>
+                    </h5>
+
+                    <div class="p-2 mt-2 bg-dark d-flex justify-content-center rounded text-white stats">
+                        <div class="row-vh d-flex flex-column">
+                            <div class="articles"><strong style="font-weight: bold;">COIN</strong></div>
+                            <div class="number1">{{ user.coin }}</div>
+                        </div>
+                    </div>
+
+                    <div class="mygallerybtn">
+                        <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{% url 'mygallery' %}"
+                                style="color: black">My Gallery로 이동</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

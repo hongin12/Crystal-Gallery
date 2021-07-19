@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>login</title>
+    <style>
+        .container {
+            width: 50%;
+            height: 100px;
+            margin: 100px 20rem;
+            display: inline-block;
+            text-align: center;
+        }
+
+        form {
+            background-color: whitesmoke;
+            border: 1px double lightgrey;
+        }
+
+        a {
+            color: black;
+        }
+
+        a:hover {
+            color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST" action="{%url 'login'%}">
+            <div class="id">
+                <h1>Login</h1>
+                <br> {%csrf_token%} ID:
+                <input type="text" name="username" value="">
+                <br>
+                <br>
+            </div>
+            <div class="pw">
+                <br> PASSWORD:
+                <input type="password" name="password" value="">
+                <br><br><br>
+            </div>
+            <input class="btn btn-primary" type="submit" value="submit">
+            <br>
+            <div class="center-text">
+                <br>
+                <a href="{% url 'signup' %}">sign up</a>
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+</body>
+
+</html>

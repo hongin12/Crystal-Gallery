@@ -1,0 +1,69 @@
+body{
+    background: linear-gradient(90deg, #e8e8e8 50%, #6f6676 50%);
+}
+.portfolio{
+    padding:6%;
+    text-align:center;
+}
+.heading{
+    background: #fff;
+    padding: 1%;
+    text-align: left;
+    box-shadow: 0px 0px 4px 0px #545b62;
+}
+.heading img{
+    width: 10%;
+}
+.bio-info{
+    padding: 5%;
+    background:#fff;
+    box-shadow: 0px 0px 4px 0px #b0b3b7;
+}
+.name{
+    font-family: 'Charmonman', cursive;
+    font-weight:600;
+}
+.bio-image{
+    text-align:center;
+    
+}
+.bio-image img{
+    border-radius:50%;
+}
+.bio-content{
+    text-align:left;
+}
+.bio-content p{
+    font-weight:600;
+    font-size:30px;
+}
+.btn-u:hover {
+    background: #6f6676;
+}
+.btn-u:hover, .btn-u:focus, .btn-u:active, .btn-u.active, .open .dropdown-toggle.btn-u {
+    background: #6f6676;
+}
+.btn-u:hover {
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.btn-u {
+    background: #6f6676;
+}
+.btn-u {
+    white-space: nowrap;
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 400;
+    padding: 6px 13px;
+    position: relative;
+    background: #6f6676;
+    display: inline-block;
+    text-decoration: none;
+}
