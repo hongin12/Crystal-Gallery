@@ -76,8 +76,6 @@ class Listing(models.Model):
         return len(self.name) > 0 and self.initial > 0
 
 
-
-
 class Bid(models.Model):
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE)
     listing = models.ForeignKey(Listing, blank = False, on_delete = models.CASCADE)
