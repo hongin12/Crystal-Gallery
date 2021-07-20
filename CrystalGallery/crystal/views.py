@@ -13,7 +13,7 @@ def main2(request):
     return render(request, "main2.html")
 
 
-def login(request):
+#def login(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST['password']
@@ -102,8 +102,19 @@ def bid(request):
             messages.success(request, 'Bid Placed Successfully!', fail_silently=True)
     return redirect("auctions:listing", item_id)
 
-def logout(request):
+#def logout(request):
     if request.method == "POST":
         auth.logout(request)
         return redirect("main.html")
     return render(request, 'main.html')
+
+def create(requset):
+    new_listing = Listing()
+    new_listing.name = requset.POST['name']
+    new_listing.initial = requset.POST['initial']
+    # new_listing.user = requset.POST['initial']
+    new_listing.image = requset.POST['image']
+    new_listing.created = timezone.now()
+    new_listing.explain = requset.POST['explain']
+    new_listing.save()
+    return redirect('auctionArts')

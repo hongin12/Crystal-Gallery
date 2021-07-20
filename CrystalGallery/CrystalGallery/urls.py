@@ -19,11 +19,12 @@ from django.urls import path, include
 from crystal import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name="main"),
-    path('login/', views.login, name="login"),
+    path('login/', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
     path('signup/', views.signup, name="signup"),
     path('mypage/', views.mypage, name="mypage"),
     path('mygallery/', views.mygallery, name="mygallery"),
@@ -32,6 +33,6 @@ urlpatterns = [
     path('.auctionArts/', views.auctionArts2, name="auctionArts2"),
     path(',auctionArts/', views.auctionArts3, name="auctionArts3"),
     path('about/', views.about, name="about"),
-    path('logout/', views.logout, name="logout"), 
-    path('upload/', include('profile_maker.urls')), 
+    path('logout/', auth_views.LogoutView.as_view(template_name="/"), name='logout'),
+    path('upload/', include('profile_maker.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

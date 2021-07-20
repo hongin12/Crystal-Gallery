@@ -64,7 +64,7 @@ class Listing(models.Model):
     name = models.CharField(max_length = 100, blank = False)
     initial = models.DecimalField(max_digits = 10, decimal_places = 2)
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
-    image = models.ImageField(upload_to='images/')
+    image = models.FileField(upload_to='images/')
     created = models.DateField(auto_now_add = True)
     explain = models.TextField(default = '')
 
