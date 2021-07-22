@@ -30,6 +30,7 @@
 <body>
     <div class="container">
         <form method="POST" action="{%url 'login'%}">
+            {% include "form_errors.html" %}
             <div class="id">
                 <h1>Login</h1>
                 <br> {%csrf_token%} ID:
@@ -46,7 +47,7 @@
             <br>
             <div class="center-text">
                 <br>
-                <a href="{% url 'signup' %}">sign up</a>
+                if you don't have your account please <a href="{% url 'signup' %}">sign up</a>
             </div>
             <br>
             <br>

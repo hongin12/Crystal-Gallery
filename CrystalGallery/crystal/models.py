@@ -64,7 +64,7 @@ class Listing(models.Model):
     name = models.CharField(max_length = 100, blank = False)
     initial = models.DecimalField(max_digits = 10, decimal_places = 2)
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
-    image = models.FileField(upload_to='images/')
+    display_picture= models.FileField(upload_to='images/', blank=True)
     created = models.DateField(auto_now_add = True)
     explain = models.TextField(default = '')
 
@@ -76,8 +76,6 @@ class Listing(models.Model):
         return len(self.name) > 0 and self.initial > 0
 
 
-
-
 class Bid(models.Model):
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE)
     listing = models.ForeignKey(Listing, blank = False, on_delete = models.CASCADE)
@@ -87,3 +85,11 @@ class Bid(models.Model):
     def __str__(self):
         return f"${self.highest_bid} - {self.user} on {self.listing.name}"
 
+class Comment(models.Model):
+    user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE)
+    listing = models.ForeignKey(Listing, blank = False, on_delete = models.CASCADE)
+    comment = models.CharField(max_length = 400, blank = False)
+    added = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.comment} - by {self.user}"

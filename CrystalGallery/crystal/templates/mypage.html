@@ -59,16 +59,12 @@
                     </a>
                 </div>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    {% if user.is_authenticated %}
+                    <!--{% if user.is_authenticated %}-->
                     <div class="me-3 py-2 text-dark text-decoration-none">
                         Signed in as <strong style="color: var(--indigo)">{{ user.username }}</strong>
                     </div>
-                    {% endif %}
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
-                    {% if user.is_authenticated %}
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a> {% else %}
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'signup' %}">join</a> {% endif %}
+                    <!--{% endif %}-->
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a>
             </div>
         </nav>
     </header>

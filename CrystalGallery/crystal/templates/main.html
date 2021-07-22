@@ -25,8 +25,8 @@
                   Signed in as <strong style="color: var(--indigo)">{{ user.username }}</strong>
                 </div>
               {% endif %}
-                <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
-              {% if user.is_authenticated %}                
+              {% if user.is_authenticated %}      
+                <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>          
                 <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a>
               {% else %}
                 <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>
@@ -43,39 +43,38 @@
           <a href="{% url 'main' %}"><img src="{% static 'crystalgallery.jpg' %}" alt="로고사진"></a>
           <p>
             <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary btn-lg">경매참여</a>
+            {% if user.is_authenticated %}
             <a href="{% url 'mygallery' %}" class="btn btn-outline-secondary btn-lg">My Gallery</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg">My Gallery</a>
+            {% endif %}
             <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-lg">About</a>
           </p>
         </div>
       </div>
     </section>
 
-    <div class="container marketing" >
+    <div class="container marketing">
       <div class="row">
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle"
-            src="{% static '수빈1.jpg' %}" alt="작품사진"
-            width="140" height="140">
-          <h2>Top 1</h2>
-          <p><a class="btn btn-light" href="#" role="button">View details</a></p>
-        </div>
+          <div class="col-lg-4" style="text-align:center;">
 
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
-            width="140" height="140">
-          <h2>Top 2</h2>
-          
-          <p><a class="btn btn-light" href="#" role="button">View details</a></p>
-        </div>
+              <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+              <h2>Top 1</h2>
+              <p><a class="btn btn-light" href="#" role="button">View details</a></p>
+          </div>
 
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
-            width="140" height="140">
-          <h2>Top 3</h2>
-          <p><a class="btn btn-light" href="#" role="button">View details</a></p>
-        </div>
+          <div class="col-lg-4" style="text-align:center;">
+              <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+              <h2>Top 2</h2>
+
+              <p><a class="btn btn-light" href="#" role="button">View details</a></p>
+          </div>
+
+          <div class="col-lg-4" style="text-align:center;">
+              <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+              <h2>Top 3</h2>
+              <p><a class="btn btn-light" href="#" role="button">View details</a></p>
+          </div>
       </div>
     
     <hr class="featurette-divider">
