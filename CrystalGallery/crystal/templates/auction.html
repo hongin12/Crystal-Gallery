@@ -62,12 +62,12 @@
         <div class="col-md-6">
           <div class="h-100 p-5 bg-light border rounded-3">
             <h1 class="display-5 fw-bold">그림 제목 : {{listings.name}}</h1>
-            <p class="col-md-8 fs-4">그림 설명: {{lisitings.explain}}</p>
+            <p class="col-md-8 fs-4">그림 설명: {{listings.explain}}</p>
             <p class="col-md-8 fs-4">초기 가격: {{listings.initial}}</p>
             <br>
             <br>
 
-            <form class="login-form" action="{% url 'auctionArts' %}" method="POST">
+            <form class="login-form" action="{% url 'bid' %}" method="POST">
               {% csrf_token %}
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -77,8 +77,8 @@
                   placeholder="Enter your coin here">
               </div>
               <input name="list_id" type="hidden" value="{{ listing.id }}" />
-              <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
-                style="float: right;">입찰</a>
+              <input class="btn btn-outline-secondary my-2" type="submit"
+                style="float: right;" value ="입찰">
             </form>
           </div>
         </div>

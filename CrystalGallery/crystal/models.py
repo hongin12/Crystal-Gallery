@@ -66,7 +66,7 @@ class Listing(models.Model):
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
     display_picture= models.FileField(upload_to='images/', blank=True)
     created = models.DateField(auto_now_add = True)
-    explain = models.TextField(default = '')
+    explain = models.TextField()
 
     def __str__(self):
         return f"{self.name} - starts at ${self.initial}"
