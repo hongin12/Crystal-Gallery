@@ -24,7 +24,11 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name="main"),
+<<<<<<< HEAD
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
+=======
+    path('login/', auth_views.LoginView.as_view(template_name="login.html"), name='login'),    
+>>>>>>> aa84f8c99ad31b0c53d0bb982228d8ae6aec5fa7
     path('signup/', views.signup, name="signup"),
     path('mypage/', views.mypage, name="mypage"),
     path('mygallery/', views.mygallery, name="mygallery"),
@@ -33,6 +37,7 @@ urlpatterns = [
     path('.auctionArts/', views.auctionArts2, name="auctionArts2"),
     path(',auctionArts/', views.auctionArts3, name="auctionArts3"),
     path('about/', views.about, name="about"),
+<<<<<<< HEAD
     path('logout/', auth_views.LogoutView.as_view(template_name="/"), name='logout'),
     path('upload/', include('profile_maker.urls')),
     path('create/', views.create_profile, name = 'create'),
@@ -41,3 +46,10 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+=======
+    path('logout/', auth_views.LogoutView.as_view(template_name="/"), name='logout'), 
+    path('create/', views.create, name="create"),
+    path(' ', views.main2, name="main2"),
+    path('.auction/2', views.auction2, name="auction2"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> aa84f8c99ad31b0c53d0bb982228d8ae6aec5fa7
