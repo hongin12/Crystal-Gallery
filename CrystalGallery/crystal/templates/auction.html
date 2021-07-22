@@ -55,7 +55,7 @@
       <div class="row align-items-md-stretch">
         <div class="col-md-6">
           <div class="h-100 p-5 text-white bg-dark rounded-3">
-            <img src="{{listings.image.url}}" style="max-width: 100%; height: auto;">
+            <img src="{{listings.display_picture.url}}" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
@@ -77,13 +77,47 @@
                   placeholder="Enter your coin here">
               </div>
               <input name="list_id" type="hidden" value="{{ listing.id }}" />
-              <a href="{% url 'auctionArts2' %}" class="btn btn-outline-secondary my-2" type="submit" style="float: right;">입찰</a>
+              <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
+                style="float: right;">입찰</a>
             </form>
           </div>
         </div>
       </div>
     </div>
   </main>
+  <div class="listing-comments">
+    <h5>Comments </h5>
+    <div class="comment-container">
+      {% if comments %}
+      {% for comment in comments %}
+      <div class="card bg-light border-success" style="margin: 5px;">
+        <div class="comment-owner">
+          {{ comment.user }}
+        </div>
+        <span class="comment-content">
+          {{ comment.comment }}
+        </span>
+        <span class="text-muted" style="text-align: right; margin-right: 5px;">
+          {{ comment.added }}
+        </span>
+      </div>
+      {% endfor %}
+      {% else %}
+      <span class="text-muted">
+        No comments at the moment
+      </span>
+      {% endif %}
+    </div>
+    <hr>
+    <form class="comment-form" action="#" method="POST">
+      Your Comment:
+      {% csrf_token %}
+      <textarea name="content" class="form-control" placeholder="enter your comment here" rows="3"
+        maxlength="400"></textarea>
+      <input name="list_id" type="hidden" value="{{ listing.id }}" />
+      <button class="btn btn-primary" type="submit">Comment</button>
+    </form>
+  </div>
 
   <footer class="footer">
     <div role="contentinfo">
@@ -103,7 +137,8 @@
               <center>**Warning**</center>
             </h5>
             <p>
-              <center>crystal gallery 경매 체험 사이트로, 각 작품의 저작권은 게재자에게 있습니다. 작가의 동의 없는 무단배포는 저작권법에 의해 법적 처벌을 받을 수 있습니다.</center>
+              <center>crystal gallery 경매 체험 사이트로, 각 작품의 저작권은 게재자에게 있습니다. 작가의 동의 없는 무단배포는 저작권법에 의해 법적 처벌을 받을 수 있습니다.
+              </center>
             </p>
             <br>
           </div>
@@ -112,4 +147,5 @@
     </div>
   </footer>
 </body>
+
 </html>

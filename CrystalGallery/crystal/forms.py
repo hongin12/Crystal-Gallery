@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+from .models import Listing
 from .models import User
 
 
@@ -38,3 +38,15 @@ class UserChangeForm(forms.ModelForm):
 
     def clean_password(self):
         return self.initial["password"]
+
+#DataFlair #File_Upload
+class Profile_Form(forms.ModelForm):
+    class Meta:
+        model = Listing
+        fields = [
+        'name',
+        'initial',
+        'user',
+        'display_picture',
+        'explain',
+        ]

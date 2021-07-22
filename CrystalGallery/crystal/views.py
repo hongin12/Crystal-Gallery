@@ -4,29 +4,16 @@ from django.contrib import auth
 from .models import User
 from .models import Listing
 from django.utils import timezone
-
-# Create your views here.
+from .forms import Profile_Form
+from .models import Bid
+from .models import Comment
 
 def main(request):
-    return render(request, "main.html")
-
+    sorted_list = Bid.objects.all().order_by('-highest_bid')[:3]
+    return render(request, "main.html", {'top1': sorted_list[0], 'top2':sorted_list[1], 'top3':sorted_list[2]})
 
 def main2(request):
     return render(request, "main2.html")
-
-
-def login(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST['password']
-        user = auth.authenticate(request, username=username, password=password) 
-        if user is not None: 
-            auth.login(request, user) 
-            return redirect('main') 
-        else: 
-            return render(request, 'login.html', {'error': 'username or password is incorrect.'}) 
-    else: 
-        return render(request, 'login.html')
 
 def signup(request):
     if request.method == "POST":
@@ -61,24 +48,14 @@ def mypage(request):
 def mygallery(request):
     return render(request, "mygallery.html")
 
-def registerAuction(request):
-    return render(request, "registerAuction.html")
-
 def auctionArts(request):
     listing = Listing.objects.all()
-    return render(request, "auctionArts.html", {'listing' : listing})
+    highest_bid_art = Bid.objects.all().order_by('-highest_bid')[:3]
+    return render(request, "auctionArts.html", {'listing' : listing, 'top1': highest_bid_art[0]})
 
 def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
     return render(request, 'auction.html', {'listings':listings})
-
-def auctionArts2(request):
-    listing = Listing.objects.all()
-    return render(request, "auctionArts2.html", {'listing' : listing})
-
-def auctionArts3(request):
-    listing = Listing.objects.all()
-    return render(request, "auctionArts3.html", {'listing' : listing})
 
 def about(request):
     return render(request, "about.html")
@@ -107,23 +84,41 @@ def bid(request):
             messages.success(request, 'Bid Placed Successfully!', fail_silently=True)
     return redirect("auctions:listing", item_id)
 
-def logout(request):
-    if request.method == "POST":
-        auth.logout(request)
-        return redirect("main.html")
-    return render(request, 'main.html')
-
-
 def create(requset):
     new_listing = Listing()
     new_listing.name = requset.POST['name']
     new_listing.initial = requset.POST['initial']
     # new_listing.user = requset.POST['initial']
-    new_listing.image = requset.POST['image']
+    new_listing.display_picture = requset.POST['display_picture']
     new_listing.created = timezone.now()
     new_listing.explain = requset.POST['explain']
     new_listing.save()
     return redirect('auctionArts')
 
-def auction2(request):
-    return render(request, "auction2.html")
+IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
+
+def create_profile(request):
+    form = Profile_Form()
+    if request.method == 'POST':
+        form = Profile_Form(request.POST, request.FILES)
+        if form.is_valid():
+            user_pr = form.save(commit=False)
+            user_pr.display_picture = request.FILES['display_picture']
+            file_type = user_pr.display_picture.url.split('.')[-1]
+            file_type = file_type.lower()
+            if file_type not in IMAGE_FILE_TYPES:
+                return render(request, 'profile_maker/error.html')
+            user_pr.save()
+            return render(request, 'profile_maker/details.html', {'user_pr': user_pr})
+    context = {"form": form,}
+    return render(request, 'profile_maker/create.html', context)
+
+def comment(request):
+    if request.method == "POST":
+        content = request.POST["content"]
+        item_id = request.POST["list_id"]
+        item = Listing.objects.get(pk=item_id)
+        newComment = Comment(user=request.user, comment=content, listing=item)
+        newComment.save()
+        return redirect("auctions:listing", item_id)
+    return redirect("auctions:index")

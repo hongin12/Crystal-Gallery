@@ -15,26 +15,29 @@ Including another URLconf
 """
 # from CrystalGallery.crystal.views import auction
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from crystal import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name="main"),
-    path('login/', views.login, name="login"),
+    path('login/', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
     path('signup/', views.signup, name="signup"),
     path('mypage/', views.mypage, name="mypage"),
     path('mygallery/', views.mygallery, name="mygallery"),
     path('auction/<int:listings_id>', views.auction, name="auction"),
     path('auctionArts/', views.auctionArts, name="auctionArts"),
-    path('registerAuction/', views.registerAuction, name="registerAuction"),
-    path('.auctionArts/', views.auctionArts2, name="auctionArts2"),
-    path(',auctionArts/', views.auctionArts3, name="auctionArts3"),
+    #path('.auctionArts/', views.auctionArts2, name="auctionArts2"),
+    #path(',auctionArts/', views.auctionArts3, name="auctionArts3"),
     path('about/', views.about, name="about"),
-    path('logout/', views.logout, name="logout"), 
-    path('create/', views.create, name="create"),
-    path(' ', views.main2, name="main2"),
-    path('.auction/2', views.auction2, name="auction2"),
+    path('logout/', auth_views.LogoutView.as_view(template_name="/"), name='logout'),
+    path('upload/', include('profile_maker.urls')),
+    path('create/', views.create_profile, name = 'create'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
