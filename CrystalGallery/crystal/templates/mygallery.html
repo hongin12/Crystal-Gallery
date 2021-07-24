@@ -69,24 +69,23 @@ mygallery
                   <div class="album py-5 bg-light">
                     <div class="container">
                       <div class="row row-cols-1 g-3">
-                        <div class="col">
+                        {% for listing in listing.all %}
+                        <div class="col">  
                           <div class="card shadow-sm">
-
-                            <img src="{% static '새로등록사진.jpg'%}" alt="새로등록사진" style="max-width: 100%; height: auto;">
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품사진</text>
-
+                            <img src="{{listing.display_picture.url}}" alt="새로등록사진" style="max-width: 100%; height: auto;">
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{listing.name}}</text>
                             <div class="card-body">
-                              <p class="card-text">작품 설명 : i love Reggae</p>
+                              <p class="card-text">작품 설명 : {{listing.explain}}</p>
                               <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "auction" listing.id %}'">View</button>
                                 </div>
                                 <small class="text-muted"></small>
                               </div>
                             </div>
                           </div>
                         </div>
+                        {% endfor %}
                       </div>
                     </div>
                   </div>
