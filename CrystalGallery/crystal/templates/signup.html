@@ -1,79 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <title>signup</title>
+{% block title %}
+signup
+{% endblock title %}
 
-    <style>
-        .container {
-            width: 50%;
-            height: 100px;
-            margin: 100px 20rem;
-            margin-bottom: 10px;
-            display: inline-block;
-            text-align: center;
-        }
 
-        form {
-            background-color: whitesmoke;
-            border: 1px double lightgrey;
-            padding-bottom: 20px;
-        }
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
-        a {
-            color: black;
-        }
+    .container_signup {
+        width: 50%;
+        height: 100px;
+        margin: 150px 30rem;
+        text-align: center;
+        font-family: 'Krona One', sans-serif;
+        display: inline-block;
+    }
 
-        a:hover {
-            color: cornflowerblue;
-        }
+    form {
+        background-color: rgb(255, 255, 255);
+        border: 1px double lightgrey;
+        padding-bottom: 20px;
+        border-radius: 3rem;
+    }
 
-        form {
-            background-color: whitesmoke;
-            border: 1px double lightgrey;
-        }
+    a {
+        color: black;
+    }
 
-        .form-group {
-            line-height: 220%;
-            font-size: 12px;
-        }
+    a:hover {
+        color: cornflowerblue;
+    }
 
-        .form-control {
-            size: 10;
-        }
-    </style>
+    .form-group {
+        line-height: 280%;
+    }
 
+    .form-control {
+        size: 10;
+    }
+
+    .center-text {
+        font-size: smaller;
+        color: rgb(132, 132, 132)
+    }
+
+    .btn {
+        border-color: #924fff;
+        background-color: #924fff;
+        color: #FFF;
+
+    }
+</style>
+{% endblock head %}
 </head>
 
 <body>
-    <div class="container">
+    {% block content %}
+    <div class="container_signup">
         <form action="{% url 'signup' %}" method="post" class="register-form login-form">
-            {% csrf_token %}
-            <h1>Sign Up</h1>
-            <div class="form-group">
-                <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+            <div>
+                {% csrf_token %}
+                <br>
+                <h1>Sign Up</h1>
+                <br>
+                <div class="mb-3 row" style="text-align: left;">
+                    <label class="col-sm-3 col-form-label">Username</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                </div>
+                <div class="mb-3 row" style="text-align: left;">
+                    <label class="col-sm-3 col-form-label">Nickname</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="nickname" placeholder="Nickname">
+                    </div>
+                </div>
+                <div class="mb-3 row" style="text-align: left;">
+                    <label class="col-sm-3 col-form-label">E-mail</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="email" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="mb-3 row" style="text-align: left;">
+                    <label class="col-sm-3 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="mb-3 row" style="text-align: left;">
+                    <label class="col-sm-3 col-form-label">Password Confirm</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="confirmation" placeholder="Confirm Password">
+                    </div>
+                </div>
+                <br>
+                <div class="agree" style="text-align:center">
+                    <input type="checkbox" id="chk_agree" name="chk_agree">
+                    <label for="chk_agree"><strong>크리스탈갤러리 약관에 모두 동의합니다.</strong></label>
+
+                    <div style="font-size: xx-small;text-align:left">
+                        <ul>
+                            <li>크리스탈갤러리 이용약관(필수)</li>
+                            <li>개인정보취급방침(필수)</li>
+                            <li>마케팅정보 수집동의(선택)</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <br>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{% url 'login' %}" class="btn" type="submit">Sign up!</a>
+                </div>
+                <br><br>
+
+                <div class="center-text">
+                    Already have an account?<a href="{% url 'login' %}">Log In here.</a>
+                </div>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="nickname" placeholder="Nickname">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email Address">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-            </div>
-            <br>
-            <input class="btn btn-secondary" type="submit" value="Register"><a href="{% url 'login' %}">Log In here.</a>
         </form>
-
-        <br>
-        <div class="center-text">
-            Already have an account?<a href="{% url 'login' %}">Log In here.</a>
-        </div>
     </div>
-</body>
 
-</html>
+    {% endblock %}
+</body>
