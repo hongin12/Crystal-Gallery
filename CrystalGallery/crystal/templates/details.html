@@ -38,11 +38,10 @@
 {% block replace %}
 <CENTER>
 <div class="jumbotron">
-  <h1 class="display-5">작품이 정상적으로 등록되었습니다.<br><br>작품명: {{ user_pr.name }}</h1>
-  <br>
+  <h1 class="display-5">작품이 성공적으로 등록되었습니다.<br><br>작품명: {{ user_pr.name }}</h1>
   <hr class="my-4">
   <img src="{{ user_pr.display_picture.url }}" class="image_responsive" height="60%" width="60%">
-  
+  <br><a href="{% url 'auctionArts'%}" class="btn btn-secondary my-2">돌아가기</a>
 </div>
 <br><br>
 </CENTER>
