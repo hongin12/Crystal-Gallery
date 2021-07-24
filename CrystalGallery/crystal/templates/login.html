@@ -1,20 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
+{% block title %}
+login
+{% endblock title %}
+
+
+{% block head %}
 <head>
-    <title>login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        .container {
+        @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+        .container_login {
             width: 50%;
             height: 100px;
             margin: 100px 20rem;
-            display: inline-block;
             text-align: center;
+            font-family: 'Krona One', sans-serif;
+            display: inline-block;
         }
 
         form {
-            background-color: whitesmoke;
+            background-color: rgb(255, 255, 255);
             border: 1px double lightgrey;
+            border-radius: 3rem;
+            
+        }
+
+        .center-text {
+            font-size: small;
+            color: rgb(132, 132, 132);
+            text-align: center;
         }
 
         a {
@@ -24,35 +42,53 @@
         a:hover {
             color: cornflowerblue;
         }
+
+        .mb-3 {
+            text-align: center;
+        }
+        .btn{
+            border-color: #924fff;
+            background-color: #924fff;
+            color: #FFF; 
+        }
     </style>
+    {% endblock head %}
 </head>
 
 <body>
-    <div class="container">
+    {% block content %}
+    <div class="container_login">
         <form method="POST" action="{%url 'login'%}">
+            <div>
             {% include "form_errors.html" %}
-            <div class="id">
-                <h1>Login</h1>
-                <br> {%csrf_token%} ID:
-                <input type="text" name="username" value="">
-                <br>
-                <br>
-            </div>
-            <div class="pw">
-                <br> PASSWORD:
-                <input type="password" name="password" value="">
-                <br><br><br>
-            </div>
-            <input class="btn btn-primary" type="submit" value="submit">
             <br>
+            <h1>Login</h1>
+            <br> {%csrf_token%}
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">ID</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="username">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="password">
+                </div>
+            </div>
+            <br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <input class="btn" type="submit"></a>
+            </div>
+            <br><br>
             <div class="center-text">
                 <br>
-                if you don't have your account please <a href="{% url 'signup' %}">sign up</a>
+                if you don't have your account please <a href="{% url 'signup' %}">Sign up</a>
             </div>
             <br>
             <br>
+            </div>
         </form>
     </div>
+    {% endblock content %}
 </body>
-
-</html>
