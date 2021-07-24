@@ -3,6 +3,8 @@ from django.db import IntegrityError
 from django.contrib import auth 
 from .models import User
 from .models import Listing
+from django.contrib import messages
+from decimal import *
 from django.utils import timezone
 from .forms import Profile_Form
 from .models import Bid
@@ -11,9 +13,6 @@ from .models import Comment
 def main(request):
     sorted_list = Bid.objects.all().order_by('-highest_bid')[:3]
     return render(request, "main.html", {'top1': sorted_list[0], 'top2':sorted_list[1], 'top3':sorted_list[2]})
-
-def main2(request):
-    return render(request, "main2.html")
 
 def signup(request):
     if request.method == "POST":
@@ -46,7 +45,9 @@ def mypage(request):
     return render(request, "mypage.html")
 
 def mygallery(request):
-    return render(request, "mygallery.html")
+    listing = Listing.objects.all()
+    #my_upload_arts= Listing.objects.all().filter(user=request.user)
+    return render(request, "mygallery.html", {'listing':listing})
 
 def auctionArts(request):
     listing = Listing.objects.all()
@@ -55,7 +56,8 @@ def auctionArts(request):
 
 def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
-    return render(request, 'auction.html', {'listings':listings})
+    bid = Bid.objects.get(listing=listings)
+    return render(request, 'auction.html', {'listings':listings, 'bid':bid})
 
 def about(request):
     return render(request, "about.html")

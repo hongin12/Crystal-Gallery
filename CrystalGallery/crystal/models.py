@@ -62,7 +62,7 @@ class User(AbstractBaseUser):
 class Listing(models.Model):
     DEFAULT_USER = 1
     name = models.CharField(max_length = 100, blank = False)
-    initial = models.DecimalField(max_digits = 10, decimal_places = 2)
+    initial = models.IntegerField()
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
     display_picture= models.FileField(upload_to='images/', blank=True)
     created = models.DateField(auto_now_add = True)
@@ -79,7 +79,7 @@ class Listing(models.Model):
 class Bid(models.Model):
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE)
     listing = models.ForeignKey(Listing, blank = False, on_delete = models.CASCADE)
-    highest_bid = models.DecimalField(max_digits = 10, decimal_places = 2)
+    highest_bid = models.IntegerField()
     added = models.DateTimeField(auto_now = True)
 
     def __str__(self):

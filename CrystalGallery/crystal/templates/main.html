@@ -26,20 +26,20 @@ crystalgallery
 
           <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
           <h2>Top 1</h2>
-          <p><a class="btn btn-light" href="#" role="button">View details</a></p>
+          <p><a class="btn btn-light" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
         </div>
 
         <div class="col-lg-4" style="text-align:center;">
           <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
           <h2>Top 2</h2>
 
-          <p><a class="btn btn-light" href="#" role="button">View details</a></p>
+          <p><a class="btn btn-light" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
         </div>
 
         <div class="col-lg-4" style="text-align:center;">
           <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
           <h2>Top 3</h2>
-          <p><a class="btn btn-light" href="#" role="button">View details</a></p>
+          <p><a class="btn btn-light" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
         </div>
       </div>
 
