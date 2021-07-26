@@ -34,7 +34,11 @@
                         <strong>Crystal Gallery</strong>
                     </a>
                     <a href="{% url 'auctionArts' %}" class="me-3 py-2 text-dark text-decoration-none">경매참여</a>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'mygallery' %}" class="me-3 py-2 text-dark text-decoration-none">My Gallery</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="me-3 py-2 text-dark text-decoration-none">My Gallery</a>
+                    {% endif %}
                     <a href="{% url 'about' %}" class="me-3 py-2 text-dark text-decoration-none">About</a>
                 </div>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
