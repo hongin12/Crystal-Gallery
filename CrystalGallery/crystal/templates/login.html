@@ -7,6 +7,7 @@ login
 
 
 {% block head %}
+
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -16,7 +17,7 @@ login
         .container_login {
             width: 50%;
             height: 100px;
-            margin: 100px 20rem;
+            margin: 130px 30rem;
             text-align: center;
             font-family: 'Krona One', sans-serif;
             display: inline-block;
@@ -26,7 +27,7 @@ login
             background-color: rgb(255, 255, 255);
             border: 1px double lightgrey;
             border-radius: 3rem;
-            
+
         }
 
         .center-text {
@@ -44,12 +45,15 @@ login
         }
 
         .mb-3 {
-            text-align: center;
+            text-align: left;
+            margin-left: 120px;
+
         }
-        .btn{
+
+        .btn {
             border-color: #924fff;
             background-color: #924fff;
-            color: #FFF; 
+            color: #FFF;
         }
     </style>
     {% endblock head %}
@@ -57,38 +61,46 @@ login
 
 <body>
     {% block content %}
-    <div class="container_login">
-        <form method="POST" action="{%url 'login'%}">
-            <div>
-            {% include "form_errors.html" %}
-            <br>
-            <h1>Login</h1>
-            <br> {%csrf_token%}
-            <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">ID</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="username">
+    <div class="wrapper">
+        <div class="container_login">
+            <form method="POST" action="{%url 'login'%}">
+                <div>
+                    {% include "form_errors.html" %}
+                    <br>
+                    <h1>Login</h1>
+                    <br> {%csrf_token%}
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">ID</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2 col-5 mx-auto">
+                        <a href="{% url 'login' %}" class="btn" type="submit">Log in</a>
+                    </div>
+                    <br>
+
+                    <label style="font-size: small;">
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                    <br><br>
+                    <div class="center-text">
+                        <br>
+                        if you don't have your account please <a href="{% url 'signup' %}">Sign up</a>
+                    </div>
+                    <br>
+                    <br>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-6">
-                    <input type="password" class="form-control" name="password">
-                </div>
-            </div>
-            <br>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <input class="btn" type="submit"></a>
-            </div>
-            <br><br>
-            <div class="center-text">
-                <br>
-                if you don't have your account please <a href="{% url 'signup' %}">Sign up</a>
-            </div>
-            <br>
-            <br>
-            </div>
-        </form>
+
+            </form>
+        </div>
     </div>
     {% endblock content %}
 </body>

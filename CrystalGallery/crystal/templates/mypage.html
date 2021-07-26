@@ -6,8 +6,6 @@ my page
 {% endblock title %}
 
 {% block head %}
-<link href="mypage.css" rel="stylesheet">
-
 <style>
     body {
         border-radius: 10px;
@@ -51,34 +49,37 @@ my page
 
 <body>
     {% block content %}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <div class="container mt-5 d-flex justify-content-center">
-        <div class="card p-3">
-            <div class="d-flex align-items-center">
-                <div class="image"> <img src="{% static 'mypage.jpg' %}" class="rounded" width="200" height="150">
-                </div>
-                <div class="ml-3 w-100">
-                    <h5 class="mb-0 mt-0">
-                        NICKNAME:
-                        <strong style="font-size: 17px;color:lightslategrey;">
-                            {{user.nickname}}
-                        </strong>
-                    </h5>
-                    <h5 class="mb-0 mt-0">
-                        ID: <strong
-                            style="font-size: 17px; color:lightslategrey;">{% if user.is_authenticated %}{{ user.email }}{% endif %}</strong>
-                    </h5>
-
-                    <div class="p-2 mt-2 bg-dark d-flex justify-content-center rounded text-white stats">
-                        <div class="row-vh d-flex flex-column">
-                            <div class="articles"><strong style="font-weight: bold;">COIN</strong></div>
-                            <div class="number1">{{ user.coin }}</div>
-                        </div>
+    <div class="wrapper">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+            id="bootstrap-css">
+        <div class="container mt-5 d-flex justify-content-center">
+            <div class="card p-3">
+                <div class="d-flex align-items-center">
+                    <div class="image"> <img src="{% static 'mypage.jpg' %}" class="rounded" width="200" height="150">
                     </div>
+                    <div class="ml-3 w-100">
+                        <h5 class="mb-0 mt-0">
+                            NICKNAME:
+                            <strong style="font-size: 17px;color:lightslategrey;">
+                                {{user.nickname}}
+                            </strong>
+                        </h5>
+                        <h5 class="mb-0 mt-0">
+                            ID: <strong
+                                style="font-size: 17px; color:lightslategrey;">{% if user.is_authenticated %}{{ user.email }}{% endif %}</strong>
+                        </h5>
 
-                    <div class="mygallerybtn">
-                        <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{% url 'mygallery' %}"
-                                style="color: black">My Gallery로 이동</a></button>
+                        <div class="p-2 mt-2 bg-dark d-flex justify-content-center rounded text-white stats">
+                            <div class="row-vh d-flex flex-column">
+                                <div class="articles"><strong style="font-weight: bold;">COIN</strong></div>
+                                <div class="number1">{{ user.coin }}</div>
+                            </div>
+                        </div>
+
+                        <div class="mygallerybtn">
+                            <button type="button" class="btn btn-outline-secondary btn-sm"><a
+                                    href="{% url 'mygallery' %}" style="color: black">My Gallery로 이동</a></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,5 +87,3 @@ my page
     </div>
     {% endblock content %}
 </body>
-
-</html>
