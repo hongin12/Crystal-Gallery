@@ -62,10 +62,10 @@ class User(AbstractBaseUser):
 class Listing(models.Model):
     DEFAULT_USER = 1
     name = models.CharField(max_length = 100, blank = False)
-    initial = models.IntegerField()
+    initial = models.DecimalField(max_digits = 10, decimal_places = 2)
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
-    display_picture= models.FileField(upload_to='images/', blank=True)
     created = models.DateField(auto_now_add = True)
+    display_picture= models.FileField(upload_to='images/', blank=True)  
     explain = models.TextField(default = '')
 
     def __str__(self):

@@ -36,6 +36,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name="/"), name='logout'),
     path('upload/', include('profile_maker.urls')),
     path('create/', views.create_profile, name = 'create'),
+    path("comment", views.comment, name="comment"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

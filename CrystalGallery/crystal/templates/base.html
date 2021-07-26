@@ -12,13 +12,21 @@
             min-height: 100%;
         }
 
+        .wrapper {
+            height: auto;
+            min-height: 100%;
+            padding-bottom: 106px;
+
+        }
+
         footer {
-            position: absolute;
+            position: relative;
             bottom: 0;
             left: 0;
             right: 0;
-            width: 100%;
-            position: absolute;
+            height: 106px;
+            transform: translateY(-100%);
+
         }
     </style>
     {% block head %}
@@ -34,17 +42,23 @@
                         <strong>Crystal Gallery</strong>
                     </a>
                     <a href="{% url 'auctionArts' %}" class="me-3 py-2 text-dark text-decoration-none">경매참여</a>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'mygallery' %}" class="me-3 py-2 text-dark text-decoration-none">My Gallery</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="me-3 py-2 text-dark text-decoration-none">My Gallery</a>
+                    {% endif %}
                     <a href="{% url 'about' %}" class="me-3 py-2 text-dark text-decoration-none">About</a>
                 </div>
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     {% if user.is_authenticated %}
                     <div class="me-3 py-2 text-dark text-decoration-none">
-                        Signed in as <strong style="color: var(--indigo)">{{ user.username }}</strong>
+                        Signed in as <strong style="color: var(black)">{{ user.username }}</strong>
                     </div>
                     {% endif %}
                     {% if user.is_authenticated %}
+                    {% if site != "mypage" %}
                     <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
+                    {% endif %}
                     <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a>
                     {% else %}
                     <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>
@@ -61,7 +75,7 @@
     <footer class="footer">
         <div role="contentinfo">
             <div id="footcnt">
-                <div class="TCIWe" style="height: 106px;" id="fbarcnt">
+                <div class="TCIWe" id="fbarcnt">
                     <div class="fbar b2hzT">
                         <hr>
                         <center>

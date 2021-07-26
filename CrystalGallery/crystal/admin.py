@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserChangeForm, UserCreationForm
 from .models import User
+from .models import Comment
 
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
@@ -33,3 +34,4 @@ admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 admin.site.register(Listing)
 admin.site.register(Bid)
+admin.site.register(Comment)

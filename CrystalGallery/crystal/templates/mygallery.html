@@ -6,6 +6,7 @@ mygallery
 {% endblock title %}
 
 {% block head %}
+
 <head>
   <style>
     .bd-placeholder-img {
@@ -41,51 +42,71 @@ mygallery
 
 <body>
   {% block content %}
-  <main>
-    <div class="container">
-      <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">My Gallery</h1>
-            <p class="lead text-muted">Create your own gallery here. An art museum will be born. </p>
-            <p>
-              <a href="#" class="btn btn-outline-secondary">Edit</a>
-              <a href="{% url 'create' %}" class="btn btn-outline-secondary">Register</a>
-              <!-- <a href="#" class="btn btn-outline-secondary">Edit
+  <div class="wrapper">
+    <main>
+      <div class="container">
+        <section class="py-5 text-center container">
+          <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+              <h1 class="fw-light">My Gallery</h1>
+              <p class="lead text-muted">Create your own gallery here. An art museum will be born. </p>
+              <p>
+                <a href="#" class="btn btn-outline-secondary">Edit</a>
+                <a href="{% url 'create' %}" class="btn btn-outline-secondary">Register</a>
+                <!-- <a href="#" class="btn btn-outline-secondary">Edit
               <a href="{% url 'create' %}" class="btn btn-secondary my-2">Register</a> -->
-            </p>
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
-              <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
-                <div class="my-3 py-3">
-                  <h6 class="display-5"><strong>내가 올린 작품</strong></h6>
-                  <br><br>
-                  <div class="album py-5 bg-light">
-                    <div class="container">
-                      <div class="row row-cols-1 g-3">
-                        {% for listing in listing.all %}
-                        <div class="col">  
-                          <div class="card shadow-sm">
-                            <img src="{{listing.display_picture.url}}" alt="새로등록사진" style="max-width: 100%; height: auto;">
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{listing.name}}</text>
-                            <div class="card-body">
-                              <p class="card-text">작품 설명 : {{listing.explain}}</p>
-                              <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "auction" listing.id %}'">View</button>
+        <section>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="h-100 p-5 bg-light border rounded-3">
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
+                  <div class="my-3 py-3">
+                    <h6 class="display-5"><strong>내가 올린 작품</strong></h6>
+                    <br><br>
+                    <div class="album py-5 bg-light">
+                      <div class="container">
+                        <div class="row row-cols-1 g-3">
+                          {% for listing in listing.all %}
+                          <div class="col">
+                            <div class="card shadow-sm">
+                              <img src="{{listing.display_picture.url}}" alt="새로등록사진"
+                                style="max-width: 100%; height: auto;">
+                              <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{listing.name}}</text>
+                              <div class="card-body">
+                                <p class="card-text">작품 설명 : {{listing.explain}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                      onclick="location.href='{% url "auction" listing.id %}'">View</button>
+                                  </div>
+                                  <small class="text-muted"></small>
                                 </div>
-                                <small class="text-muted"></small>
                               </div>
                             </div>
                           </div>
+                          {% endfor %}
                         </div>
-                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="h-100 p-5 bg-light border rounded-3">
+                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
+                  <div class="my-3 py-3">
+                    <h6 class="display-5"><strong>내가 낙찰한 작품</strong></h6>
+                    <br><br>
+                    <div class="album py-5 bg-light">
+                      <div class="container">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -93,25 +114,9 @@ mygallery
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
-              <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
-                <div class="my-3 py-3">
-                  <h6 class="display-5"><strong>내가 낙찰한 작품</strong></h6>
-                  <br><br>
-                  <div class="album py-5 bg-light">
-                    <div class="container">
-                      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
+        </section>
+      </div>
+    </main>
+  </div>
   {% endblock content %}
 </body>

@@ -9,6 +9,8 @@ from django.utils import timezone
 from .forms import Profile_Form
 from .models import Bid
 from .models import Comment
+from django.contrib.auth.decorators import login_required
+
 
 def main(request):
     sorted_list = Bid.objects.all().order_by('-highest_bid')[:3]
@@ -57,7 +59,8 @@ def auctionArts(request):
 def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
     bid = Bid.objects.get(listing=listings)
-    return render(request, 'auction.html', {'listings':listings, 'bid':bid})
+    comments = Comment.objects.filter(listing=listings)
+    return render(request, 'auction.html', {'listings':listings, 'bid':bid, 'comments':comments})
 
 def about(request):
     return render(request, "about.html")
@@ -115,6 +118,7 @@ def create_profile(request):
     context = {"form": form,}
     return render(request, 'create.html', context)
 
+@login_required
 def comment(request):
     if request.method == "POST":
         content = request.POST["content"]
@@ -122,5 +126,5 @@ def comment(request):
         item = Listing.objects.get(pk=item_id)
         newComment = Comment(user=request.user, comment=content, listing=item)
         newComment.save()
-        return redirect("auctions:listing", item_id)
-    return redirect("auctions:index")
+        return redirect("auction", item_id)
+    return redirect("main")
