@@ -15,7 +15,7 @@ signup
     .container_signup {
         width: 50%;
         height: 100px;
-        margin: 150px 30rem;
+        margin: 70px 30rem;
         text-align: center;
         font-family: 'Krona One', sans-serif;
         display: inline-block;
@@ -55,75 +55,92 @@ signup
         color: #FFF;
 
     }
+
+    .mb-3 {
+        margin-left: 20px;
+
+    }
+
+    .agree {
+        text-align: center;
+
+    }
+
+    .agree-detail {
+        font-size: x-small;
+        text-align: left;
+        margin-left: 320px;
+    }
 </style>
 {% endblock head %}
 </head>
 
 <body>
     {% block content %}
-    <div class="container_signup">
-        <form action="{% url 'signup' %}" method="post" class="register-form login-form">
-            <div>
-                {% csrf_token %}
-                <br>
-                <h1>Sign Up</h1>
-                <br>
-                <div class="mb-3 row" style="text-align: left;">
-                    <label class="col-sm-3 col-form-label">Username</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
+    <div class="wrapper">
+        <div class="container_signup">
+            <form action="{% url 'signup' %}" method="post" class="register-form login-form">
+                <div>
+                    {% csrf_token %}
+                    <br>
+                    <h1>Sign Up</h1>
+                    <br>
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row" style="text-align: left;">
-                    <label class="col-sm-3 col-form-label">Nickname</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nickname" placeholder="Nickname">
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Nickname</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="nickname" placeholder="Nickname">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row" style="text-align: left;">
-                    <label class="col-sm-3 col-form-label">E-mail</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="email" placeholder="Email Address">
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">E-mail</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="email" placeholder="Email Address">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row" style="text-align: left;">
-                    <label class="col-sm-3 col-form-label">Password</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="password" placeholder="Password">
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="password" placeholder="Password">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row" style="text-align: left;">
-                    <label class="col-sm-3 col-form-label">Password Confirm</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="confirmation" placeholder="Confirm Password">
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Password Confirm</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="confirmation" placeholder="Confirm Password">
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="agree" style="text-align:center">
-                    <input type="checkbox" id="chk_agree" name="chk_agree">
-                    <label for="chk_agree"><strong>크리스탈갤러리 약관에 모두 동의합니다.</strong></label>
+                    <br>
+                    <div class="agree">
+                        <input type="checkbox" id="chk_agree" name="chk_agree">
+                        <label for="chk_agree"><strong>크리스탈갤러리 약관에 모두 동의합니다.</strong></label>
 
-                    <div style="font-size: xx-small;text-align:left">
-                        <ul>
-                            <li>크리스탈갤러리 이용약관(필수)</li>
-                            <li>개인정보취급방침(필수)</li>
-                            <li>마케팅정보 수집동의(선택)</li>
-                        </ul>
+                        <div class="agree-detail">
+                            <br>
+                            <ul>
+                                <li>크리스탈갤러리 이용약관(필수)</li>
+                                <li>개인정보취급방침(필수)</li>
+                                <li>마케팅정보 수집동의(선택)</li>
+                            </ul>
+                        </div>
+
+
                     </div>
-
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{% url 'login' %}" class="btn" type="submit">Sign up!</a>
+                    </div>
+                    <br><br>
+                    <div class="center-text">
+                        Already have an account?<a href="{% url 'login' %}">Log In here.</a>
+                    </div>
                 </div>
-                <br>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <a href="{% url 'login' %}" class="btn" type="submit">Sign up!</a>
-                </div>
-                <br><br>
-
-                <div class="center-text">
-                    Already have an account?<a href="{% url 'login' %}">Log In here.</a>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-
     {% endblock %}
 </body>
