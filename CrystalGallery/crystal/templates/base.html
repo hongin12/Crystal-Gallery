@@ -52,11 +52,13 @@
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     {% if user.is_authenticated %}
                     <div class="me-3 py-2 text-dark text-decoration-none">
-                        Signed in as <strong style="color: var(--indigo)">{{ user.username }}</strong>
+                        Signed in as <strong style="color: var(black)">{{ user.username }}</strong>
                     </div>
                     {% endif %}
                     {% if user.is_authenticated %}
+                    {% if site != "mypage" %}
                     <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
+                    {% endif %}
                     <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a>
                     {% else %}
                     <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>

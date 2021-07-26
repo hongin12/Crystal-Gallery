@@ -91,12 +91,13 @@ auction
         {% endif %}
       </div>
       <hr>
-      <form class="comment-form" action="#" method="POST">
+      <form class="comment-form" action="{% url 'comment' %}" method="POST">
         Your Comment:
         {% csrf_token %}
         <textarea name="content" class="form-control" placeholder="enter your comment here" rows="3"
           maxlength="400"></textarea>
-        <input name="list_id" type="hidden" value="{{ listing.id }}" />
+        <input name="list_id" type="hidden" value="{{ listings.id }}" />
+        <br>
         <button class="btn btn-primary" type="submit" style="float: right;">Comment</button>
       </form>
     </div>
