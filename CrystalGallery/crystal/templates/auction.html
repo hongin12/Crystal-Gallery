@@ -7,6 +7,14 @@ auction
 
 {% block head %}
 <style>
+  .wrapper{
+    background-color:rgb(42, 42, 42);
+    color: white
+  }
+
+  .col-md-6{
+    
+  }
   .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -38,7 +46,7 @@ auction
           </div>
 
           <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
+            <div class="h-100 p-5 bg-dark border rounded-3">
               <h1 class="display-5 fw-bold">그림 제목 : {{listings.name}}</h1>
               <p class="col-md-8 fs-4">그림 설명: {{listings.explain}}</p>
               <p class="col-md-8 fs-4">초기 가격: {{listings.initial}}</p>

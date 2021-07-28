@@ -19,14 +19,15 @@
 
         }
 
-        footer {
+        .footer {
             position: relative;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 106px;
+            height: 50px;
             transform: translateY(-100%);
-
+            color: rgb(160, 160, 160);
+            background-color: rgb(42, 42, 42);
         }
     </style>
     {% block head %}
@@ -35,34 +36,36 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-light shadow-sm">
+        <nav class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <div class="navbar-header">
                     <a href="{% url 'main' %}" class="navbar-brand">
                         <strong>Crystal Gallery</strong>
                     </a>
-                    <a href="{% url 'auctionArts' %}" class="me-3 py-2 text-dark text-decoration-none">경매참여</a>
+                    <a href="{% url 'auctionArts' %}" class="me-3 py-2 text-white text-decoration-none">경매참여</a>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'mygallery' %}" class="me-3 py-2 text-dark text-decoration-none">My Gallery</a>
+                    <a href="{% url 'mygallery' %}" class="me-3 py-2 text-white text-decoration-none">My Gallery</a>
                     {% else %}
-                    <a href="{% url 'login' %}" class="me-3 py-2 text-dark text-decoration-none">My Gallery</a>
+                    <a href="{% url 'login' %}" class="me-3 py-2 text-white text-decoration-none">My Gallery</a>
                     {% endif %}
-                    <a href="{% url 'about' %}" class="me-3 py-2 text-dark text-decoration-none">About</a>
+                    <a href="{% url 'about' %}" class="me-3 py-2 text-white text-decoration-none">About</a>
                 </div>
-                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+
+
+                <nav class="d-inline-flex">
                     {% if user.is_authenticated %}
-                    <div class="me-3 py-2 text-dark text-decoration-none">
+                    <div class="text-dark text-decoration-none">
                         Signed in as <strong style="color: var(black)">{{ user.username }}</strong>
                     </div>
                     {% endif %}
                     {% if user.is_authenticated %}
                     {% if site != "mypage" %}
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'mypage' %}">mypage</a>
+                    <a class="me-3 py-2 text-white text-decoration-none" href="{% url 'mypage' %}">mypage</a>
                     {% endif %}
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{%url 'logout'%}">logout</a>
+                    <a class="me-3 py-2 text-white text-decoration-none" href="{%url 'logout'%}">logout</a>
                     {% else %}
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">login</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'signup' %}">join</a>
+                    <a class="me-3 py-2 text-white text-decoration-none" href="{% url 'login' %}">login</a>
+                    <a class="me-3 py-2 text-white text-decoration-none" href="{% url 'signup' %}">join</a>
                     {% endif %}
             </div>
         </nav>
@@ -83,18 +86,7 @@
                             <small>_성신여자대학교 멋쟁이사자처럼 화요일사자_</small>
                         </center>
                     </div>
-
-                    <div class="fbar" style="background: silver;">
-                        <hr>
-                        <h5>
-                            <center>**Warning**</center>
-                        </h5>
-                        <p>
-                            <center>crystal gallery 경매 체험 사이트로, 각 작품의 저작권은 게재자에게 있습니다. 작가의 동의 없는 무단배포는 저작권법에 의해 법적 처벌을
-                                받을 수 있습니다.</center>
-                        </p>
-                        <br>
-                    </div>
+                   
                 </div>
             </div>
         </div>

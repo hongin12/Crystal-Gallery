@@ -9,6 +9,10 @@ mygallery
 
 <head>
   <style>
+    .wrapper{
+      background-color: rgb(42, 42, 42);
+      color: white;
+    }
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -68,7 +72,7 @@ mygallery
                   <div class="my-3 py-3">
                     <h6 class="display-5"><strong>내가 올린 작품</strong></h6>
                     <br><br>
-                    <div class="album py-5 bg-light">
+                    <div class="album py-5 bg-dark">
                       <div class="container">
                         <div class="row row-cols-1 g-3">
                           {% for listing in listing.all %}
@@ -76,7 +80,7 @@ mygallery
                             <div class="card shadow-sm">
                               <img src="{{listing.display_picture.url}}" alt="새로등록사진"
                                 style="max-width: 100%; height: auto;">
-                              <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{listing.name}}</text>
+                              <text x="50%" y="50%" fill="#eceeef" dy=".3em">{listing.name}</text>
                               <div class="card-body">
                                 <p class="card-text">작품 설명 : {{listing.explain}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -98,12 +102,12 @@ mygallery
               </div>
             </div>
             <div class="col-md-6">
-              <div class="h-100 p-5 bg-light border rounded-3">
-                <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
+              <div class="h-100 p-5 bg-dark border rounded-3">
+                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
                   <div class="my-3 py-3">
                     <h6 class="display-5"><strong>내가 낙찰한 작품</strong></h6>
                     <br><br>
-                    <div class="album py-5 bg-light">
+                    <div class="album py-5 bg-dark">
                       <div class="container">
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         </div>
