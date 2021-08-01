@@ -7,14 +7,11 @@ auction
 
 {% block head %}
 <style>
-  .wrapper{
-    background-color:rgb(42, 42, 42);
-    color: white
+  .wrapper {
+    background-color: rgb(42, 42, 42);
+    color: white;
   }
 
-  .col-md-6{
-    
-  }
   .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -39,14 +36,14 @@ auction
       <div class="container py-4">
         <div class="row align-items-md-stretch">
           <div class="col-md-6">
-            <div class="h-100 p-5 text-white bg-dark rounded-3">
+            <div class="h-100 p-5 text-white bg-dark">
               <img src="{{listings.display_picture.url}}"
                 style="max-width: 100%; height: auto; display : block; margin : auto;">
             </div>
           </div>
 
           <div class="col-md-6">
-            <div class="h-100 p-5 bg-dark border rounded-3">
+            <div class="h-100 p-5 bg-dark text-white border ">
               <h1 class="display-5 fw-bold">그림 제목 : {{listings.name}}</h1>
               <p class="col-md-8 fs-4">그림 설명: {{listings.explain}}</p>
               <p class="col-md-8 fs-4">초기 가격: {{listings.initial}}</p>
@@ -67,7 +64,6 @@ auction
                 <input name="list_id" type="hidden" value="{{ listing.id }}" />
                 <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
                   style="float: right;">입찰</a>
-
               </form>
             </div>
           </div>
@@ -75,13 +71,13 @@ auction
       </div>
     </main>
 
-    <div class="container py-4 listing-comments">
+    <div class="container py-4 listing-comments" id="comment">
       <h5>Comments </h5>
-      <div class="comment-container">
+      <div class="comment-container" style="color: black;">
         {% if comments %}
         {% for comment in comments %}
         <div class="card bg-light border-success" style="margin: 5px;">
-          <div class="comment-owner">
+          <div class="comment-owner ">
             {{ comment.user }}
           </div>
           <span class="comment-content">
@@ -106,7 +102,8 @@ auction
           maxlength="400"></textarea>
         <input name="list_id" type="hidden" value="{{ listings.id }}" />
         <br>
-        <button class="btn btn-primary" type="submit" style="float: right;">Comment</button>
+        <button class="btn btn-outline-secondary my-2" type="submit" style="float: right;">Comment</button>
+
       </form>
     </div>
 
