@@ -12,11 +12,15 @@
             min-height: 100%;
         }
 
+        .nav {
+            background-color: black;
+            color: white;
+        }
+
         .wrapper {
             height: auto;
             min-height: 100%;
-            padding-bottom: 106px;
-
+            padding-bottom: 50px;
         }
 
         .footer {
@@ -25,10 +29,12 @@
             left: 0;
             right: 0;
             height: 50px;
-            transform: translateY(-100%);
-            color: rgb(160, 160, 160);
-            background-color: rgb(42, 42, 42);
         }
+        
+       center{
+        color: rgb(160, 160, 160);
+        background-color: rgb(42, 42, 42);
+       }
     </style>
     {% block head %}
     {% endblock head %}
@@ -54,8 +60,8 @@
 
                 <nav class="d-inline-flex">
                     {% if user.is_authenticated %}
-                    <div class="text-dark text-decoration-none">
-                        Signed in as <strong style="color: var(black)">{{ user.username }}</strong>
+                    <div class="me-3 py-2 text-white text-decoration-none">
+                        Signed in as <strong style="color: var(white)">{{ user.username }}</strong>
                     </div>
                     {% endif %}
                     {% if user.is_authenticated %}
@@ -76,21 +82,12 @@
 
 
     <footer class="footer">
-        <div role="contentinfo">
-            <div id="footcnt">
-                <div class="TCIWe" id="fbarcnt">
-                    <div class="fbar b2hzT">
-                        <hr>
-                        <center>
-                            <p> ㈜ Team TLC ™ </p>
-                            <small>_성신여자대학교 멋쟁이사자처럼 화요일사자_</small>
-                        </center>
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
+        <center>
+            <br>
+            <p> ㈜ Team TLC ™ </p>
+                <small>_성신여자대학교 멋쟁이사자처럼 화요일사자_</small>
+                <br><br>
+        </center>
     </footer>
 </body>
-
 </html>
