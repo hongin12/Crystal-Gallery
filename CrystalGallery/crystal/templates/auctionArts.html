@@ -9,9 +9,9 @@ auctionArts
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 <link href="autionArts.css" rel="stylesheet">
 <style>
-  .wrapper{
-    background-color:rgb(42, 42, 42);
-    color: white
+  .wrapper {
+    background-color: rgb(42, 42, 42);
+    color: white;
   }
 
   .bd-placeholder-img {
@@ -32,55 +32,57 @@ auctionArts
 
 <body>
   {% block content %}
-  <div class="wrapper">]
-  <main>
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">현재 최고가 작품</h1>
-          <img src="{{top1.listing.display_picture.url}}" style="max-width: 100%; height: auto;">
-          <p class="lead text-muted">{{top1.listing.name}}</p>
-          <p>시작가: {{top1.listing.initial}}</p>
-          <p>현재가: 100.00 </p>
-          <p>deadline: 2021-07-10</p>
-          <p>
-            {% if user.is_authenticated %}
-            <a href="{% url 'auction' top1.listing.id %}" class="btn btn-secondary my-2">응찰</a>
-            {% else %}
-            <a href="{% url 'login'%}" class="btn btn-secondary my-2">응찰</a>
-            {% endif %}
-          </p>
+  <div class="wrapper">
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">현재 최고가 작품</h1>
+            <img src="{{top1.listing.display_picture.url}}" style="max-width: 100%; height: auto;">
+            <p class="lead text-muted">{{top1.listing.name}}</p>
+            <p>시작가: {{top1.listing.initial}}</p>
+            <p>현재가: 100.00 </p>
+            <p>deadline: 2021-07-10</p>
+            <p>
+              {% if user.is_authenticated %}
+              <a href="{% url 'auction' top1.listing.id %}" class="btn btn-secondary my-2">응찰</a>
+              {% else %}
+              <a href="{% url 'login'%}" class="btn btn-secondary my-2">응찰</a>
+              {% endif %}
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <p>
-      {% if user.is_authenticated %}
-      <a href="{% url 'create' %}" class="btn btn-secondary my-2" style="margin-left: 10rem;">내 작품 등록하기</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="btn btn-secondary my-2" style="margin-left: 10rem;">내 작품 등록하기</a>
-      {% endif %}
-    </p>
-    <br>
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          {% for listing in listing.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src="{{listing.display_picture.url}}" height="300">
-              <div class="card-body">
-                <p class="card-text">제목: {{listing.name}}</p>
-                <p class="card-text">시작가: {{listing.initial}}</p>
-                <p class="card-text">현재가: {{bid.highest_bid}}</p>
-                <a href="{% url 'auction' listing.id %}" class="btn btn-secondary my-2">응찰</a>
-                <small class="text-muted">deadline: 2021-07-10</small>
+      <p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'create' %}" class="btn btn-secondary my-2" style="margin-left: 10rem;">내 작품 등록하기</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-secondary my-2" style="margin-left: 10rem;">내 작품 등록하기</a>
+        {% endif %}
+      </p>
+      <br>
+ 
+      <div class="album py-5">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for listing in listing.all %}
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img src="{{listing.display_picture.url}}" height="300">
+                <div class="card-body">
+                  <p class="card-text">제목: {{listing.name}}</p>
+                  <p class="card-text">시작가: {{listing.initial}}</p>
+                  <p class="card-text">현재가: {{bid.highest_bid}}</p>
+                  <a href="{% url 'auction' listing.id %}" class="btn btn-secondary my-2">응찰</a>
+                  <small class="text-muted">deadline: 2021-07-10</small>
+                </div>
               </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-  </main>
+        </div>
+      </div>
+    
   </div>
   {% endblock content %}
 </body>

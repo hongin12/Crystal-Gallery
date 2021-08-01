@@ -7,85 +7,91 @@ crystalgallery
 
 {% block head %}
 <link href="main.css" rel="stylesheet">
+<style>
+  .wrapper {
+    background-color: rgb(42, 42, 42);
+    color: white;
+  }
+</style>
 {% endblock head %}
 
 <body>
   {% block content %}
   <div class="wrapper">
-  <main>
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <a href="{% url 'main' %}"><img src="{% static 'crystalgallery.jpg' %}" alt="로고사진"></a>
+    <main>
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <a href="{% url 'main' %}"><img src="{% static 'crystalgallery.jpg' %}" alt="로고사진"></a>
+          </div>
+        </div>
+      </section>
+
+      <div class="container marketing">
+        <div class="row">
+          <div class="col-lg-4" style="text-align:center;">
+
+            <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+            <h2>Top 1</h2>
+            <p><a class="btn btn-light" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
+          </div>
+
+          <div class="col-lg-4" style="text-align:center;">
+            <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+            <h2>Top 2</h2>
+
+            <p><a class="btn btn-light" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
+          </div>
+
+          <div class="col-lg-4" style="text-align:center;">
+            <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+            <h2>Top 3</h2>
+            <p><a class="btn btn-light" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">작품 제목 : painter</h2>
+            <h3><span class="text-muted">작가 : painter</span></h3>
+            <p class="lead"></p>
+          </div>
+          <div class="col-md-5">
+            <img class="img-rectangle" src="{% static '수빈1.jpg' %}" alt="작품사진" width="500" height="400">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <img class="img-rectangle"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
+              width="500" height="400">
+          </div>
+          <div class="col-md-5" style="text-align: right;">
+            <h2 class="featurette-heading">작품제목2</h2>
+            <h3><span class="text-muted">작가2</span></h3>
+            <p class="lead">경매설명2</p>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">작품제목3</h2>
+            <h3><span class="text-muted">작가3</span></h3>
+            <p class="lead">경매설명3</p>
+          </div>
+          <div class="col-md-5">
+            <img class="img-rectangle"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
+              width="500" height="400">
+          </div>
         </div>
       </div>
-    </section>
-
-    <div class="container marketing">
-      <div class="row">
-        <div class="col-lg-4" style="text-align:center;">
-
-          <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-          <h2>Top 1</h2>
-          <p><a class="btn btn-light" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
-        </div>
-
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-          <h2>Top 2</h2>
-
-          <p><a class="btn btn-light" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
-        </div>
-
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-          <h2>Top 3</h2>
-          <p><a class="btn btn-light" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">작품 제목 : painter</h2>
-          <h3><span class="text-muted">작가 : painter</span></h3>
-          <p class="lead"></p>
-        </div>
-        <div class="col-md-5">
-          <img class="img-rectangle" src="{% static '수빈1.jpg' %}" alt="작품사진" width="500" height="400">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <img class="img-rectangle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
-            width="500" height="400">
-        </div>
-        <div class="col-md-5" style="text-align: right;">
-          <h2 class="featurette-heading">작품제목2</h2>
-          <h3><span class="text-muted">작가2</span></h3>
-          <p class="lead">경매설명2</p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">작품제목3</h2>
-          <h3><span class="text-muted">작가3</span></h3>
-          <p class="lead">경매설명3</p>
-        </div>
-        <div class="col-md-5">
-          <img class="img-rectangle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
-            width="500" height="400">
-        </div>
-      </div>
-    </div>
-    </div>
+  </div>
   </main>
-</div>
+  </div>
   {% endblock content %}
 </body>
