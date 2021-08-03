@@ -9,8 +9,17 @@ crystalgallery
 <link href="main.css" rel="stylesheet">
 <style>
   .wrapper {
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(0, 0, 0);
     color: white;
+  }
+
+  .carousel{
+    position: relative; 
+
+  }
+
+  .child{
+    position: absolute;
   }
 </style>
 {% endblock head %}
@@ -18,15 +27,26 @@ crystalgallery
 <body>
   {% block content %}
   <div class="wrapper">
-    <main>
+    <!-- <main>
       <section class="py-5 text-center container">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <a href="{% url 'main' %}"><img src="{% static 'crystalgallery.jpg' %}" alt="로고사진"></a>
           </div>
         </div>
-      </section>
+      </section> -->
 
+      <div class="carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static '크갤투명1.png' %}" class="d-block w-100" alt="...">
+          </div>
+          
+      </div>
+      <div class="child">
+      <a href="{% url 'about' %}" class="btn btn-secondary border-white bg-black">here</a>
+      </div
+      
       <div class="container marketing">
         <div class="row">
           <div class="col-lg-4" style="text-align:center;">
