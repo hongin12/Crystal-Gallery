@@ -5,27 +5,37 @@
 작품등록
 {% endblock title %}
 
+{% block head %}
+<style>
+  .wrapper {
+    background-color: black;
+    color: white;
+  }
+</style>
+
+{% endblock head %}
 <body>
   {% block content %}
   <div class="wrapper">
     <center>
-      <div class="jumbotron">
+      <div class="container">
         <br><br>
         {% block replace %}
-        <h1 class="display-5">경매 작품을 등록하세요.</h1>
-        <br>
-        <hr class="my-4">
-        <form method="POST" enctype="multipart/form-data">
-          <!-- Very Important csrf Token -->
-          {% csrf_token %}
-          <br><br>
-          <table>
-            {{ form.as_table }}
-          </table>
-          <br><br>
-
-          <input type="submit" class="btn btn-outline-secondary" name="register">
-          {% endblock replace %}
+        <div style="border-style: 10px solid #ffffff;;">
+          <h2>경매 작품을 등록하세요.</h2>
+          <form method="POST" enctype="multipart/form-data">
+            <!-- Very Important csrf Token -->
+            {% csrf_token %}
+            <br><br>
+            <table>
+              {{ form.as_table }}
+            </table>
+            <br><br>
+            
+            <input type="submit" class="btn btn-outline-secondary" name="register">
+            {% endblock replace %}
+          </form>
+        </div>
       </div>
       <br><br>
     </center>
