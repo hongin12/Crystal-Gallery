@@ -8,19 +8,36 @@ crystalgallery
 {% block head %}
 <link href="main.css" rel="stylesheet">
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
   .wrapper {
     background-color: rgb(0, 0, 0);
     color: white;
   }
 
   .carousel{
-    position: relative; 
-
+    position: relative;
+    width: 100%;
+    vertical-align: middle;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
   }
 
-  .child{
-    position: absolute;
+  .text{
+    position: absolute; left: 50%; top: 13%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    text-align: center;
+    font-family: 'Krona One', sans-serif;
   }
+
+  .btn {
+    border-radius: 10rem;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+  }
+
 </style>
 {% endblock head %}
 
@@ -39,15 +56,20 @@ crystalgallery
       <div class="carousel" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{% static '크갤투명1.png' %}" class="d-block w-100" alt="...">
+            <img src="{% static '투명ui.png' %}" class="d-block w-100" alt="...">
           </div>
           
       </div>
-      <div class="child">
-      <a href="{% url 'about' %}" class="btn btn-secondary border-white bg-black">here</a>
-      </div
-      
-      <div class="container marketing">
+      <div class="text">
+        <p style="font-size: 60px"
+        >Welcome to
+          <br> Crystal Gallery</p>
+        <p>find your<br>
+          true worth,<br>
+      <a href="{% url 'about' %}" class="btn">here</a></p>
+      </div>
+     
+  <div class="container marketing">
         <div class="row">
           <div class="col-lg-4" style="text-align:center;">
 
