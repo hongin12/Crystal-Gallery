@@ -47,9 +47,9 @@ def mypage(request):
     return render(request, "mypage.html")
 
 def mygallery(request):
-    listing = Listing.objects.all()
-    #my_upload_arts= Listing.objects.all().filter(user=request.user)
-    return render(request, "mygallery.html", {'listing':listing})
+    #listing = Listing.objects.all()
+    my_upload_arts= Listing.objects.all().filter(user=request.user)
+    return render(request, "mygallery.html", {'my_upload_arts':my_upload_arts})
 
 def auctionArts(request):
     listing = Listing.objects.all()

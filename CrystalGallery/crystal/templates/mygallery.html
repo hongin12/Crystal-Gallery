@@ -46,29 +46,27 @@ mygallery
 
                     <div class="album">
                       <div class="container">
-                        <div class="row row-cols-3 g-3">
-                          {% for listing in listing.all %}
-                          <div class="col">
-                            <div class="card shadow-sm">
-                              <img src="{{listing.display_picture.url}}" alt="새로등록사진"
-                                style="max-width: 100%; height: auto;">
-                              <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{listing.name}}</text>
-                              <div class="card-body">
-                                <p class="card-text">작품 설명 : {{listing.explain}}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"
-                                      onclick="location.href='{% url "auction" listing.id %}'">View</button>
+                          <div class="row row-cols-3 g-3">
+                              {%if user.is_authenticated%} {% for art in my_upload_arts %}
+                              <div class="col">
+                                  <div class="card shadow-sm">
+                                      <img src="{{art.display_picture.url}}" alt="새로등록사진" style="max-width: 100%; height: auto;">
+                                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{art.name}}</text>
+                                      <div class="card-body">
+                                          <p class="card-text">작품 설명 : {{art.explain}}</p>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                              <div class="btn-group">
+                                                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'auction' art.id %}'">View</button>
+                                              </div>
+                                              <small class="text-muted"></small>
+                                          </div>
+                                      </div>
                                   </div>
-                                  <small class="text-muted"></small>
-                                </div>
                               </div>
-                            </div>
+                              {% endfor %}{%endif%}
                           </div>
-                          {% endfor %}
-                        </div>
                       </div>
-                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
