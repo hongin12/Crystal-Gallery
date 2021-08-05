@@ -64,9 +64,12 @@ class Listing(models.Model):
     name = models.CharField(max_length = 100, blank = False)
     initial = models.DecimalField(max_digits = 10, decimal_places = 2)
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
-    created = models.DateField(auto_now_add = True)
     display_picture= models.FileField(upload_to='images/', blank=True)  
     explain = models.TextField(default = '')
+    #time_starting = models.DateTimeField(null = True)
+    #date_posted = models.DateField(auto_now_add = True, null = True)
+    time_starting = models.DateTimeField(null = True)
+    time_ending = models.DateTimeField(null = True)
 
     def __str__(self):
         return f"{self.name} - starts at ${self.initial}"
@@ -81,7 +84,7 @@ class Bid(models.Model):
     listing = models.ForeignKey(Listing, blank = False, on_delete = models.CASCADE)
     highest_bid = models.IntegerField()
     added = models.DateTimeField(auto_now = True)
-
+    
     def __str__(self):
         return f"${self.highest_bid} - {self.user} on {self.listing.name}"
 

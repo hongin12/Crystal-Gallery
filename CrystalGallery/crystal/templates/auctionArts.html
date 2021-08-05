@@ -65,7 +65,7 @@ auctionArts
             <div class="card-body">
               <p class="card-text">시작가: {{top1.listing.initial}}</p>
               <p class="card-text">현재가: 100.00 </p>
-              <p class="card-text"><small>deadline: 2021-07-10</small>
+              <p class="card-text"><small>deadline: {{ top1.listing.time_ending }}</small>
               
                 {% if user.is_authenticated %}
                 <a href="{% url 'auction' top1.listing.id %}" class="btn btn-secondary btn-sm">응찰</a>
@@ -102,7 +102,7 @@ auctionArts
                   <p class="card-text">제목: {{listing.name}}</p>
                   <p class="card-text">시작가: {{listing.initial}}</p>
                   <p class="card-text">현재가: {{bid.highest_bid}}</p>
-                  <p><small>deadline: 2021-07-10</small>
+                  <p><small>deadline: {{ listing.time_ending }}</small>
                     <a href="{% url 'auction' listing.id %}" class="btn btn-sm btn-secondary" >응찰</a>
                   </p>
                 </div>

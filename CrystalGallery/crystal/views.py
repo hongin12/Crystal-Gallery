@@ -6,10 +6,12 @@ from .models import Listing
 from django.contrib import messages
 from decimal import *
 from django.utils import timezone
-from .forms import Profile_Form
+from .forms import *
 from .models import Bid
 from .models import Comment
 from django.contrib.auth.decorators import login_required
+from datetime import datetime, timedelta
+from crystal.transactions import remaining_time
 
 
 def main(request):
@@ -47,9 +49,9 @@ def mypage(request):
     return render(request, "mypage.html")
 
 def mygallery(request):
-    #listing = Listing.objects.all()
-    my_upload_arts= Listing.objects.all().filter(user=request.user)
-    return render(request, "mygallery.html", {'my_upload_arts':my_upload_arts})
+    listing = Listing.objects.all()
+    #my_upload_arts= Listing.objects.all().filter(user=request.user)
+    return render(request, "mygallery.html", {'listing':listing})
 
 def auctionArts(request):
     listing = Listing.objects.all()
@@ -97,7 +99,10 @@ def create(requset):
     new_listing.display_picture = requset.POST['display_picture']
     new_listing.created = timezone.now()
     new_listing.explain = requset.POST['explain']
+    new_listing.time_ending = requset.POST['time_ending']
     new_listing.save()
+    
+    
     return redirect('auctionArts')
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
@@ -128,3 +133,64 @@ def comment(request):
         newComment.save()
         return redirect("auction", item_id)
     return redirect("main")
+
+
+
+
+
+
+
+def save_auction(request):
+    """
+    Saves auction created by the user
+
+    Returns
+    -------
+    Function : index(request)
+        If the user is not logged in
+
+    """
+
+    if request.method == 'POST':
+        form = PutUpAuctionForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            date = form.cleaned_data["time_starting"]
+            hour = form.cleaned_data["hour_starting"]
+
+            date = str(date)
+            yr = int( date.split('-')[0] )
+            month = int(date.split('-')[1])
+            day = int(date.split('-')[2])
+
+            d_t = datetime(yr, month, day, hour, 0)
+
+            new_prod = Listing(
+                    title = form.cleaned_data['title'],
+                    description = form.cleaned_data['description'],
+                    base_price = form.cleaned_data['base_price'],
+                    time_starting = d_t,
+                    category = form.cleaned_data['category'],
+                    image = form.cleaned_data['image']
+            )
+
+            new_prod.save()  
+
+            dur = form.cleaned_data['duration']
+            d = Bid.objects.filter(id=new_prod.id)
+
+            user = User.objects.filter(username=request.session['username'])
+
+            new_auc = Bid(
+                product_id = d[0],
+                user_id = user[0],
+                base_price = form.cleaned_data['base_price'],
+                number_of_bids = 0,
+                time_starting = d_t,
+                time_ending = d_t + timedelta(days = dur)
+            )
+
+            new_auc.save()
+
+
+            

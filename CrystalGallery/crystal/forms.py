@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from .models import Listing
 from .models import User
-
+from django.utils import timezone
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -41,6 +41,8 @@ class UserChangeForm(forms.ModelForm):
 
 #DataFlair #File_Upload
 class Profile_Form(forms.ModelForm):
+    time_ending = forms.DateTimeField()
+    
     class Meta:
         model = Listing
         fields = [
@@ -49,4 +51,5 @@ class Profile_Form(forms.ModelForm):
         'user',
         'display_picture',
         'explain',
+        'time_ending',
         ]
