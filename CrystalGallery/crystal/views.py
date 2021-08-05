@@ -68,7 +68,7 @@ def about(request):
 def bid(request):
     if request.method == "POST":
         new_bid = request.POST["bid"]
-        item_id = request.POST["list_id"]
+        item_id = request.POST["listings_id"]
 
         item = Listing.objects.get(pk=item_id)
         old_bid = Bid.objects.filter(listing=item)
