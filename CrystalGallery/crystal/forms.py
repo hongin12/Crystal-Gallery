@@ -41,7 +41,7 @@ class UserChangeForm(forms.ModelForm):
 
 #DataFlair #File_Upload
 class Profile_Form(forms.ModelForm):
-    time_ending = forms.DateTimeField()
+    time_ending = forms.DateField()
     
     class Meta:
         model = Listing

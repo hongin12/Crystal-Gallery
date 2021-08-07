@@ -48,7 +48,6 @@ auction
               <p class="col-md-8 fs-4">그림 설명: {{listings.explain}}</p>
               <p class="col-md-8 fs-4">초기 가격: {{listings.initial}}</p>
               <p class="col-md-8 fs-4">현재 가격: {{bid.highest_bid}}
-              <p class="col-md-8 fs-4">{% if todays_date > time_starting|date:'Y-m-d-H-i-s' %}</p>
               <p class="col-md-8 fs-4"> Auction ends in: {{ listings.time_ending }}</p>
 
               <br>

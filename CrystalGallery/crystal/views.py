@@ -97,7 +97,6 @@ def create(requset):
     new_listing.initial = requset.POST['initial']
     # new_listing.user = requset.POST['initial']
     new_listing.display_picture = requset.POST['display_picture']
-    new_listing.created = timezone.now()
     new_listing.explain = requset.POST['explain']
     new_listing.time_ending = requset.POST['time_ending']
     new_listing.save()
