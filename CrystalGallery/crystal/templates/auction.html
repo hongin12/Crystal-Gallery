@@ -6,53 +6,35 @@ auction
 {% endblock title %}
 
 {% block head %}
+<meta name="viewport" content="width=devive-width, initial-scale = 1">
 <style>
   .wrapper {
     background-color: rgb(0, 0, 0);
     color: white;
   }
 
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
 </style>
+
 {% endblock head %}
 
 <body>
   {% block content %}
   <div class="wrapper">
 
-    <main>
-      <div class="container py-4">
-        <div class="row align-items-md-stretch">
-          <div class="col-md-6">
-            <div class="h-100 p-5 text-white bg-dark">
-              <img src="{{listings.display_picture.url}}"
-                style="object-fit:contain;">
-            </div>
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-md-6 ">
+            <img src="{{listings.display_picture.url}}" style="max-width: 100%; top :50%; ">
           </div>
 
-          <div class="col-md-6">
-            <div class="h-100 p-5 bg-dark text-white border ">
-              <h1 class="display-5 fw-bold">그림 제목 : {{listings.name}}</h1>
-              <p class="col-md-8 fs-4">그림 설명: {{listings.explain}}</p>
-              <p class="col-md-8 fs-4">초기 가격: {{listings.initial}}</p>
-              <p class="col-md-8 fs-4">현재 가격: {{bid.highest_bid}}
-              <p class="col-md-8 fs-4"> Auction ends in: {{ listings.time_ending }}</p>
-
+          <div class="col-md-6 p-4 bg-dark text-white border ">
+            <h1 class="display-5 fw-bold">그림 제목 : {{listings.name}}</h1>
+            <p class="fs-4">그림 설명: {{listings.explain}}</p>
+            <p class="fs-4">초기 가격: {{listings.initial}}</p>
+            <p class="fs-4">현재 가격: {{bid.highest_bid}}
+            <p class="col-md-8 fs-4"> Auction ends in: {{ listings.time_ending }}</p>
               <br>
               <br>
-
 
               <form class="login-form" action="{% url 'auctionArts' %}" method="POST">
                 {% csrf_token %}
@@ -67,11 +49,12 @@ auction
                 <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
                   style="float: right;">입찰</a>
               </form>
-            </div>
           </div>
+
         </div>
+
       </div>
-    </main>
+ 
 
     <div class="container py-4 listing-comments" id="comment">
       <h5>Comments </h5>
