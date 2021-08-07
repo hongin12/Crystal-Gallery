@@ -118,6 +118,12 @@ def create_profile(request):
             if file_type not in IMAGE_FILE_TYPES:
                 return render(request, 'error.html')
             user_pr.save()
+            new_Bid = Bid()
+            new_Bid.user = request.user
+            new_Bid.listing = user_pr
+            new_Bid.highest_bid = request.POST['initial']
+            new_Bid.added = timezone.now()
+            new_Bid.save()
             return render(request, 'details.html', {'user_pr': user_pr})
     context = {"form": form,}
     return render(request, 'create.html', context)
