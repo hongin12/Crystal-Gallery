@@ -66,10 +66,7 @@ class Listing(models.Model):
     user = models.ForeignKey(User, blank = False, on_delete = models.CASCADE, default = DEFAULT_USER)
     display_picture= models.FileField(upload_to='images/', blank=True)  
     explain = models.TextField(default = '')
-    #time_starting = models.DateTimeField(null = True)
-    #date_posted = models.DateField(auto_now_add = True, null = True)
-    time_starting = models.DateTimeField(null = True)
-    time_ending = models.DateTimeField(null = True)
+    time_ending = models.DateField(null = True)
 
     def __str__(self):
         return f"{self.name} - starts at ${self.initial}"
