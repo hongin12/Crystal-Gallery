@@ -55,9 +55,10 @@ def mygallery(request):
 
 def auctionArts(request):
     listing = Listing.objects.all()
+    bid = Bid.objects.all()
     highest_bid_art = Bid.objects.all().order_by('-highest_bid')[:3]
-    return render(request, "auctionArts.html", {'listing' : listing, 'top1': highest_bid_art[0]})
-
+    return render(request, "auctionArts.html", {'listing' : bid, 'top1': highest_bid_art[0]})
+    
 def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
     bid = Bid.objects.get(listing=listings)

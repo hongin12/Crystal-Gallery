@@ -91,28 +91,27 @@ auctionArts
 
     <div class="py-5">
       <div class="container">
-        <div class="row ">
-          {% for listing in listing.all reversed %}
-          <div class="col-md-3 col-xs-6">
-            <div class="mb-3" id = "card">
-              <div id="li">
-                <img src="{{listing.display_picture.url}}"
-                  style="width : 300px; height : 200px; border : 10px ridge rgb(230, 230, 230);">
-                <div class="card-body">
-                  <p class="card-text">제목: {{listing.name}}</p>
-                  <p class="card-text">시작가: {{listing.initial}}</p>
-                  <p class="card-text">현재가: {{bid.highest_bid}}</p>
-                  <p><small>deadline: {{ listing.time_ending }}</small>
-                    <a href="{% url 'auction' listing.id %}" class="btn btn-sm btn-secondary" >응찰</a>
-                  </p>
-                </div>
+          <div class="row ">
+              {% for listing in listing.all reversed %}
+              <div class="col-md-3 col-xs-6">
+                  <div class="mb-3" id="card">
+                      <div id="li">
+                          <img src="{{listing.listing.display_picture.url}}" style="width : 300px; height : 200px; border : 10px ridge rgb(230, 230, 230);">
+                          <div class="card-body">
+                              <p class="card-text">제목: {{listing.listing.name}}</p>
+                              <p class="card-text">시작가: {{listing.listing.initial}}</p>
+                              <p class="card-text">현재가: {{listing.highest_bid}}</p>
+                              <p><small>deadline: {{listing.listing.time_ending}}</small>
+                                  <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary">응찰</a>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
+              {% endfor %}
           </div>
-          {% endfor %}
-        </div>
       </div>
-    </div>
+  </div>
 
   </div>
   {% endblock content %}
