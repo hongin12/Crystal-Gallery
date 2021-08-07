@@ -49,9 +49,9 @@ def mypage(request):
     return render(request, "mypage.html")
 
 def mygallery(request):
-    listing = Listing.objects.all()
-    #my_upload_arts= Listing.objects.all().filter(user=request.user)
-    return render(request, "mygallery.html", {'listing':listing})
+    #listing = Listing.objects.all()
+    my_upload_arts= Listing.objects.all().filter(user=request.user)
+    return render(request, "mygallery.html", {'my_upload_arts':my_upload_arts})
 
 def auctionArts(request):
     listing = Listing.objects.all()
@@ -91,18 +91,18 @@ def bid(request):
             messages.success(request, 'Bid Placed Successfully!', fail_silently=True)
     return redirect("auctions:listing", item_id)
 
-def create(requset):
-    new_listing = Listing()
-    new_listing.name = requset.POST['name']
-    new_listing.initial = requset.POST['initial']
-    # new_listing.user = requset.POST['initial']
-    new_listing.display_picture = requset.POST['display_picture']
-    new_listing.explain = requset.POST['explain']
-    new_listing.time_ending = requset.POST['time_ending']
-    new_listing.save()
+# def create(requset):
+#      new_listing = Listing()
+#      new_listing.name = requset.POST['name']
+#      new_listing.initial = requset.POST['initial']
+#      # new_listing.user = requset.POST['initial']
+#      new_listing.display_picture = requset.POST['display_picture']
+#      new_listing.explain = requset.POST['explain']
+#      new_listing.time_ending = requset.POST['time_ending']
+#      new_listing.save()
     
     
-    return redirect('auctionArts')
+#return redirect('auctionArts')
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
