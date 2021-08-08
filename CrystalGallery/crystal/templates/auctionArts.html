@@ -12,6 +12,12 @@ auctionArts
     background-color: rgb(0, 0, 0);
     color: white;
   }
+  #work {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem;
+  }
 
   #card .card-body {
     position: absolute;
@@ -91,7 +97,7 @@ auctionArts
 
     <div class="py-5">
       <div class="container">
-          <div class="row ">
+        <div class="row" id = "work">
               {% for listing in listing.all reversed %}
               <div class="col-md-3 col-xs-6">
                   <div class="mb-3" id="card">
