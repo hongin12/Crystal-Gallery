@@ -92,6 +92,7 @@ def bid(request):
             messages.success(request, 'Bid Placed Successfully!', fail_silently=True)
     return redirect("auctions:listing", item_id)
 
+<<<<<<< HEAD
 # def create(requset):
 #      new_listing = Listing()
 #      new_listing.name = requset.POST['name']
@@ -101,6 +102,17 @@ def bid(request):
 #      new_listing.explain = requset.POST['explain']
 #      new_listing.time_ending = requset.POST['time_ending']
 #      new_listing.save()
+=======
+def create(requset):
+    new_listing = Listing()
+    new_listing.name = requset.POST['name']
+    new_listing.initial = requset.POST['initial']
+    # new_listing.user = requset.POST['initial']
+    new_listing.display_picture = requset.POST['display_picture']
+    new_listing.explain = requset.POST['explain']
+    new_listing.time_ending = requset.POST['time_ending']
+    new_listing.save()
+>>>>>>> 0c6e293f920c63df65001cb69aab4170af057077
     
     
 #return redirect('auctionArts')
