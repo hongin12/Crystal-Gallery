@@ -7,18 +7,20 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
-        
         html {
             position: relative;
             min-height: 100%;
         }
+        @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
         .navbar {
             background-color: rgb(0, 0, 0);
             color: white;
             border-bottom: 0.5px solid rgb(182, 182, 182);
             border-color: rgb(182, 182, 182);
+            font-size: 1vw;
+            font-weight: 100;
+            font-family: 'Krona One', sans-serif;
         }
 
         .wrapper {
@@ -51,11 +53,11 @@
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-header">
-                    <img src="{% static '크갤로고투명.png' %}" width="40">
-                    <a href="{% url 'main' %}" class="navbar-brand text-white">
+                    <a href="{% url 'main' %}"><img src="{% static '크갤로고투명.png' %}" width="35"></a>
+                    <a href="{% url 'main' %}" class="me-3 py-2 text-white text-decoration-none">
                         <strong>Crystal Gallery</strong>
                     </a>
-                    <a href="{% url 'auctionArts' %}" class="me-3 py-2 text-white text-decoration-none">경매참여</a>
+                    <a href="{% url 'auctionArts' %}" class="me-3 py-2 text-white text-decoration-none">Auction</a>
                     {% if user.is_authenticated %}
                     <a href="{% url 'mygallery' %}" class="me-3 py-2 text-white text-decoration-none">My Gallery</a>
                     {% else %}
