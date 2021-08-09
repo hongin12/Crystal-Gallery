@@ -67,7 +67,7 @@ crystalgallery
     height: 100px;
     width: 100px;
   }
-  .list .container .item_list .card .text{
+  .list .container .item_list .card .text2{
     font-size: 14px;
     opacity: .8;
   }
@@ -101,12 +101,11 @@ crystalgallery
         </div>
 
         <div class="item_list">
-          
           <div class="card">
             {% for listing in listing.all %}
             <img src="{{listing.display_picture.url}}" alt="">
           </div>
-          <div class="text">
+          <div class="text2">
             <h2>{{listing.name}}</h2>
             <p>{{bid.highest_bid}}</p>
           </div>
