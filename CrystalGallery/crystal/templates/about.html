@@ -1,6 +1,11 @@
-<!doctype html>
-<html lang="en" class="h-100">
+{% extends "base.html" %}
+{% load static %}
 
+{% block title %}
+about
+{% endblock title %}
+
+{% block head %}
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -8,59 +13,106 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
-    *{
+    * {
       background-color: rgb(0, 0, 0);
     }
-    
-    .px-3{
+
+    .py-5 {
       font-family: 'Krona One', sans-serif;
-    }
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
+      font-size: 2vw;
     }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+    .featurette-heading {
+      font-family: 'Krona One', sans-serif;
+      color: rgb(255, 255, 255);
+      font-size: 2vw;
+    }
+
+    .btn {
+      border-radius: 10rem;
+      border-color: rgb(255, 255, 255);
+      color: rgb(255, 255, 255);
+      font-size: 1rem;
+    }
+
+    .sub-text {
+      font-size: 1.5rem;
+      color: rgb(175, 175, 175);
+      font-size : 1.5vw;
     }
   </style>
-</head>
+  {% endblock head %}
 
-<body class="h-100 text-center text-white">
-  <div class=" d-flex w-100 h-100 flex-column">
-    <header class="mb-auto"></header>
-
-    <main class="px-3">
-      <h1>About Crystal Gallery</h1>
-      <br>
-      <p class="lead">이곳에 당신의 작품을 마음껏 게시해보세요. 아마추어 작가들을 위한 경매페이지입니다.<br>
-        당신의 작품을 평가받고 타인의 작품을 감상하며 자신만의 갤러리를 꾸며보세요.</p>
-      <p class="lead">
-        <a href="{% url 'main' %}" class="btn btn-secondary border-white bg-black">홈페이지로 이동</a>
-      </p>
-    </main>
-
-    <footer class="mt-auto text-white-50">
-      <div role="contentinfo">
-        <div id="footcnt">
-          <div class="TCIWe" style="height: 100px;" id="fbarcnt">
-            <div class="fbar b2hzT">
-              <hr>
-              <p>
-                <center>㈜ Team TLC ™</center> <br>
-                <small>_성신여자대학교 멋쟁이사자처럼 화요일사자_</small>
+<body class="text-center text-white">
+  {% block content %}
+  <div class="wrapper">
+    <div class="container">
+      <section class="py-5 text-center text-white">
+        <div class="row py-lg-5">
+          <p class="fw-bold">About Crystal Gallery</p>
+          <br>
+          <p class="lead" style="font-size:medium; color: rgb(175, 175, 175);">CrystalGallery is an auction
+            participation page for amateurs.<br>
+            Get your work evaluated, appreciate other people's work, <br>
+            and decorate your own gallery.</p>
+          <p class="lead">
+            <a href="{% url 'main' %}" class="btn">Main</a>
+          </p>
+        </div>
+      </section>
+      
+      <hr class="featurette-divider text-white">
+      <div class="row">
+        <div class="col-md-6 "style="margin-top:7%;">
+          <h2 class="featurette-heading">Auction System</h2>
+          <p><span class="sub-text">Start the auction with a welcome coin.<br>
+              Coin allows you to participate in the auction or bid for a painting.<br>
+              Your paintings can also be auctioned off with coins by others.</span></p>
+              <p class="lead">
+                <a href="{% url 'mypage' %}" class="btn">My page</a>
               </p>
-            </div>
-
-          </div>
+        </div>
+        <div class="col-md-6">
+          <img class="img-rectangle" src="{% static 'about-ui코인.png' %}" alt="작품사진" width="100%" height="auto;">
+          
         </div>
       </div>
-    </footer>
+
+      <hr class="featurette-divider text-white">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="img-rectangle" src="{% static 'about-ui갤러리.png' %}" alt="작품사진" width="100%" height="auto;">
+        </div>
+
+        <div class="col-md-6" style="margin-top:7%;">
+          <h2 class="featurette-heading">Create Own Gallery</h2>
+          <h3><span class="sub-text">Exhibit your work in a gallery.<br>
+              You can see at a glance what you are going to submit to the auction <br>
+              and what you bid for at the auction.</span></h3>
+          <p class="lead">
+            <a href="{% url 'mygallery' %}" class="btn">My gallery</a>
+          </p>
+        </div>
+
+      </div>
+
+      <hr class="featurette-divider text-white">
+      <div class="row">
+        <div class="col-md-6" style="margin-top:7%;">
+          <h2 class="featurette-heading">Share Opinion </h2>
+          <h3><span class="sub-text">Leave a comment at the bottom of the work. <br>
+              You can freely exchange various stories about each other's works.
+              <br> You will be able to develop your work by exchanging various opinions about it.</span></h3>
+              <p class="lead">
+                <a href="{% url 'auctionArts' %}" class="btn">Auction</a>
+              </p>
+        </div>
+        <div class="col-md-6">
+          <img class="img-rectangle" src="{% static 'about-ui코멘트.png' %}" alt="작품사진" width="100%" height="auto;">
+        </div>
+       
+      </div>
+    </div>
   </div>
+  {% endblock content %}
 </body>
-</html>

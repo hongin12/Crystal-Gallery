@@ -7,133 +7,137 @@ crystalgallery
 
 {% block head %}
 <link href="main.css" rel="stylesheet">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
+<style>
   .wrapper {
     background-color: rgb(0, 0, 0);
     color: white;
+    font-family: 'Krona One', sans-serif;
   }
 
-  .carousel{
-    position: relative;
-    width: 100%;
-    vertical-align: middle;
+  .carousel {
+    max-width: max-content;
     margin: auto;
     justify-content: center;
     align-items: center;
+    display: grid;
   }
 
-  .text{
-    position: absolute; left: 50%; top: 13%;
-    transform: translate(-50%, -50%);
-    margin: auto;
+  .text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     text-align: center;
-    font-family: 'Krona One', sans-serif;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 4vw;
+
+
   }
 
   .btn {
     border-radius: 10rem;
     border-color: rgb(255, 255, 255);
     color: rgb(255, 255, 255);
+    font-size: 1vw;
   }
 
+  .list {
+    padding-top: 1rem;
+    padding-bottom: 70px;
+  }
+
+  .list .container {
+    max-width: 1300px;
+    margin: auto;
+  }
+
+  .list .container .item_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+  }
+
+  .list .container .item_list .card {
+    height: auto;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .list .container .item_list .card .img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .list .container .item_list .card .text2 {
+    font-size: 14px;
+    opacity: .8;
+  }
 </style>
 {% endblock head %}
 
 <body>
   {% block content %}
   <div class="wrapper">
-    <!-- <main>
-      <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <a href="{% url 'main' %}"><img src="{% static 'crystalgallery.jpg' %}" alt="로고사진"></a>
-          </div>
-        </div>
-      </section> -->
-
-      <div class="carousel" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{% static '투명ui.png' %}" class="d-block w-100" alt="...">
-          </div>
-          
-      </div>
+    <div class="carousel" data-bs-ride="carousel">
+      <img src="{% static '투명ui.png' %}" class="d-block w-100" alt="...">
       <div class="text">
-        <p style="font-size: 60px"
-        >Welcome to
+        <p>
+          Welcome to
           <br> Crystal Gallery</p>
-        <p>find your<br>
+        <p style="font-size: 1vw;">find your<br>
           true worth,<br>
-      <a href="{% url 'about' %}" class="btn">here</a></p>
+          <a href="{% url 'about' %}" class="btn">here</a></p>
       </div>
-     
-  <div class="container marketing">
-        <div class="row">
-          <div class="col-lg-4" style="text-align:center;">
+    </div>
 
-            <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-            <h2>Top 1</h2>
-            <p><a class="btn btn-light" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
-          </div>
 
-          <div class="col-lg-4" style="text-align:center;">
-            <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-            <h2>Top 2</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4" style="text-align:center;">
 
-            <p><a class="btn btn-light" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
-          </div>
-
-          <div class="col-lg-4" style="text-align:center;">
-            <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-            <h2>Top 3</h2>
-            <p><a class="btn btn-light" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
-          </div>
+          <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+          <h2>Top 1</h2>
+          <p><a class="btn" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
         </div>
 
-        <hr class="featurette-divider">
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">작품 제목 : painter</h2>
-            <h3><span class="text-muted">작가 : painter</span></h3>
-            <p class="lead"></p>
-          </div>
-          <div class="col-md-5">
-            <img class="img-rectangle" src="{% static '수빈1.jpg' %}" alt="작품사진" width="500" height="400">
-          </div>
+        <div class="col-lg-4" style="text-align:center;">
+          <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+          <h2>Top 2</h2>
+
+          <p><a class="btn" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
         </div>
 
-        <hr class="featurette-divider">
-        <div class="row featurette">
-          <div class="col-md-7">
-            <img class="img-rectangle"
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
-              width="500" height="400">
-          </div>
-          <div class="col-md-5" style="text-align: right;">
-            <h2 class="featurette-heading">작품제목2</h2>
-            <h3><span class="text-muted">작가2</span></h3>
-            <p class="lead">경매설명2</p>
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">작품제목3</h2>
-            <h3><span class="text-muted">작가3</span></h3>
-            <p class="lead">경매설명3</p>
-          </div>
-          <div class="col-md-5">
-            <img class="img-rectangle"
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="작품사진"
-              width="500" height="400">
-          </div>
+        <div class="col-lg-4" style="text-align:center;">
+          <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+          <h2>Top 3</h2>
+          <p><a class="btn" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
         </div>
       </div>
+    </div>
+    <section class="list">
+      <div class="container">
+        <div class="title">
+          <p>Auction List</p>
+        </div>
+
+        <div class="item_list">
+          <div class="card">
+            {% for listing in listing.all %}
+            <img src="{{listing.display_picture.url}}" alt="">
+          </div>
+          <div class="text2">
+            <h2>{{listing.name}}</h2>
+            <p>{{bid.highest_bid}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section>
+
+
   </div>
-  </main>
   </div>
   {% endblock content %}
 </body>

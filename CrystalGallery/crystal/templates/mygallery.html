@@ -9,9 +9,52 @@ mygallery
 
 <head>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap');
+
+    font-face {
+      font-family: 'IBMPlexSansKR-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     .wrapper {
       background-color: rgb(0, 0, 0);
       color: white;
+    }
+
+    .py-5 {
+      font-family: 'Krona One', sans-serif;
+
+    }
+
+    .btn {
+      border-radius: 10rem;
+      font-size: small;
+    }
+
+    .display-5 {
+      font-size: x-large;
+    }
+
+    .album {
+      text-align: left;
+    }
+
+    .profile {
+      border-radius: 70%;
+      width: auto;
+      height: 30%;
+      object-fit: cover;
+      background-color: rgb(39, 39, 39);
+    }
+
+    .card-body {
+      font-size: 1vw;
+    }
+
+    #work {
+      font-family: 'IBMPlexSansKR-Regular';
     }
   </style>
   {% endblock head %}
@@ -25,8 +68,11 @@ mygallery
         <section class="py-5 text-center">
           <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-              <h1 class="fw-light">My Gallery</h1>
-              <p class="lead text-muted">Create your own gallery here. An art museum will be born. </p>
+              <p class="fw-light" style="font-size: x-large;">My Gallery</p>
+              <img src="{%static '크갤로고투명.png'%}" alt="..." class="profile">
+              <br><br>
+              <p class="lead text-muted" style="font-size: small;">{{user.nickname}}/{{user.email}}
+              </p>
               <p>
                 <a href="{% url 'create' %}" class="btn btn-outline-secondary">Register</a>
               </p>
@@ -34,53 +80,35 @@ mygallery
           </div>
         </section>
 
-        <section>
+        <section id="work">
           <div class="row">
             <div class="col-md-6">
               <div class="h-100 bg-light border rounded-3">
                 <div class="bg-light text-center text-muted overflow-hidden">
                   <div class="my-3 py-3">
-                    <h6 class="display-5"><strong>내가 올린 작품</strong></h6>
+                    <h3>내가 올린 작품</h3>
                     <br><br>
 
                     <div class="album">
                       <div class="container">
-                          <div class="row row-cols-3 g-3">
-                              {%if user.is_authenticated%}
-                              {% for art in my_upload_arts %}
-                              <div class="col">
-                                  <div class="card shadow-sm">
-                                      <img src="{{art.display_picture.url}}" alt="새로등록사진" style="max-width: 100%; height: auto;">
-                                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{art.name}}</text>
-                                      <div class="card-body">
-                                          <p class="card-text">작품 설명 : {{art.explain}}</p>
-                                          <div class="d-flex justify-content-between align-items-center">
-                                              <div class="btn-group">
-                                                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'auction' art.id %}'">View</button>
-                                              </div>
-                                              <small class="text-muted"></small>
-                                          </div>
-                                      </div>
-                                  </div>
+                        <div class="row row-cols-3 g-3">
+                          {%if user.is_authenticated%}
+                          {% for art in my_upload_arts %}
+                          <div class="col-md-4">
+                            <div class="card shadow-sm">
+                              <img src="{{art.display_picture.url}}" alt="새로등록사진"
+                                style="max-width: 200px; height: 120px;">
+                              <div class="card-body">
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품 이름 : {{art.name}}</text> <br>
+                                <div style="float: right;">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    onclick="location.href='{% url 'auction' art.id %}'">View</button>
+                                </div>
                               </div>
-                              {% endfor %}
-                              {%endif%}
+                            </div>
                           </div>
-                      </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="h-100 p-5 bg-dark border rounded-3">
-                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-muted overflow-hidden">
-                  <div class="my-3 py-3">
-                    <h6 class="display-5"><strong>내가 낙찰한 작품</strong></h6>
-                    <br><br>
-                    <div class="album py-5 bg-dark">
-                      <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                          {% endfor %}
+                          {% endif %}
                         </div>
                       </div>
                     </div>
@@ -88,6 +116,42 @@ mygallery
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="h-100 bg-dark border rounded-3">
+                <div class="bg-dark text-center text-muted overflow-hidden">
+                  <div class="my-3 py-3">
+                    <h3 class="text-white">내가 낙찰한 작품</h3>
+                    <br><br>
+
+                    <!-- * 백엔드 연결 부탁해요 * -->
+                    <div class="album">
+                      <div class="container">
+                        <div class="row row-cols-3 g-3">
+                          {%if user.is_authenticated%}
+                          {% for art in my_upload_arts %}
+                          <div class="col-md-4">
+                            <div class="card shadow-sm">
+                              <img src="{{art.display_picture.url}}" alt="새로등록사진"
+                                style="max-width: 200px; height: 120px;">
+                              <div class="card-body">
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품 이름 : {{art.name}}</text> <br>
+                                <div style="float: right;">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    onclick="location.href='{% url 'auction' art.id %}'">View</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
       </div>

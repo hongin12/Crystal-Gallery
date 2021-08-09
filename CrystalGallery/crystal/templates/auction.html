@@ -6,24 +6,24 @@ auction
 {% endblock title %}
 
 {% block head %}
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <style>
+  @font-face {
+    font-family: 'IBMPlexSansKR-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   .wrapper {
     background-color: rgb(0, 0, 0);
     color: white;
+    font-family: 'IBMPlexSansKR-Light';
   }
 
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
+  #explain {
+    font-size: 1.5vw;
   }
 </style>
 {% endblock head %}
@@ -31,47 +31,39 @@ auction
 <body>
   {% block content %}
   <div class="wrapper">
-
-    <main>
-      <div class="container py-4">
-        <div class="row align-items-md-stretch">
-          <div class="col-md-6">
-            <div class="h-100 p-5 text-white bg-dark">
-              <img src="{{listings.display_picture.url}}"
-                style= "width: 400px; height: 300px; object-fit: fill; align-self: center;">
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="h-100 p-5 bg-dark text-white border ">
-              <h1 class="display-5 fw-bold">그림 제목 : {{listings.name}}</h1>
-              <p class="col-md-8 fs-4">그림 설명: {{listings.explain}}</p>
-              <p class="col-md-8 fs-4">초기 가격: {{listings.initial}}</p>
-              <p class="col-md-8 fs-4">현재 가격: {{bid.highest_bid}}
-              <p class="col-md-8 fs-4"> Auction ends in: {{ listings.time_ending }}</p>
-
-              <br>
-              <br>
-
-
-              <form class="login-form" action="{% url 'auctionArts' %}" method="POST">
-                {% csrf_token %}
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text bg-warning">coin</div>
-                  </div>
-                  <input class="form-control" type="number" min="1" name="bid" value="{{ default_bid }}"
-                    placeholder="Enter your coin here">
-                </div>
-                <input name="list_id" type="hidden" value="{{ listing.id }}" />
-                <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
-                  style="float: right;">입찰</a>
-              </form>
-            </div>
-          </div>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-6 ">
+          <img src="{{listings.display_picture.url}}" style="max-width: 100%; top :50%; object-fit: contain;">
         </div>
+
+        <div class="col-md-6 p-4 bg-dark text-white border" id="explain">
+          <p style = "font-size: 2vw;">그림 제목 : {{listings.name}}</p>
+          <p>그림 설명: {{listings.explain}}</p>
+          <p>초기 가격: {{listings.initial}}</p>
+          <p>현재 가격: {{bid.highest_bid}}
+            <p> Auction ends in: {{ listings.time_ending }}</p>
+            <br>
+
+            <form class="login-form" action="{% url 'auctionArts' %}" method="POST">
+              {% csrf_token %}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text bg-warning">coin</div>
+                </div>
+                <input class="form-control" type="number" min="1" name="bid" value="{{ default_bid }}"
+                  placeholder="Enter your coin here">
+              </div>
+              <input name="list_id" type="hidden" value="{{ listing.id }}" />
+              <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
+                style="float: right;">입찰</a>
+            </form>
+        </div>
+
       </div>
-    </main>
+
+    </div>
+
 
     <div class="container py-4 listing-comments" id="comment">
       <h5>Comments </h5>
@@ -102,7 +94,7 @@ auction
         {% csrf_token %}
         <textarea name="content" class="form-control" placeholder="enter your comment here" rows="3"
           maxlength="400"></textarea>
-        <input name="list_id" type="hidden" value="{{ listings.id }}" />
+        <input name="list_id" type="hidden" value="{{ listings.id }}">
         <br>
         <button class="btn btn-outline-secondary my-2" type="submit" style="float: right;">Comment</button>
 
