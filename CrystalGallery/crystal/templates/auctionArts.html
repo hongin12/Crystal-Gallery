@@ -13,12 +13,14 @@ auctionArts
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+  }
+
   .wrapper {
     background-color: rgb(0, 0, 0);
     color: white;
     font-family: 'IBMPlexSansKR-Regular';
   }
+
   #work {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -28,14 +30,19 @@ auctionArts
 
   #card .card-body {
     position: absolute;
-    top: 200px;                           /* 기준 위치 보다 200px 아래로 */
+    top: 200px;
+    /* 기준 위치 보다 200px 아래로 */
     width: 300px;
     height: 200px;
     padding-top: 15%;
-    background: rgba(0, 0, 0, 0.6);     /* 반투명한 검정 배경 */
-    opacity: 0;                           /* 화면에 보이지 않게 */
-    transition: all 0.6s ease-in-out;     /* 부드럽게 나타나도록 트랜지션 추가 */
-    z-index: 10;                          /* 다른 요소보다 위에 있도록 */
+    background: rgba(0, 0, 0, 0.6);
+    /* 반투명한 검정 배경 */
+    opacity: 0;
+    /* 화면에 보이지 않게 */
+    transition: all 0.6s ease-in-out;
+    /* 부드럽게 나타나도록 트랜지션 추가 */
+    z-index: 10;
+    /* 다른 요소보다 위에 있도록 */
     font-size: 12px;
   }
 
@@ -46,8 +53,10 @@ auctionArts
   }
 
   #card #li:hover .card-body {
-    opacity: 1;                      /* 설명 글을 화면에 나타나게 */
-    transform: translateY(-200px);   /* 설명 글을 위쪽으로 200px 이동 */
+    opacity: 1;
+    /* 설명 글을 화면에 나타나게 */
+    transform: translateY(-200px);
+    /* 설명 글을 위쪽으로 200px 이동 */
   }
 
   #card .card-body p {
@@ -59,14 +68,37 @@ auctionArts
     width: 300px;
     height: 200px;
   }
-
-
 </style>
 {% endblock head %}
 
 <body>
   {% block content %}
   <div class="wrapper">
+
+    <div class="row">
+      <div class="col-lg-4" style="text-align:center;">
+
+        <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+        <h2>Top 1</h2>
+        <p><a class="btn" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
+      </div>
+
+      <div class="col-lg-4" style="text-align:center;">
+        <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+        <h2>Top 2</h2>
+
+        <p><a class="btn" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
+      </div>
+
+      <div class="col-lg-4" style="text-align:center;">
+        <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+        <h2>Top 3</h2>
+        <p><a class="btn" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
+      </div>
+    </div>
+
+
+    <!--수정전
       <div class="row py-lg-5 text-center ">
         <div id="card">
           <h3>현재 최고가 작품</h3>
@@ -91,7 +123,7 @@ auctionArts
         </center>
         </div>
       </div>
-
+-->
 
     <p style="text-align: center;">
       {% if user.is_authenticated %}
@@ -104,27 +136,28 @@ auctionArts
 
     <div class="py-5">
       <div class="container">
-        <div class="row" id = "work">
-              {% for listing in listing.all reversed %}
-              <div class="col-md-3 col-xs-6">
-                  <div class="mb-3" id="card">
-                      <div id="li">
-                          <img src="{{listing.listing.display_picture.url}}" style="width : 300px; height : 200px; border : 10px ridge rgb(230, 230, 230);">
-                          <div class="card-body">
-                              <p class="card-text">제목: {{listing.listing.name}}</p>
-                              <p class="card-text">시작가: {{listing.listing.initial}}</p>
-                              <p class="card-text">현재가: {{listing.highest_bid}}</p>
-                              <p><small>deadline: {{listing.listing.time_ending}}</small>
-                                  <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary">응찰</a>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
+        <div class="row" id="work">
+          {% for listing in listing.all reversed %}
+          <div class="col-md-3 col-xs-6">
+            <div class="mb-3" id="card">
+              <div id="li">
+                <img src="{{listing.listing.display_picture.url}}"
+                  style="width : 300px; height : 200px; border : 10px ridge rgb(230, 230, 230);">
+                <div class="card-body">
+                  <p class="card-text">제목: {{listing.listing.name}}</p>
+                  <p class="card-text">시작가: {{listing.listing.initial}}</p>
+                  <p class="card-text">현재가: {{listing.highest_bid}}</p>
+                  <p><small>deadline: {{listing.listing.time_ending}}</small>
+                    <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary">응찰</a>
+                  </p>
+                </div>
               </div>
-              {% endfor %}
+            </div>
           </div>
+          {% endfor %}
+        </div>
       </div>
-  </div>
+    </div>
 
   </div>
   {% endblock content %}

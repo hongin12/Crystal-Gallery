@@ -25,6 +25,15 @@ auction
   #explain {
     font-size: 1.5vw;
   }
+
+  .btn {
+    border-radius: 10rem;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    font-size: 1vw;
+    background-color: rgb(91, 91, 91);
+  }
+  
 </style>
 {% endblock head %}
 
@@ -49,13 +58,14 @@ auction
               {% csrf_token %}
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text bg-warning">coin</div>
+                  <div class="input-group-text">coin</div>
                 </div>
                 <input class="form-control" type="number" min="1" name="bid" value="{{ default_bid }}"
                   placeholder="Enter your coin here">
               </div>
               <input name="list_id" type="hidden" value="{{ listing.id }}" />
-              <a href="{% url 'auctionArts' %}" class="btn btn-outline-secondary my-2" type="submit"
+              <br>
+              <a href="{% url 'auctionArts' %}" class="btn" type="submit"
                 style="float: right;">입찰</a>
             </form>
         </div>
@@ -67,10 +77,10 @@ auction
 
     <div class="container py-4 listing-comments" id="comment">
       <h5>Comments </h5>
-      <div class="comment-container" style="color: black;">
+      <div class="comment-container" style="color: rgb(255, 255, 255);">
         {% if comments %}
         {% for comment in comments %}
-        <div class="card bg-light border-success" style="margin: 5px;">
+        <div class="card bg-dark" style="margin: 5px;">
           <div class="comment-owner ">
             {{ comment.user }}
           </div>

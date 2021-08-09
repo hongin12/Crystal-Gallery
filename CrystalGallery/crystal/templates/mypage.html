@@ -8,6 +8,13 @@ my page
 {% block head %}
 
 <style>
+    @font-face {
+        font-family: 'IBMPlexSansKR-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
     body {
         border-radius: 10px;
         background-color: black;
@@ -81,7 +88,7 @@ my page
                             </div>
                         </div>
 
-                        <div class="mygallerybtn">
+                        <div class="mygallerybtn" style="font-family: 'IBMPlexSansKR-Regular';">
                             <button type="button" class="btn btn-outline-secondary btn-sm"><a
                                     href="{% url 'mygallery' %}" style="color:white; text-decoration:none;">My Gallery로
                                     이동</a></button>

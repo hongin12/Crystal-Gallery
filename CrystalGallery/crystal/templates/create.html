@@ -7,13 +7,22 @@
 
 {% block head %}
 <style>
+  @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   .wrapper {
     background-color: black;
     color: white;
+    font-family: 'IBMPlexSansKR-Regular';
   }
 </style>
 
 {% endblock head %}
+
 <body>
   {% block content %}
   <div class="wrapper">
@@ -21,19 +30,20 @@
       <div class="container">
         <br><br>
         {% block replace %}
-        <div style="border-style: 10px solid #ffffff;;">
+        <div class="text-white">
           <h2>경매 작품을 등록하세요.</h2>
           <form method="POST" enctype="multipart/form-data">
             <!-- Very Important csrf Token -->
             {% csrf_token %}
             <br><br>
-            <table>
+            <table style="color: #ffffff;">
               {{ form.as_table }}
             </table>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;날짜 입력 형식 : yyyy-mm-dd 의 형태로 입력하시오.
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;날짜
+            입력 형식 : yyyy-mm-dd 의 형태로 입력하시오.
             <br><br>
-            
-            <input type="submit" class="btn btn-outline-secondary" name="register">
+
+            <input type="submit" class="btn btn-outline-secondary my-2" name="register">
             {% endblock replace %}
           </form>
         </div>

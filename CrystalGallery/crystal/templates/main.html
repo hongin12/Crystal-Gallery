@@ -31,8 +31,6 @@ crystalgallery
     display: table-cell;
     vertical-align: middle;
     font-size: 4vw;
-
-
   }
 
   .btn {
@@ -42,36 +40,23 @@ crystalgallery
     font-size: 1vw;
   }
 
-  .list {
-    padding-top: 1rem;
-    padding-bottom: 70px;
+  .featurette-heading {
+    font-family: 'Krona One', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 1.5vw;
   }
 
-  .list .container {
-    max-width: 1300px;
-    margin: auto;
+  .btn {
+    border-radius: 10rem;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
   }
 
-  .list .container .item_list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, auto));
-  }
-
-  .list .container .item_list .card {
-    height: auto;
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-
-  .list .container .item_list .card .img {
-    height: 100px;
-    width: 100px;
-  }
-
-  .list .container .item_list .card .text2 {
-    font-size: 14px;
-    opacity: .8;
+  .sub-text {
+    font-size: 1.5rem;
+    color: rgb(175, 175, 175);
+    font-size: 1vw;
   }
 </style>
 {% endblock head %}
@@ -85,59 +70,64 @@ crystalgallery
         <p>
           Welcome to
           <br> Crystal Gallery</p>
-        <p style="font-size: 1vw;">find your<br>
-          true worth,<br>
-          <a href="{% url 'about' %}" class="btn">here</a></p>
+        <p style="font-size: 1.5vw;">Find Your<br>
+          True Worth,<br>
+          <a href="{% url 'about' %}" class="btn">Here</a></p>
       </div>
     </div>
 
 
     <div class="container">
+   
       <div class="row">
-        <div class="col-lg-4" style="text-align:center;">
-
-          <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-          <h2>Top 1</h2>
-          <p><a class="btn" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
+        <div class="col-md-6 " style="margin-top:7%;">
+          <p class="featurette-heading">Auction System</p>
+          <p><span class="sub-text">Start the auction with a welcome coin.<br>
+              Coin allows you to participate in the auction or bid for a painting.<br>
+              Your paintings can also be auctioned off with coins by others.</span></p>
+          <p class="lead">
+            <a href="{% url 'mypage' %}" class="btn">My page</a>
+          </p>
         </div>
+        <div class="col-md-6">
+          <img class="img-rectangle" src="{% static 'about-ui코인.png' %}" alt="작품사진" width="100%" height="auto;">
 
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-          <h2>Top 2</h2>
-
-          <p><a class="btn" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
-        </div>
-
-        <div class="col-lg-4" style="text-align:center;">
-          <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-          <h2>Top 3</h2>
-          <p><a class="btn" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <img class="img-rectangle" src="{% static 'about-ui갤러리.png' %}" alt="작품사진" width="100%" height="auto;">
+        </div>
+
+        <div class="col-md-6" style="margin-top:7%;">
+          <p class="featurette-heading">Create Own Gallery</p>
+          <p><span class="sub-text">Exhibit your work in a gallery.<br>
+              You can see at a glance what you are going to submit to the auction <br>
+              and what you bid for at the auction.</span></p>
+          <p class="lead">
+            <a href="{% url 'mygallery' %}" class="btn">My gallery</a>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6" style="margin-top:7%;">
+          <p class="featurette-heading">Share Opinion </p>
+          <p><span class="sub-text">Leave a comment at the bottom of the work. <br>
+              You can freely exchange various stories about each other's works.
+              <br> You will be able to develop your work by exchanging various opinions about it.</span></p>
+          <p class="lead">
+            <a href="{% url 'auctionArts' %}" class="btn">Auction</a>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img class="img-rectangle" src="{% static 'about-ui코멘트.png' %}" alt="작품사진" width="100%" height="auto;">
+        </div>
+      </div>
+
     </div>
-    <section class="list">
-      <div class="container">
-        <div class="title">
-          <p>Auction List</p>
-        </div>
-
-        <div class="item_list">
-          <div class="card">
-            {% for listing in listing.all %}
-            <img src="{{listing.display_picture.url}}" alt="">
-          </div>
-          <div class="text2">
-            <h2>{{listing.name}}</h2>
-            <p>{{bid.highest_bid}}</p>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-    </section>
-
-
-  </div>
   </div>
   {% endblock content %}
 </body>
