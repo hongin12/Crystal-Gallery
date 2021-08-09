@@ -91,7 +91,7 @@ signup
     {% block content %}
     <div class="wrapper">
         <div class="container_signup">
-            <form action="{% url 'signup' %}" method="post" class="register-form login-form">
+            <form action="{% url 'signup' %}" method="POST" class="register-form login-form">
                 <div>
                     {% csrf_token %}
                     <br>
@@ -101,12 +101,6 @@ signup
                         <label class="col-sm-3 col-form-label">Username</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="username" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="mb-3 row" style="text-align: left;">
-                        <label class="col-sm-3 col-form-label">Nickname</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="nickname" placeholder="Nickname">
                         </div>
                     </div>
                     <div class="mb-3 row" style="text-align: left;">
@@ -154,7 +148,7 @@ signup
 
 
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <a href="{% url 'login' %}" class="btn" type="submit">Sign up!</a>
+                        <input type="submit" class="btn" value="Sign up!" />
                     </div>
                     <br><br>
                     <div class="center-text">

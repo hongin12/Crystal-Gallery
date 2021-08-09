@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import IntegrityError 
 from django.contrib import auth 
+from django.contrib.auth.models import User
 from .models import User
 from .models import Listing
 from django.contrib import messages
@@ -34,15 +35,31 @@ def signup(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
-            user.save()
+            auth.login(request, user)
         except IntegrityError:
             return render(request, "signup.html", {
                 "message": "Username already taken."
             })
         
-        return redirect('login')
+        return redirect('main')
+    return render(request, "signup.html")
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST["password"]
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('main')
+        else:
+            return render(request, 'login.html', {'error':'username or password is incorrect'})
     else:
-        return render(request, "signup.html")
+        return render(request, 'login.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('main')
 
 def mypage(request):
     return render(request, "mypage.html")
