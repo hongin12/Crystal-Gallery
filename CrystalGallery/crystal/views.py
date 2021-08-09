@@ -88,16 +88,24 @@ def about(request):
 
 def bid(request):
     if request.method == "POST":
-        new_bid = request.POST["bid"]
-        listings_id = request.POST["listings_id"]
+        #새 응찰가
+        new_bid = request.POST["new_highest_bid"]
+        #해당 글 id - listing, bid id 둘다 받아오게 수정
+        listing_id = request.POST["listing_id"]
+        bid_id = request.POST["bid_id"]
 
-        item = get_object_or_404(Listing, pk=listings_id)
-        #이제 업데이트를 해야하는 Bid를 불러왔음.
-        old_bid = Bid.objects.get(listing=item)
-        old_bid.highest_bid = new_bid
-        old_bid.user = request.user
-        old_bid.save()
-    return redirect("auctionArts")     
+        #bid찾는거 이렇게도 되나..?!모르겠음. -->오류남
+        #updated_bid = get_object_or_404(Bid, pk=listing_id)
+        updated_bid = get_object_or_404(Bid, pk=bid_id)
+        
+        
+        updated_bid.user = request.user
+        updated_bid.highest_bid = new_bid
+        updated_bid.added = timezone.now()
+        updated_bid.save()
+        
+    return redirect("auction", listing_id)
+     
     
 
 # def create(requset):

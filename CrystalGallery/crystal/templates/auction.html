@@ -54,20 +54,25 @@ auction
             <p> Auction ends in: {{ listings.time_ending }}</p>
             <br>
 
-            <form class="login-form" action="{% url 'auctionArts' %}" method="POST">
+            <!--action url 수정-->
+            <form class="login-form" action="{% url 'bid' %}" method="POST">
               {% csrf_token %}
               <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">coin</div>
-                </div>
-                <input class="form-control" type="number" min="1" name="bid" value="{{ default_bid }}"
-                  placeholder="Enter your coin here">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text">coin</div>
+                  </div>
+                  <!--defalut_bid 삭제-->
+                  <input class="form-control" type="number" min="1" name="new_highest_bid" placeholder="Enter your coin here">
               </div>
-              <input name="list_id" type="hidden" value="{{ listing.id }}" />
+              <!--해당 bid&listing를 넘겨주는 name,value 수정-->
+              <input name="listing_id" type="hidden" value="{{ listings.id }}" />
+              <input name="bid_id" type="hidden" value="{{ bid.id }}" />
               <br>
-              <a href="{% url 'auctionArts' %}" class="btn" type="submit"
-                style="float: right;">입찰</a>
+
+              <!--a태그->버튼으로 수정-->
+              <button type="submit" class="btn" type="submit" style="float: right;">응찰</button>
             </form>
+
         </div>
 
       </div>
@@ -82,7 +87,7 @@ auction
         {% for comment in comments %}
         <div class="card bg-dark" style="margin: 5px;">
           <div class="comment-owner ">
-            {{ comment.user }}
+            {{ comment.user.username }}
           </div>
           <span class="comment-content">
             {{ comment.comment }}
