@@ -80,20 +80,31 @@ auctionArts
 
         <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
         <h2>Top 1</h2>
+        {% if user.is_authenticated %}
         <p><a class="btn" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
+        {% else %}
+        <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
+        {% endif %}
       </div>
 
       <div class="col-lg-4" style="text-align:center;">
         <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
         <h2>Top 2</h2>
-
+        {% if user.is_authenticated %}
         <p><a class="btn" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
+        {% else %}
+        <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
+        {% endif %}
       </div>
 
       <div class="col-lg-4" style="text-align:center;">
         <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
         <h2>Top 3</h2>
+        {% if user.is_authenticated %}
         <p><a class="btn" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
+        {% else %}
+        <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
+        {% endif %}
       </div>
     </div>
 
