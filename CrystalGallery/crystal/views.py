@@ -13,6 +13,7 @@ from .models import Comment
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from crystal.transactions import remaining_time
+from django.contrib import messages
 
 
 def main(request):
@@ -86,7 +87,8 @@ def auction(request, listings_id):
 def about(request):
     return render(request, "about.html")
 
-def bid(request):
+#원래 bid
+#def bid(request):
     if request.method == "POST":
         #새 응찰가
         new_bid = request.POST["new_highest_bid"]
@@ -106,7 +108,26 @@ def bid(request):
         
     return redirect("auction", listing_id)
      
-    
+def bid(request):
+    if request.method == "POST":
+        #새 응찰가
+        new_bid = request.POST["new_highest_bid"]
+
+        listing_id = request.POST["listing_id"]
+        bid_id = request.POST["bid_id"]
+
+        old_bid = get_object_or_404(Bid, pk=bid_id)
+        
+        if old_bid.highest_bid < int(new_bid) :
+            # 새 응찰가가 최고가일때
+            old_bid.user = request.user
+            old_bid.highest_bid = new_bid
+            old_bid.added = timezone.now()
+            old_bid.save()
+        
+    return redirect("auction", listing_id)
+
+
 
 # def create(requset):
 #      new_listing = Listing()
