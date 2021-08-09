@@ -35,7 +35,7 @@ urlpatterns = [
     path('upload/', include('profile_maker.urls')),
     path('create/', views.create_profile, name = 'create'),
     path("comment", views.comment, name="comment"),
-    path('bid/', views.save_auction, name='bid'),
+    path('bid/', views.bid, name='bid'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
