@@ -48,7 +48,6 @@ class Profile_Form(forms.ModelForm):
         fields = [
         'name',
         'initial',
-        'user',
         'display_picture',
         'explain',
         'time_ending',

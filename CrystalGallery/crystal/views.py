@@ -130,6 +130,8 @@ def create_profile(request):
         if form.is_valid():
             user_pr = form.save(commit=False)
             user_pr.display_picture = request.FILES['display_picture']
+            user_pr.user = request.user
+
             file_type = user_pr.display_picture.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
