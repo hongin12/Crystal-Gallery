@@ -123,29 +123,49 @@ signup
                     </div>
 
                     <div class="agree">
-                        <input type="checkbox" id="chk_agree" name="chk_agree">
+                        <input type="checkbox" id="chk_agree" name="chk_agree" onclick='selectAll(this)' required>
                         <label for="chk_agree"><strong>크리스탈갤러리 약관에 모두 동의합니다.</strong></label>
 
                         <div class="agree-detail">
                             <div class="checkbox_wrap">
-                                <input type="checkbox" id="news_letter" name="news_letter" class="agree_chk">
-                                <label for="news_letter">[선택]뉴스레터 수신동의</label>
+                                <input type="checkbox" id="news_letter" name="agree_chk" class="agree_chk" onclick='checkSelectAll(this)'>
+                                <label>[필수]크리스탈갤러리 이용약관 동의</label>
                             </div>
                             
                             <div class="checkbox_wrap mar27">
-                                <input type="checkbox" id="marketing" name="marketing" class="agree_chk">
-                                <label for="marketing">[선택]마케팅 목적 개인정보 수집 및 이용에 대한 동의</label>
+                                <input type="checkbox" id="marketing" name="agree_chk" class="agree_chk" onclick='checkSelectAll(this)'>
+                                <label>[필수]개인정보 수집 및 이용에 대한 동의</label>
                                 <ul class="explan_txt">
                                     <li><span class="red_txt">항목 : 성별, 생년월일</span></li>
-                                    <li>고객님께서는 위의 개인정보 및 회원정보 수정 등을 통해 추가로 수집하는 <br />개인정보에
+                                    <li>고객님께서는 위의 개인정보 및 회원정보 수정 등을 통해 수집하는 <br />개인정보에
                                         대해 동의하지 않거나 거부하실 수 있습니다.<br />
-                                        다만 이때 회원 대상 서비스가 제한될 수 있습니다.
+                                        다만 이때 회원 대상 서비스 및 가입이 제한될 수 있습니다.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
+                    <script>
+                        // 체크박스 전체 선택
+                        function checkSelectAll(checkbox)  {
+                            const selectall 
+                              = document.querySelector('input[name="chk_agree"]');
+                            
+                            if(checkbox.checked === false)  {
+                              selectall.checked = false;
+                            }
+                          }
+                          
+                          function selectAll(selectAll)  {
+                            const checkboxes 
+                               = document.getElementsByName('agree_chk');
+                            
+                            checkboxes.forEach((checkbox) => {
+                              checkbox.checked = selectAll.checked
+                            })
+                          }
+                    </script>
 
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <input type="submit" class="btn" value="Sign up!" />

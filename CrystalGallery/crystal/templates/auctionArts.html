@@ -1,205 +1,203 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}
-auctionArts
-{% endblock title %}
-
-{% block head %}
+{% extends "base.html" %} {% load static %} {% block title %} auctionArts {% endblock title %} {% block head %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-  @font-face {
-    font-family: 'IBMPlexSansKR-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  .title {
-    font-size: larger;
-  }
-
-  .wrapper {
-    background-color: rgb(0, 0, 0);
-    color: white;
-    font-family: 'IBMPlexSansKR-Regular';
-  }
-
-  .btn {
-    border-color: rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
-    color: white;
-  }
-
-  #work {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 1rem;
-  }
-
-  #card .card-body {
-    position: absolute;
-    top: 200px;
-    width: 300px;
-    height: 200px;
-    padding-top: 15%;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: all 0.6s ease-in-out;
-    z-index: 10;
-    font-size: 12px;
-  }
-
-  #card #li {
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  #card #li:hover .card-body {
-    opacity: 1;
-    transform: translateY(-200px);
-  }
-
-  #card .card-body p {
-    color: #fff;
-    text-align: center;
-  }
-
-  #li {
-    width: 300px;
-    height: 200px;
-  }
-
-  .d-block {
-    width: 100%;
-    height: 30rem;
-  }
-
-  .featurette-heading {
-    font-family: 'Krona One', sans-serif;
-    color: rgb(255, 255, 255);
-    font-size: 1.5vw;
-  }
-
-  .sub-text {
-    font-size: 1.5rem;
-    color: rgb(175, 175, 175);
-    font-size: 1vw;
-  }
+    @font-face {
+        font-family: 'IBMPlexSansKR-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    .title {
+        font-size: larger;
+    }
+    
+    .wrapper {
+        background-color: rgb(0, 0, 0);
+        color: white;
+        font-family: 'IBMPlexSansKR-Regular';
+    }
+    
+    .btn {
+        border-color: rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        color: white;
+    }
+    
+    #work {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 1rem;
+    }
+    
+    #card .card-body {
+        position: absolute;
+        top: 200px;
+        width: 300px;
+        height: 200px;
+        padding-top: 15%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: all 0.6s ease-in-out;
+        z-index: 10;
+        font-size: 12px;
+    }
+    
+    #card #li {
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    #card #li:hover .card-body {
+        opacity: 1;
+        transform: translateY(-200px);
+    }
+    
+    #card .card-body p {
+        color: #fff;
+        text-align: center;
+    }
+    
+    #li {
+        width: 300px;
+        height: 200px;
+    }
+    
+    .d-block {
+        width: 100%;
+        height: 30rem;
+    }
+    
+    .featurette-heading {
+        font-family: 'Krona One', sans-serif;
+        color: rgb(255, 255, 255);
+        font-size: 1.5vw;
+    }
+    
+    .sub-text {
+        font-size: 1.5rem;
+        color: rgb(175, 175, 175);
+        font-size: 1vw;
+    }
+    
+    .dropdown {
+        position: relative;
+    }
 </style>
 <script>
-  $('.carousel').carousel({
-    interval: 20
-  })
+    $('.carousel').carousel({
+        interval: 20
+    })
 </script>
 {% endblock head %}
 
 <body>
-  {% block content %}
-  <div class="wrapper">
-    <br><br>
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-      </div>
+    {% block content %}
+    <div class="wrapper">
+        <br><br>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
 
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col-md-6">
-              <a href="{% url 'auction' top1.listing.id %}">
-                <img src="{{top1.listing.display_picture.url}}" class="d-block" alt="..."></a>
-              <div class="carousel-caption d-none d-md-block">
-                <div class="col-md-6">
-                  <h5>{{top1.listing.title}}</h5>
-                  <p>{{top1.listing.explain}}</p>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{% url 'auction' top1.listing.id %}">
+                                <img src="{{top1.listing.display_picture.url}}" class="d-block" alt="..."></a>
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="col-md-6">
+                                    <h5>{{top1.listing.title}}</h5>
+                                    <p>{{top1.listing.explain}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-6">
-              <a href="{% url 'auction' top2.listing.id %}"></a>
-              <img src="{{top2.listing.display_picture.url}}" class="d-block" alt="..."></a>
-            </div>
-            <div class="col-md-6">
-              <div class="carousel-caption d-none d-md-block">
-                <!-- -옆으로 넘기는 버튼인듯- -->
-                <h5 class="featurette-heading">{{top2.listing.title}}</h5>
-                <p><span class="sub-text">{{top2.listing.explain}}</p></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-6">
-              <h2 class="featurette-heading">{{top3.listing.title}}</h2>
-              <h3><span class="sub-text">{{top3.listing.explain}}</span></h3>
-            </div>
-            <div class="col-md-6">
-              <img class="d-block" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="100%"
-                height="auto;">
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{% url 'auction' top2.listing.id %}"></a>
+                            <img src="{{top2.listing.display_picture.url}}" class="d-block" alt="..."></a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="carousel-caption d-none d-md-block">
+                                <!-- -옆으로 넘기는 버튼인듯- -->
+                                <h5 class="featurette-heading">{{top2.listing.title}}</h5>
+                                <p><span class="sub-text">{{top2.listing.explain}}</p></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="featurette-heading">{{top3.listing.title}}</h2>
+                            <h3><span class="sub-text">{{top3.listing.explain}}</span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <img class="d-block" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="100%" height="auto;">
 
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
-    </div>
-
-
-    <br>
-
-    <div class="py-5">
-
-      <div class="row" id="work">
-        {% for listing in listing.all reversed %}
-        <div class="col-md-3">
-          <div class="mb-3" id="card">
-            <div id="li">
-              <img src="{{listing.listing.display_picture.url}}" style="width : 300px; height : 200px; ">
-              <div class="card-body">
-                <p class="card-text">제목: {{listing.listing.name}}</p>
-                <p class="card-text">시작가: {{listing.listing.initial}}</p>
-                <p class="card-text">현재가: {{listing.highest_bid}}</p>
-                <p><small>deadline: {{listing.listing.time_ending}}</small>
-                  {% if user.is_authenticated %}
-                  <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary"
-                    style="font-size: 0.5vw;">응찰</a>
-                  {% else %}
-                  <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" style="font-size: 0.5vw;">응찰</a>
-                  {% endif %}
-                </p>
-                
-              </div>
-            </div>
-          </div>
         </div>
-        {% endfor %}
-      </div>
 
+
+        <br>
+
+
+        <div class="py-5">
+            <div class="btn-group" role="group" aria-label="...">
+                <form action="{%url 'auctionArts'%}" method="POST">
+                    <button type="submit" class="btn btn-default underway_auction_view" name="bid" value="underway_bids">경매중</button>
+
+                    <button type="submit" class="btn btn-default finished_auction_view" name="bid" value="finished_bids">경매 마감</button>
+                </form>
+
+            </div>
+            <br><br>
+
+
+            <div class="row" id="work">
+                {% for listing in listings reversed %}
+                <div class="col-md-3">
+                    <div class="mb-3" id="card">
+                        <div id="li">
+                            <img src="{{listing.listing.display_picture.url}}" style="width : 300px; height : 200px; ">
+                            <div class="card-body">
+                                <p class="card-text">제목: {{listing.listing.name}}</p>
+                                <p class="card-text">시작가: {{listing.listing.initial}}</p>
+                                <p class="card-text">현재가: {{listing.highest_bid}}</p>
+                                <p><small>deadline: {{listing.listing.time_ending}}</small> {% if user.is_authenticated %}
+                                    <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary" style="font-size: 0.5vw;">응찰</a> {% else %}
+                                    <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" style="font-size: 0.5vw;">응찰</a> {% endif %}
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
     </div>
-  </div>
-  </div>
-  {% endblock content %}
-  </body>
+    </div>
+    {% endblock content %}
+</body>

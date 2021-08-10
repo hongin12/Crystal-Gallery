@@ -86,10 +86,40 @@ def mygallery(request):
     return render(request, "mygallery.html", {'my_upload_arts':my_upload_arts, "my_bid_arts_list": my_bid_arts_list})
 
 def auctionArts(request):
-    listing = Listing.objects.all()
-    bid = Bid.objects.all()        
+    all_listing = Listing.objects.all()
+    all_bids = Bid.objects.all()        
     highest_bid_art = Bid.objects.all().order_by('-highest_bid')[:3]
-    return render(request, "auctionArts.html", {'listing' : bid, 'top1': highest_bid_art[0], 'top2': highest_bid_art[1], 'top3': highest_bid_art[2]})
+
+    
+    today = datetime.today().strftime("%Y%m%d")
+    today = int(today)
+    
+    listings=[]
+    underway_bids=[]
+    finished_bids=[]
+
+    for bid in all_bids:
+        deadline = bid.listing.time_ending
+        deadline = deadline.strftime("%Y%m%d")
+        deadline = int(deadline)
+        if today < deadline:
+            underway_bids.append(bid)
+        else:
+            finished_bids.append(bid)
+
+    listings = list(underway_bids)
+    #아무것도안눌렀을때&경매 진행 버튼 누르면 경매 마감일 안지난 Bid 데이터들만 담기
+    #마감 경매 버튼 누르면 -listings 에 경매 마감일이 지난 Bid 데이트들만 담기
+    if request.method == "POST":
+        view_type = request.POST['bid']
+        
+        if str(view_type) == "finished_bids":
+            listings = list(finished_bids)
+        else:
+            listings = list(underway_bids)
+        
+        #if view_type == "underway_bids":  
+    return render(request, "auctionArts.html", {'listings' : listings, 'top1': highest_bid_art[0], 'top2': highest_bid_art[1], 'top3': highest_bid_art[2]})
 
 def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
@@ -125,7 +155,7 @@ def bid(request):
         new_bid = request.POST["new_highest_bid"]
         bid_id = request.POST["bid_id"]
         old_bid = get_object_or_404(Bid, pk=bid_id)
-            
+
         if today-deadline > 0 :
             return redirect("auction", listing_id)
         
