@@ -14,7 +14,10 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from crystal.transactions import remaining_time
 from django.contrib import messages
-
+import datetime
+from datetime import datetime
+from django.utils.dateformat import DateFormat
+import time
 
 def main(request):
     return render(request, "main.html")
@@ -110,21 +113,40 @@ def about(request):
      
 def bid(request):
     if request.method == "POST":
+        # 오늘 날짜
+        listing_id = request.POST["listing_id"]
+        listing = get_object_or_404(Listing, pk=listing_id)
+        deadline = listing.time_ending
+        today = datetime.today().strftime("%Y%m%d")
+        today = int(today)
+        deadline = deadline.strftime("%Y%m%d")
+        deadline = int(deadline)
         #새 응찰가
         new_bid = request.POST["new_highest_bid"]
-
-        listing_id = request.POST["listing_id"]
         bid_id = request.POST["bid_id"]
-
         old_bid = get_object_or_404(Bid, pk=bid_id)
+            
+        if today > deadline :
+            return render(request, "main.html")
         
-        if old_bid.highest_bid < int(new_bid) :
-            # 새 응찰가가 최고가일때
+        if request.user.coin >= int(new_bid)  and old_bid.highest_bid < int(new_bid) :
+            
+            # 1) 이전 최고가 응찰자 coin 반환
+                # 이전 응찰자가 있는지 없는지 구분 : # 이전 응찰자가 아직 없을 때는 Bid객체의 user = 그림을 올린사람
+            if old_bid.user != old_bid.listing.user:
+
+                old_bid.user.coin = old_bid.user.coin + old_bid.highest_bid
+                old_bid.user.save()
+
+
+            # 2) 새로운 최고가 응찰자 coin 차감 & Bid 갱신
+            request.user.coin = request.user.coin - int(new_bid) 
+            request.user.save()
             old_bid.user = request.user
             old_bid.highest_bid = new_bid
             old_bid.added = timezone.now()
             old_bid.save()
-        
+
     return redirect("auction", listing_id)
 
 
@@ -160,6 +182,10 @@ def create_profile(request):
             user_pr.save()
             new_Bid = Bid()
             new_Bid.user = request.user
+            
+            request.user.coin = request.user.coin + 5000000
+            request.user.save()
+
             new_Bid.listing = user_pr
             new_Bid.highest_bid = request.POST['initial']
             new_Bid.added = timezone.now()
