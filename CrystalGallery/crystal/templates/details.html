@@ -6,25 +6,45 @@ crystalgallery
 {% endblock title %}
 
 {% block head %}
+<style>
+  @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 
+  .wrapper {
+    background-color: black;
+    color: rgb(255, 255, 255);
+  }
+
+  .row {
+    font-family: 'IBMPlexSansKR-Regular';
+    color: white;
+  }
+</style>
 {% endblock head %}
 
 <body>
   {% block content %}
   <div class="wrapper">
-
     {% block replace %}
     <CENTER>
-      <div class="jumbotron">
-        <h1 class="display-5">작품이 정상적으로 등록되었습니다.<br><br>작품명: {{ user_pr.name }}</h1>
-        <br>
-        <hr class="my-4">
-        <img src="{{ user_pr.display_picture.url }}" class="image_responsive" height="60%" width="60%">
-        <br><br>
-        <a href="{% url 'auctionArts'%}" class="btn btn-secondary my-2">돌아가기</a>
+      <div class="container">
+        <section class="py-5 text-center">
+          <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+              <p style="font-size: larger;"><b>작품명: {{ user_pr.name }}</b></p>
+              <p style="font-size: medium;">작품이 정상적으로 등록되었습니다.</p>
+              <img src="{{ user_pr.display_picture.url }}" class="image_responsive" width="100%" height="auto">
+              <br><br>
+              <a href="{% url 'auctionArts'%}" class="btn btn-outline-secondary my-2" style="color: white;">돌아가기</a>
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
-      <br><br>
-      
     </CENTER>
     {% endblock replace %}
 

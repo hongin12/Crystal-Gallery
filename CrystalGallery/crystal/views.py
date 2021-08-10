@@ -18,6 +18,8 @@ import datetime
 from datetime import datetime
 from django.utils.dateformat import DateFormat
 import time
+from django.core.paginator import Paginator
+
 
 def main(request):
     return render(request, "main.html")
