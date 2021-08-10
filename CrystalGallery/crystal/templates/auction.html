@@ -26,6 +26,10 @@ auction
     font-size: 1.5vw;
   }
 
+  .img{
+    size : 2vw;
+  }
+
   .btn {
     border-radius: 10rem;
     border-color: rgb(255, 255, 255);
@@ -33,7 +37,8 @@ auction
     font-size: 1vw;
     background-color: rgb(91, 91, 91);
   }
-  
+
+
 </style>
 {% endblock head %}
 
@@ -43,11 +48,11 @@ auction
     <div class="container py-5">
       <div class="row">
         <div class="col-md-6 ">
-          <img src="{{listings.display_picture.url}}" style="max-width: 100%; top :50%; object-fit: contain;">
+          <img src="{{listings.display_picture.url}}" style="width: 100%; top :50%; object-fit: contain;">
         </div>
 
         <div class="col-md-6 p-4 bg-dark text-white border" id="explain">
-          <p style = "font-size: 2vw;">그림 제목 : {{listings.name}}</p>
+          <p style="font-size: 2vw;">그림 제목 : {{listings.name}}</p>
           <p>그림 설명: {{listings.explain}}</p>
           <p>초기 가격: {{listings.initial}}</p>
           <p>현재 가격: {{bid.highest_bid}}
@@ -58,19 +63,20 @@ auction
             <form class="login-form" action="{% url 'bid' %}" method="POST">
               {% csrf_token %}
               <div class="input-group">
-                  <div class="input-group-prepend">
-                      <div class="input-group-text">coin</div>
-                  </div>
-                  <!--defalut_bid 삭제-->
-                  <input class="form-control" type="number" min="1" name="new_highest_bid" placeholder="응찰가는 현재가보다 높아야 합니다!">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">coin</div>
+                </div>
+                <!--defalut_bid 삭제-->
+                <input class="form-control" type="number" min="1" name="new_highest_bid"
+                  placeholder="응찰가는 현재가보다 높아야 합니다!">
               </div>
               <!--해당 bid&listing를 넘겨주는 name,value 수정-->
               <input name="listing_id" type="hidden" value="{{ listings.id }}" />
               <input name="bid_id" type="hidden" value="{{ bid.id }}" />
               <br>
               <!--a태그->버튼으로 수정-->
-                <button type="submit" class="btn" type="submit" style="float: right;">응찰</button>
-                
+              <button type="submit" class="btn" type="submit" style="float: right;">응찰</button>
+
             </form>
 
         </div>

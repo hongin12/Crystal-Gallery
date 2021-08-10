@@ -6,8 +6,6 @@ crystalgallery
 {% endblock title %}
 
 {% block head %}
-<link href="main.css" rel="stylesheet">
-
 <style>
   .wrapper {
     background-color: rgb(0, 0, 0);
@@ -37,20 +35,13 @@ crystalgallery
     border-radius: 10rem;
     border-color: rgb(255, 255, 255);
     color: rgb(255, 255, 255);
-    font-size: 1vw;
+    font-size: 1.1vw;
   }
 
   .featurette-heading {
     font-family: 'Krona One', sans-serif;
     color: rgb(255, 255, 255);
     font-size: 1.5vw;
-  }
-
-  .btn {
-    border-radius: 10rem;
-    border-color: rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
-    font-size: 1rem;
   }
 
   .sub-text {
@@ -76,9 +67,7 @@ crystalgallery
       </div>
     </div>
 
-
     <div class="container">
-   
       <div class="row">
         <div class="col-md-6 " style="margin-top:7%;">
           <p class="featurette-heading">Auction System</p>
@@ -91,7 +80,6 @@ crystalgallery
         </div>
         <div class="col-md-6">
           <img class="img-rectangle" src="{% static 'about-ui코인.png' %}" alt="작품사진" width="100%" height="auto;">
-
         </div>
       </div>
 
@@ -109,7 +97,6 @@ crystalgallery
             <a href="{% url 'mygallery' %}" class="btn">My gallery</a>
           </p>
         </div>
-
       </div>
 
       <div class="row">
@@ -126,8 +113,8 @@ crystalgallery
           <img class="img-rectangle" src="{% static 'about-ui코멘트.png' %}" alt="작품사진" width="100%" height="auto;">
         </div>
       </div>
-
     </div>
+
   </div>
   {% endblock content %}
 </body>

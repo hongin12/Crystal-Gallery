@@ -21,6 +21,14 @@ auctionArts
     font-family: 'IBMPlexSansKR-Regular';
   }
 
+  .btn {
+    border-radius: 10rem;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    font-size: 1.1vw;
+    color: white;
+  }
+
   #work {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -68,10 +76,6 @@ auctionArts
     width: 300px;
     height: 200px;
   }
-
-  .btn{
-    color: white;
-  }
 </style>
 {% endblock head %}
 
@@ -79,81 +83,54 @@ auctionArts
   {% block content %}
   <div class="wrapper">
     <br><br>
-    <div class="row">
-      <div class="col-lg-4" style="text-align:center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+          <h2>Top 1</h2>
+          {% if user.is_authenticated %}
+          <p><a class="btn" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
+          {% else %}
+          <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
+          {% endif %}
+        </div>
 
-        <img class="img-rectangle" src="{{top1.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-        <h2>Top 1</h2>
-        {% if user.is_authenticated %}
-        <p><a class="btn" href="{% url 'auction' top1.listing.id %}" role="button">View details</a></p>
-        {% else %}
-        <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
-        {% endif %}
-      </div>
+        <div class="col-md-4 text-center">
+          <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+          <h2>Top 2</h2>
+          {% if user.is_authenticated %}
+          <p><a class="btn" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
+          {% else %}
+          <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
 
-      <div class="col-lg-4" style="text-align:center;">
-        <img class="img-rectangle" src="{{top2.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-        <h2>Top 2</h2>
-        {% if user.is_authenticated %}
-        <p><a class="btn" href="{% url 'auction' top2.listing.id %}" role="button">View details</a></p>
-        {% else %}
-        <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
-        {% endif %}
-      </div>
+          {% endif %}
+        </div>
 
-      <div class="col-lg-4" style="text-align:center;">
-        <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
-        <h2>Top 3</h2>
-        {% if user.is_authenticated %}
-        <p><a class="btn" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
-        {% else %}
-        <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
-        {% endif %}
-      </div>
-    </div>
-
-
-    <!--수정전
-      <div class="row py-lg-5 text-center ">
-        <div id="card">
-          <h3>현재 최고가 작품</h3>
-          <p class="card-text lead text-muted">{{top1.listing.name}}</p>
-          <center>
-          <div id="li">
-            <img src="{{top1.listing.display_picture.url}}"
-              style="width : 300px; height : 200px; border : 20px ridge rgb(254, 255, 220);">
-            <div class="card-body">
-              <p class="card-text">시작가: {{top1.listing.initial}}</p>
-              <p class="card-text">현재가: 100.00 </p>
-              <p class="card-text"><small>deadline: {{ top1.listing.time_ending }}</small>
-              
-                {% if user.is_authenticated %}
-                <a href="{% url 'auction' top1.listing.id %}" class="btn btn-secondary btn-sm">응찰</a>
-                {% else %}
-                <a href="{% url 'login'%}" class="btn btn-secondary my-2">응찰</a>
-                {% endif %}
-              </p>
-            </div>
-          </div>
-        </center>
+        <div class="col-md-4 text-center">
+          <img class="img-rectangle" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="250" height="250">
+          <h2>Top 3</h2>
+          {% if user.is_authenticated %}
+          <p><a class="btn" href="{% url 'auction' top3.listing.id %}" role="button">View details</a></p>
+          {% else %}
+          <p><a class="btn" href="{% url 'login' %}" role="button">View details</a></p>
+          {% endif %}
         </div>
       </div>
--->
 
-    <p style="text-align: center;">
-      {% if user.is_authenticated %}
-      <a href="{% url 'create' %}" class="btn btn-secondary my-2">내 작품 등록하기</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="btn btn-secondary my-2">내 작품 등록하기</a>
-      {% endif %}
-    </p>
-    <br>
+      <p style="text-align: center;">
+        {% if user.is_authenticated %}
+        <a href="{% url 'create' %}" class="btn btn-secondary my-2">내 작품 등록하기</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-secondary my-2">내 작품 등록하기</a>
+        {% endif %}
+      </p>
+      <br>
 
-    <div class="py-5">
-      <div class="container">
+      <div class="py-5">
+
         <div class="row" id="work">
           {% for listing in listing.all reversed %}
-          <div class="col-md-3 col-xs-6">
+          <div class="col-md-3">
             <div class="mb-3" id="card">
               <div id="li">
                 <img src="{{listing.listing.display_picture.url}}"
@@ -170,10 +147,10 @@ auctionArts
             </div>
           </div>
           {% endfor %}
+
         </div>
       </div>
     </div>
-
   </div>
   {% endblock content %}
 </body>
