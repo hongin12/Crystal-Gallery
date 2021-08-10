@@ -69,9 +69,19 @@ def mypage(request):
     return render(request, "mypage.html")
 
 def mygallery(request):
-    #listing = Listing.objects.all()
+    today = datetime.today().strftime("%Y%m%d")
+    today = int(today)
     my_upload_arts= Listing.objects.all().filter(user=request.user)
-    return render(request, "mygallery.html", {'my_upload_arts':my_upload_arts})
+    my_bid_arts_list = []
+    my_bid_arts = Bid.objects.all().filter(user=request.user)
+    for bid_art in my_bid_arts:
+        deadline = bid_art.listing.time_ending
+        deadline = deadline.strftime("%Y%m%d")
+        deadline = int(deadline)
+        if today >= deadline:
+            my_bid_arts_list.append(bid_art)
+
+    return render(request, "mygallery.html", {'my_upload_arts':my_upload_arts, "my_bid_arts_list": my_bid_arts_list})
 
 def auctionArts(request):
     listing = Listing.objects.all()
@@ -85,30 +95,8 @@ def auction(request, listings_id):
     comments = Comment.objects.filter(listing=listings)
     return render(request, 'auction.html', {'listings':listings, 'bid':bid, 'comments':comments})
 
-
 def about(request):
     return render(request, "about.html")
-
-#원래 bid
-#def bid(request):
-    if request.method == "POST":
-        #새 응찰가
-        new_bid = request.POST["new_highest_bid"]
-        #해당 글 id - listing, bid id 둘다 받아오게 수정
-        listing_id = request.POST["listing_id"]
-        bid_id = request.POST["bid_id"]
-
-        #bid찾는거 이렇게도 되나..?!모르겠음. -->오류남
-        #updated_bid = get_object_or_404(Bid, pk=listing_id)
-        updated_bid = get_object_or_404(Bid, pk=bid_id)
-        
-        
-        updated_bid.user = request.user
-        updated_bid.highest_bid = new_bid
-        updated_bid.added = timezone.now()
-        updated_bid.save()
-        
-    return redirect("auction", listing_id)
      
 def bid(request):
     if request.method == "POST":
@@ -137,7 +125,6 @@ def bid(request):
                 old_bid.user.coin = old_bid.user.coin + old_bid.highest_bid
                 old_bid.user.save()
 
-
             # 2) 새로운 최고가 응찰자 coin 차감 & Bid 갱신
             request.user.coin = request.user.coin - int(new_bid) 
             request.user.save()
@@ -147,21 +134,6 @@ def bid(request):
             old_bid.save()
 
     return redirect("auction", listing_id)
-
-
-
-# def create(requset):
-#      new_listing = Listing()
-#      new_listing.name = requset.POST['name']
-#      new_listing.initial = requset.POST['initial']
-#      # new_listing.user = requset.POST['initial']
-#      new_listing.display_picture = requset.POST['display_picture']
-#      new_listing.explain = requset.POST['explain']
-#      new_listing.time_ending = requset.POST['time_ending']
-#      new_listing.save()
-    
-    
-#return redirect('auctionArts')
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 

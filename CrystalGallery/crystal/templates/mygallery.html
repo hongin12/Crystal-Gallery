@@ -123,27 +123,26 @@ mygallery
                     <h3 class="text-white">내가 낙찰한 작품</h3>
                     <br><br>
 
-                    <!-- * 백엔드 연결 부탁해요 * -->
                     <div class="album">
                       <div class="container">
                         <div class="row row-cols-3 g-3">
-                          <!-- {%if user.is_authenticated%}
-                          {% for art in my_upload_arts %}
+                          {%if user.is_authenticated%}
+                          {% for art in my_bid_arts_list %}
                           <div class="col-md-4">
                             <div class="card shadow-sm">
-                              <img src="{{art.display_picture.url}}" alt="새로등록사진"
+                              <img src="{{art.listing.display_picture.url}}" alt="새로등록사진"
                                 style="max-width: 200px; height: 120px;">
                               <div class="card-body">
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품 이름 : {{art.name}}</text> <br>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품 이름 : {{art.listing.name}}</text> <br>
                                 <div style="float: right;">
                                   <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    onclick="location.href='{% url 'auction' art.id %}'">View</button>
+                                    onclick="location.href='{% url 'auction' art.listing.id %}'">View</button>
                                 </div>
                               </div>
                             </div>
                           </div>
                           {% endfor %}
-                          {% endif %} -->
+                          {% endif %}
                         </div>
                       </div>
                     </div>
