@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from crystal.transactions import remaining_time
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 
 def main(request):
@@ -74,7 +75,7 @@ def auctionArts(request):
     listing = Listing.objects.all()
     bid = Bid.objects.all()
     highest_bid_art = Bid.objects.all().order_by('-highest_bid')[:3]
-    
+
     return render(request, "auctionArts.html", {'listing' : bid, 'top1': highest_bid_art[0], 'top2': highest_bid_art[1], 'top3': highest_bid_art[2]})
 
 def auction(request, listings_id):
