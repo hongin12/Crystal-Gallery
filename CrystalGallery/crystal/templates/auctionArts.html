@@ -7,6 +7,9 @@ auctionArts
 
 {% block head %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="slide.css">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="slide.js"></script>
 
 <style>
   @font-face {
@@ -89,117 +92,183 @@ auctionArts
     color: rgb(175, 175, 175);
     font-size: 1vw;
   }
+
+  .exhibition_box_f {
+    max-width: 100%;
+    position: relative;
+    display: block;
+  }
 </style>
+
 <script>
   $('.carousel').carousel({
     interval: 20
   })
 </script>
+
 {% endblock head %}
 
 <body>
   {% block content %}
   <div class="wrapper">
-    <br><br>
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
+    <div class="container">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="exhibition_box_f break inline_p">
+            <div class="carousel-item active">
+              <a href="{% url 'auction' top1.listing.id %}">
+                <img src="{{top1.listing.display_picture.url}}" class="d-block w-100" alt="..."
+                  style="max-width: 100%;"></a>
+              <div class="carousel-caption d-none d-md-block">
+                <h2>Top1</h2>
+                <h4>{{top1.listing.title}}</h4>
+                <h4>{{top1.listing.explain}}</h4>
+              </div>
+
+            </div>
+            <div class="carousel-item">
+              <a href="{% url 'auction' top2.listing.id %}">
+                <img src="{{top2.listing.display_picture.url}}" class="d-block" alt="..."></a>
+              <div class="carousel-caption d-none d-md-block">
+                <h2>Top2</h2>
+                <h4>{{top2.listing.title}}</h4>
+                <h4>{{top2.listing.explain}}</h4>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <a href="{% url 'auction' top3.listing.id %}">
+                <img src="{{top3.listing.display_picture.url}}" class="d-block" alt="..."></a>
+              <div class="carousel-caption d-none d-md-block">
+                <h2>Top3</h2>
+                <h4>{{top3.listing.title}}</h4>
+                <h4>{{top3.listing.explain}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
 
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col-md-6">
-              <a href="{% url 'auction' top1.listing.id %}">
-                <img src="{{top1.listing.display_picture.url}}" class="d-block" alt="..."></a>
-              <div class="carousel-caption d-none d-md-block">
-                <div class="col-md-6">
-                  <h5>{{top1.listing.title}}</h5>
-                  <p>{{top1.listing.explain}}</p>
+
+
+      <br><br><br><br><br>
+
+
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-6">
+                <a href="{% url 'auction' top1.listing.id %}">
+                  <img src="{{top1.listing.display_picture.url}}" class="d-block" alt="..."></a>
+                <div class="carousel-caption d-none d-md-block">
+                  <div class="col-md-6">
+                    <h5>{{top1.listing.title}}</h5>
+                    <p>{{top1.listing.explain}}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-6">
-              <a href="{% url 'auction' top2.listing.id %}"></a>
-              <img src="{{top2.listing.display_picture.url}}" class="d-block" alt="..."></a>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-6">
+                <a href="{% url 'auction' top2.listing.id %}"></a>
+                <img src="{{top2.listing.display_picture.url}}" class="d-block" alt="..."></a>
+              </div>
+              <div class="col-md-6">
+                <div class="carousel-caption d-none d-md-block">
+                  <!-- -옆으로 넘기는 버튼인듯- -->
+                  <h5 class="featurette-heading">{{top2.listing.title}}</h5>
+                  <p><span class="sub-text">{{top2.listing.explain}}</p></span>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6">
-              <div class="carousel-caption d-none d-md-block">
-                <!-- -옆으로 넘기는 버튼인듯- -->
-                <h5 class="featurette-heading">{{top2.listing.title}}</h5>
-                <p><span class="sub-text">{{top2.listing.explain}}</p></span>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-6">
+                <h2 class="featurette-heading">{{top3.listing.title}}</h2>
+                <h3><span class="sub-text">{{top3.listing.explain}}</span></h3>
+              </div>
+              <div class="col-md-6">
+                <img class="d-block" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="100%" height="auto;">
+
               </div>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-6">
-              <h2 class="featurette-heading">{{top3.listing.title}}</h2>
-              <h3><span class="sub-text">{{top3.listing.explain}}</span></h3>
-            </div>
-            <div class="col-md-6">
-              <img class="d-block" src="{{top3.listing.display_picture.url}}" alt="작품사진" width="100%"
-                height="auto;">
-
-            </div>
-          </div>
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
 
 
-    <br>
+      <br>
 
-    <div class="py-5">
+      <div class="py-5">
 
-      <div class="row" id="work">
-        {% for listing in listing.all reversed %}
-        <div class="col-md-3">
-          <div class="mb-3" id="card">
-            <div id="li">
-              <img src="{{listing.listing.display_picture.url}}" style="width : 300px; height : 200px; ">
-              <div class="card-body">
-                <p class="card-text">제목: {{listing.listing.name}}</p>
-                <p class="card-text">시작가: {{listing.listing.initial}}</p>
-                <p class="card-text">현재가: {{listing.highest_bid}}</p>
-                <p><small>deadline: {{listing.listing.time_ending}}</small>
-                  {% if user.is_authenticated %}
-                  <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary"
-                    style="font-size: 0.5vw;">응찰</a>
-                  {% else %}
-                  <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" style="font-size: 0.5vw;">응찰</a>
-                  {% endif %}
-                </p>
-                
+        <div class="row" id="work">
+          {% for listing in listing.all reversed %}
+          <div class="col-md-3">
+            <div class="mb-3" id="card">
+              <div id="li">
+                <img src="{{listing.listing.display_picture.url}}" style="width : 300px; height : 200px; ">
+                <div class="card-body">
+                  <p class="card-text">제목: {{listing.listing.name}}</p>
+                  <p class="card-text">시작가: {{listing.listing.initial}}</p>
+                  <p class="card-text">현재가: {{listing.highest_bid}}</p>
+                  <p><small>deadline: {{listing.listing.time_ending}}</small>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary"
+                      style="font-size: 0.5vw;">응찰</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" style="font-size: 0.5vw;">응찰</a>
+                    {% endif %}
+                  </p>
+
+                </div>
               </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
-
     </div>
-  </div>
   </div>
   {% endblock content %}
-  </body>
+</body>
