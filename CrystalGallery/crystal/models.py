@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
-
+from datetime import datetime
+from django.utils.dateformat import DateFormat
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
@@ -35,7 +36,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     username = models.CharField(max_length=30, unique=True, null=True)
-    coin = models.IntegerField(default=10000000)
+    coin = models.IntegerField(default=10000000)    
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -65,7 +66,7 @@ class Listing(models.Model):
     display_picture= models.FileField(upload_to='images/', blank=True)  
     explain = models.TextField(default = '')
     time_ending = models.DateField(null = True)
-
+    
     def __str__(self):
         return f"{self.name} - starts at ${self.initial}"
 

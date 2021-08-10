@@ -14,7 +14,10 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from crystal.transactions import remaining_time
 from django.contrib import messages
-
+import datetime
+from datetime import datetime
+from django.utils.dateformat import DateFormat
+import time
 
 def main(request):
     return render(request, "main.html")
@@ -109,15 +112,22 @@ def about(request):
      
 def bid(request):
     if request.method == "POST":
+        # 오늘 날짜
+        listing_id = request.POST["listing_id"]
+        listing = get_object_or_404(Listing, pk=listing_id)
+        deadline = listing.time_ending
+        today = datetime.today().strftime("%Y%m%d")
+        today = int(today)
+        deadline = deadline.strftime("%Y%m%d")
+        deadline = int(deadline)
         #새 응찰가
         new_bid = request.POST["new_highest_bid"]
-
-        listing_id = request.POST["listing_id"]
         bid_id = request.POST["bid_id"]
-
         old_bid = get_object_or_404(Bid, pk=bid_id)
+            
+        if today > deadline :
+            return render(request, "main.html")
         
-        # 응찰자의 coin이 충분한 상태 & 현재가 < 응찰가
         if request.user.coin >= int(new_bid)  and old_bid.highest_bid < int(new_bid) :
             
             # 1) 이전 최고가 응찰자 coin 반환
@@ -135,7 +145,7 @@ def bid(request):
             old_bid.highest_bid = new_bid
             old_bid.added = timezone.now()
             old_bid.save()
-        
+
     return redirect("auction", listing_id)
 
 
@@ -171,6 +181,10 @@ def create_profile(request):
             user_pr.save()
             new_Bid = Bid()
             new_Bid.user = request.user
+            
+            request.user.coin = request.user.coin + 5000000
+            request.user.save()
+
             new_Bid.listing = user_pr
             new_Bid.highest_bid = request.POST['initial']
             new_Bid.added = timezone.now()
