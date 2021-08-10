@@ -22,6 +22,7 @@ login
             background-color: black;
             color: rgb(255, 255, 255);
         }
+        
         .container_login {
             width: 30rem;
             position: absolute; left: 50%; top: 50%; 
@@ -79,18 +80,18 @@ login
                     <br> {%csrf_token%}
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <input type="text" class="form-control" name="username">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">PW</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <input type="password" class="form-control" name="password">
                         </div>
                     </div>
                     <br>
-                    <div class="d-grid gap-2 col-5 mx-auto">
+                    <div class="d-grid gap-2 col-4 mx-auto">
                         <input class="btn" type="submit" value = "Log in">
                     </div>
                     <br>

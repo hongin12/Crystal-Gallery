@@ -140,7 +140,11 @@ auctionArts
                   <p class="card-text">시작가: {{listing.listing.initial}}</p>
                   <p class="card-text">현재가: {{listing.highest_bid}}</p>
                   <p><small>deadline: {{listing.listing.time_ending}}</small>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'auction' listing.listing.id %}" class="btn btn-sm btn-secondary">응찰</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-sm btn-secondary">응찰</a>
+                    {% endif %}
                   </p>
                 </div>
               </div>
