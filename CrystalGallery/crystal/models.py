@@ -35,7 +35,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     username = models.CharField(max_length=30, unique=True, null=True)
-    coin = models.IntegerField(default=9999)
+    coin = models.IntegerField(default=10000000)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

@@ -72,17 +72,16 @@ def mygallery(request):
 
 def auctionArts(request):
     listing = Listing.objects.all()
-    bid = Bid.objects.all()
+    bid = Bid.objects.all()        
     highest_bid_art = Bid.objects.all().order_by('-highest_bid')[:3]
-    
     return render(request, "auctionArts.html", {'listing' : bid, 'top1': highest_bid_art[0], 'top2': highest_bid_art[1], 'top3': highest_bid_art[2]})
 
 def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
     bid = Bid.objects.get(listing=listings)
     comments = Comment.objects.filter(listing=listings)
-
     return render(request, 'auction.html', {'listings':listings, 'bid':bid, 'comments':comments})
+
 
 def about(request):
     return render(request, "about.html")
@@ -118,8 +117,20 @@ def bid(request):
 
         old_bid = get_object_or_404(Bid, pk=bid_id)
         
-        if old_bid.highest_bid < int(new_bid) :
-            # 새 응찰가가 최고가일때
+        # 응찰자의 coin이 충분한 상태 & 현재가 < 응찰가
+        if request.user.coin >= int(new_bid)  and old_bid.highest_bid < int(new_bid) :
+            
+            # 1) 이전 최고가 응찰자 coin 반환
+                # 이전 응찰자가 있는지 없는지 구분 : # 이전 응찰자가 아직 없을 때는 Bid객체의 user = 그림을 올린사람
+            if old_bid.user != old_bid.listing.user:
+
+                old_bid.user.coin = old_bid.user.coin + old_bid.highest_bid
+                old_bid.user.save()
+
+
+            # 2) 새로운 최고가 응찰자 coin 차감 & Bid 갱신
+            request.user.coin = request.user.coin - int(new_bid) 
+            request.user.save()
             old_bid.user = request.user
             old_bid.highest_bid = new_bid
             old_bid.added = timezone.now()
