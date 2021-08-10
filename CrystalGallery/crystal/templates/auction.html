@@ -62,11 +62,13 @@ auction
             <!--action url 수정-->
             <form class="login-form" action="{% url 'bid' %}" method="POST">
               {% csrf_token %}
+              {% if timegap < 0 %}
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">coin</div>
                 </div>
                 <!--defalut_bid 삭제-->
+
                 <input class="form-control" type="number" min="1" name="new_highest_bid"
                   placeholder="응찰가는 현재가보다 높아야 합니다!">
               </div>
@@ -76,6 +78,9 @@ auction
               <br>
               <!--a태그->버튼으로 수정-->
               <button type="submit" class="btn" type="submit" style="float: right;">응찰</button>
+              {% else %}
+                <p>이미 경매가 끝난 작품입니다!</p>
+              {% endif %}
             </form>
 
         </div>

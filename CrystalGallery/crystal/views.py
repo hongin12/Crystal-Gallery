@@ -95,7 +95,17 @@ def auction(request, listings_id):
     listings = get_object_or_404(Listing, pk=listings_id)
     bid = Bid.objects.get(listing=listings)
     comments = Comment.objects.filter(listing=listings)
-    return render(request, 'auction.html', {'listings':listings, 'bid':bid, 'comments':comments})
+    deadline = listings.time_ending
+    today = datetime.today().strftime("%Y%m%d")
+    today = int(today)
+    deadline = deadline.strftime("%Y%m%d")
+    deadline = int(deadline)
+    timegap = today - deadline
+            
+    if timegap > 0 :
+        return render(request, "auction.html", {'listings':listings, 'bid':bid, 'comments':comments, "timegap" : timegap})
+    
+    return render(request, 'auction.html', {'listings':listings, 'bid':bid, 'comments':comments, "timegap" : timegap})
 
 def about(request):
     return render(request, "about.html")
@@ -110,13 +120,14 @@ def bid(request):
         today = int(today)
         deadline = deadline.strftime("%Y%m%d")
         deadline = int(deadline)
+        timegap = today - deadline
         #새 응찰가
         new_bid = request.POST["new_highest_bid"]
         bid_id = request.POST["bid_id"]
         old_bid = get_object_or_404(Bid, pk=bid_id)
             
-        if today > deadline :
-            return render(request, "main.html")
+        if today-deadline > 0 :
+            return redirect("auction", listing_id)
         
         if request.user.coin >= int(new_bid)  and old_bid.highest_bid < int(new_bid) :
             

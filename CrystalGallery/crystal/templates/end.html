@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+auction
+{% endblock title %}
+
+{% block head %}
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<style>
+  @font-face {
+    font-family: 'IBMPlexSansKR-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .wrapper {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: 'IBMPlexSansKR-Light';
+  }
+
+  #explain {
+    font-size: 1.5vw;
+  }
+
+  .img{
+    size : 2vw;
+  }
+
+  .btn {
+    border-radius: 10rem;
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    font-size: 1vw;
+    background-color: rgb(91, 91, 91);
+  }
+  #popup_layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  /*팝업 박스*/
+  .popup_box {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 550px;
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+  }
+
+  /*컨텐츠 영역*/
+  .popup_box .popup_cont {
+    padding: 50px;
+    line-height: 1.4rem;
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .popup_box .popup_cont h2 {
+    padding: 15px 0;
+    color: rgb(0, 0, 0);
+    margin: 0;
+  }
+
+  .popup_box .popup_cont p {
+    border-top: 1px solid #666;
+    padding-top: 30px;
+    color: black;
+  }
+
+  /*버튼영역*/
+  .popup_box .popup_btn {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: 70px;
+    background: #5d5d5d;
+    word-break: break-word;
+  }
+
+  .popup_box .popup_btn a {
+    position: relative;
+    display: table-cell;
+    height: 70px;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    background: #ff0000;
+  }
+
+  .popup_box .popup_btn a:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 26px;
+    right: 29px;
+    width: 1px;
+    height: 21px;
+    background: #fff;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .popup_box .popup_btn a:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 26px;
+    right: 29px;
+    width: 1px;
+    height: 21px;
+    background: #fff;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .popup_box .popup_btn a.close_day {
+    background: #5d5d5d;
+  }
+
+  .popup_box .popup_btn a.close_day:before,
+  .popup_box .popup_btn a.close_day:after {
+    display: none;
+  }
+
+  /*오버레이 뒷배경*/
+  .popup_overlay {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1001;
+    ;
+    background: rgba(0, 0, 0, 0.5);
+  }
+</style>
+<script>
+  //닫기버튼 스크립트
+  function closePop() {
+    document.getElementById("popup_layer").style.display = "none";
+  }
+</script>
+
+{% endblock head %}
+
+<body>
+  {% block content %}
+
+  <div class="wrapper">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-6 ">
+          <img src="{{listings.display_picture.url}}" style="width: 100%; top :50%; object-fit: contain;">
+        </div>
+
+        <div class="col-md-6 p-4 bg-dark text-white border" id="explain">
+          <p style="font-size: 2vw;">그림 제목 : {{listings.name}}</p>
+          <p>그림 설명: {{listings.explain}}</p>
+          <p>초기 가격: {{listings.initial}}</p>
+          <p>현재 가격: {{bid.highest_bid}}
+            <p> Auction ends in: {{ listings.time_ending }}</p>
+            <br>
+
+            <!--action url 수정-->
+            <form class="login-form" action="{% url 'bid' %}" method="POST">
+              {% csrf_token %}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">coin</div>
+                </div>
+                <!--defalut_bid 삭제-->
+                <input class="form-control" type="number" min="1" name="new_highest_bid"
+                  placeholder="응찰가는 현재가보다 높아야 합니다!">
+              </div>
+              <!--해당 bid&listing를 넘겨주는 name,value 수정-->
+              <input name="listing_id" type="hidden" value="{{ listings.id }}" />
+              <input name="bid_id" type="hidden" value="{{ bid.id }}" />
+              <br>
+              <!--a태그->버튼으로 수정-->
+              <button type="submit" class="btn" type="submit" style="float: right;">응찰</button>
+              <div id="popup_layer">
+                <div class="popup_box">
+                  <!--팝업 컨텐츠 영역-->
+                  <div class="popup_cont" style="font-family: 'IBMPlexSansKR-Regular';">
+                    <h2>저작권 관련 공지글</h2>
+                    <p>
+                      노트폴리오는 CCL(Creative commons License)을 통해 회원들의 창작물을 보호하고 있습니다. CCL은 자기 창작물에 대한 저작권의 범위를 본인이 직접 설정할 수 있는
+                      라이선스(License)입니다.<br>
+                      지적재산권, 온라인 법률, 웹 저술, 컴퓨터 과학의 전문가들이 함께 머리를 맞대고 만든 CC (Creative Commons)는 발효 이후 온라인 상 콘텐츠의 저작권을 보호하는데 큰 힘을
+                      발휘했습니다. 지금은 CCL로 발전하여 전 세계 50여개 국에서 도입, 활용 중인 저작권 보호 규약입니다.<br>
+                      저희 노트폴리오는 CCL에 의거하여 다음과 같은 6가지 라이선스를 지원합니다. <br> (출처 : http://cckorea.org/xe/?mid=ccl )
+                    </p>
+                  </div>
+                  <!--팝업 버튼 영역-->
+                  <div class="popup_btn">
+                    <a href="javascript:closePop();">close</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="container py-4 listing-comments" id="comment">
+      <h5>Comments </h5>
+      <div class="comment-container" style="color: rgb(255, 255, 255);">
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="card bg-dark" style="margin: 5px;">
+          <div class="comment-owner ">
+            {{ comment.user.username }}
+          </div>
+          <span class="comment-content">
+            {{ comment.comment }}
+          </span>
+          <span class="text-muted" style="text-align: right; margin-right: 5px;">
+            {{ comment.added }}
+          </span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <span class="text-muted">
+          No comments at the moment
+        </span>
+        {% endif %}
+      </div>
+      <hr>
+      <form class="comment-form" action="{% url 'comment' %}" method="POST">
+        Your Comment:
+        {% csrf_token %}
+        <textarea name="content" class="form-control" placeholder="enter your comment here" rows="3"
+          maxlength="400"></textarea>
+        <input name="list_id" type="hidden" value="{{ listings.id }}">
+        <br>
+        <button class="btn btn-outline-secondary my-2" type="submit" style="float: right;">Comment</button>
+
+      </form>
+    </div>
+
+  </div>
+  {% endblock content %}
+</body>
