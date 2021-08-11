@@ -103,7 +103,9 @@ mygallery
                                 <div style="float: right;">
                                   <button type="button" class="btn btn-sm btn-outline-secondary"
                                     onclick="location.href='{% url 'auction' art.id %}'">View</button>
-                                </div>
+        <!--수정 버튼 추가-->      <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    onclick="location.href='{% url 'edit' art.id %}'">edit</button>
+                                  </div>
                               </div>
                             </div>
                           </div>

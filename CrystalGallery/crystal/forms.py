@@ -51,3 +51,11 @@ class Profile_Form(forms.ModelForm):
         'explain',
         'time_ending',
         ]
+        
+class Edit_Form(forms.ModelForm):
+    class Meta:
+        model = Listing
+        fields = [
+            'name',
+            'explain',
+        ]

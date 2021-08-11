@@ -218,4 +218,21 @@ def comment(request):
         newComment.save()
         return redirect("auction", item_id)
     return redirect("main")
-            
+
+def edit(request, listings_id):
+    myart = Listing.objects.get(id=listings_id)
+    # 글의 수정사항을 입력하고 제출을 눌렀을 때
+    if request.method == "POST":
+        form = Edit_Form(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            # {'name': '수정된 이름', 'image': <InMemoryUploadedFile: Birman_43.jpg 	(image/jpeg)>, 'gender': 'female', 'body': '수정된 내용'}
+            myart.name = form.cleaned_data['name']
+            myart.explain = form.cleaned_data['explain']
+            myart.save()
+            return redirect('/auction/'+str(myart.pk))
+        
+    # 수정사항을 입력하기 위해 페이지에 처음 접속했을 때
+    else:
+        form = Edit_Form()
+        return render(request, 'edit.html',{'form':form})

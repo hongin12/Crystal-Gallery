@@ -36,6 +36,7 @@ urlpatterns = [
     path('create/', views.create_profile, name = 'create'),
     path("comment", views.comment, name="comment"),
     path('bid/', views.bid, name='bid'),
+    path('auction/<int:listings_id>/edit', views.edit, name='edit'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

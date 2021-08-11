@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+작품수정
+{% endblock title %}
+
+{% block head %}
+<style>
+    @font-face {
+      font-family: 'IBMPlexSansKR-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+  
+    .wrapper {
+      background-color: black;
+      color: white;
+      font-family: 'IBMPlexSansKR-Regular';
+    }
+  </style>
+  
+  {% endblock head %}
+
+
+  <body>
+    {% block content %}
+    <div class="wrapper">
+        <center>
+          <div class="container">
+            <br><br>
+            {% block replace %}
+            <div class="text-white">
+                <h2>경매 작품을 수정하세요.</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br><br>
+        <table style="color: #ffffff;">
+            {{form.as_table}}
+        </table>
+        <br><br>
+        <input type="submit" class="btn btn-outline-secondary my-2" name="edit" style="color: white;">
+        {% endblock replace %}
+    </form>
+    </div>
+</div>
+<br><br>
+</center>
+</div>
+{% endblock content %}
+</body>
