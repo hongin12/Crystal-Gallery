@@ -17,29 +17,39 @@ about
       background-color: rgb(0, 0, 0);
     }
 
+    @font-face {
+      font-family: 'IBMPlexSansKR-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     .py-5 {
-      font-family: 'Krona One', sans-serif;
-      font-size: 2vw;
+      font-family: 'IBMPlexSansKR-Regular';
+      font-size: 2.5vw;
     }
 
     .featurette-heading {
-      font-family: 'Krona One', sans-serif;
+      font-family: 'IBMPlexSansKR-Regular';
       color: rgb(255, 255, 255);
       font-size: 2vw;
+      margin-top: 2rem;
     }
 
     .btn {
-      border-radius: 10rem;
+      font-family: 'IBMPlexSansKR-Regular';
+      border-radius: 3rem;
       border-color: rgb(255, 255, 255);
+      font-size: 1vw;
       color: rgb(255, 255, 255);
-      font-size: 1rem;
     }
 
     .sub-text {
-      font-size: 1.5rem;
+      font-family: 'IBMPlexSansKR-Regular';
+      font-size: 1.2vw;
       color: rgb(175, 175, 175);
-      font-size : 1.5vw;
     }
+
   </style>
   {% endblock head %}
 
@@ -48,50 +58,51 @@ about
   <div class="wrapper">
     <div class="container">
       
-      <section class="py-5 text-white">
+      <section class="py-5 text-white text-center">
         <div class="row py-lg-5">
-          <p class="fw-bold">About Crystal Gallery</p>
+          <p class="fw-bold">크리스탈 갤러리에 오신걸 환영합니다.</p>
           <br>
-          <p class="lead" style="font-size:medium; color: rgb(175, 175, 175);">CrystalGallery is an auction
-            participation page for amateurs.<br>
-            Get your work evaluated, appreciate other people's work, <br>
-            and decorate your own gallery.</p>
-          <p class="lead">
-            <a href="{% url 'main' %}" class="btn">Main</a>
-          </p>
+          <p class="lead" style="font-size:large; color: rgb(175, 175, 175);">
+            크리스탈 갤러리는 아마추어를 위한 경매 사이트입니다.<br>
+            이곳에서는 아마추어 작가들의 작품을 응찰하고, 자신의 작품을 경매에 출품할 수 있습니다.<br>
+            당신의 숨겨져 있던 진가를 크리스탈 갤러리에서 발견해보세요.
+            </p>
+          
         </div>
       </section>
       
       <hr class="featurette-divider text-white">
+      <p class="featurette-heading">낙찰이 어떻게 이루어지나요?</p>
       <div class="row">
-        <div class="col-md-6 ">
-          <h2 class="featurette-heading">Auction System</h2>
-          <p><span class="sub-text">Start the auction with a welcome coin.<br>
-              Coin allows you to participate in the auction or bid for a painting.<br>
-              Your paintings can also be auctioned off with coins by others.</span></p>
-              <p class="lead">
-                <a href="{% url 'mypage' %}" class="btn">My page</a>
-              </p>
+        <div class="col-md-4">
+          <p><span class="sub-text">1) 타인의 작품에 현재가보다 높은 최고가로 응찰을 합니다. 
+            <br>
+            본인이 작품에 응찰한 코인만큼 현재 보유 코인이 차감됩니다.<br>이 단계에서 이미 낙찰이 된 것은 아닙니다.</span></p> 
         </div>
-        <div class="col-md-6">
-          <img class="img-rectangle" src="{% static 'about-ui코인.png' %}" alt="작품사진" width="100%" height="auto;">
-          
+        <div class="col-md-4">
+          <p><span class="sub-text">2) 본인이 응찰한 가격보다 다른 사람이 더 높은 가격에 작품을 응찰하면 차감된 코인은 다시 돌아옵니다.
+          </span></p>
+        </div>
+        <div class="col-md-4">
+          <p><span class="sub-text">3) 게재자가 설정한 경매 마감일이 지나는 시점에 최고가를 제시한 사람에게 작품이 최종 낙찰됩니다. <br>
+            낙찰자는 응찰한 작품을 자신의 갤러리에 게시할 수 있습니다.
+          </span></p>
         </div>
       </div>
 
       <hr class="featurette-divider text-white">
       <div class="row">
         <div class="col-md-6">
-          <img class="img-rectangle" src="{% static 'about-ui갤러리.png' %}" alt="작품사진" width="100%" height="auto;">
+          <img src="{% static '1000만.png' %}" alt="작품사진" width="100%" height="auto;">
         </div>
 
-        <div class="col-md-6" style=>
-          <h2 class="featurette-heading">Create Own Gallery</h2>
-          <h3><span class="sub-text">Exhibit your work in a gallery.<br>
-              You can see at a glance what you are going to submit to the auction <br>
-              and what you bid for at the auction.</span></h3>
+        <div class="col-md-6" style="margin-top:7%;">
+          <h2 class="featurette-heading"><small style="color: rgb(84, 84, 84); font-size:1.5vw;">special coin event</small><br>
+            01. 신규 회원 가입시 코인 지급</h2>
+          <h3><span class="sub-text">회원 가입 시 지급되는 1,000만 코인으로 경매를 시작해보세요.<br>
+          크리스탈 갤러리가 당신의 첫 경매금을 지원합니다.</span></h3>
           <p class="lead">
-            <a href="{% url 'mygallery' %}" class="btn">My gallery</a>
+            <a href="{% url 'signup' %}" class="btn  btn-outline-secondary">1,000만 코인 받으러 가기</a>
           </p>
         </div>
 
@@ -99,17 +110,16 @@ about
 
       <hr class="featurette-divider text-white">
       <div class="row">
-        <div class="col-md-6">
-          <h2 class="featurette-heading">Share Opinion </h2>
-          <h3><span class="sub-text">Leave a comment at the bottom of the work. <br>
-              You can freely exchange various stories about each other's works.
-              <br> You will be able to develop your work by exchanging various opinions about it.</span></h3>
+        <div class="col-md-6" style="margin-top:7%;" >
+          <h2 class="featurette-heading"><small style="color: rgb(84, 84, 84); font-size:1.5vw;">special coin event</small><br>02. 작품 당 500만 코인 지급</h2>
+          <h3><span class="sub-text">작품을 경매에 출품할 때마다 500만 코인이 추가로 지급됩니다. <br>작품 출품을 통해 갤러리를 더욱 다양하게 꾸며보세요.<br>
+          다른 아마추어 작가의 작품이 당신의 응찰을 기다리고 있어요.</span></h3>
               <p class="lead">
-                <a href="{% url 'auctionArts' %}" class="btn">Auction</a>
+                <a href="{% url 'mygallery' %}" class="btn btn-outline-secondary">500만 코인 받으러 가기</a>
               </p>
         </div>
         <div class="col-md-6">
-          <img class="img-rectangle" src="{% static 'about-ui코멘트.png' %}" alt="작품사진" width="100%" height="auto;">
+          <img class="img-rectangle" src="{% static '500만.png' %}" alt="작품사진" width="100%" height="auto;">
         </div>
       </div>
       

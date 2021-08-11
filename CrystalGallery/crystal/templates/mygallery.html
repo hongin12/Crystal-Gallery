@@ -98,9 +98,12 @@ mygallery
                                 <text x="50%" y="50%" fill="#eceeef" dy=".3em"><b>작품명: {{art.name}}</b></text> <br>
                                 <div style="float: right;">
                                   <button type="button" class="btn btn-sm btn-outline-secondary"
-                                  onclick="location.href='{% url 'auction' art.id %}'">View</button>
-                                  <!--수정 버튼 추가-->      <button type="button" class="btn btn-sm btn-outline-secondary"
-                                                              onclick="location.href='{% url 'edit' art.id %}'">edit</button>
+                                  onclick="location.href='{% url 'auction' art.id %}'">View
+                                  </button>
+                                  <!--수정 버튼 추가-->      
+                                  <button type="button" class="btn btn-sm btn-outline-secondary"
+                                  onclick="location.href='{% url 'edit' art.id %}'">edit
+                                  </button>
                           
                                 </div>
                               </div>
