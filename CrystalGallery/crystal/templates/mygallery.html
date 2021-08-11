@@ -23,7 +23,7 @@ mygallery
       color: white;
     }
 
-    .py-5 {
+    #logo {
       font-family: 'Krona One', sans-serif;
 
     }
@@ -31,10 +31,6 @@ mygallery
     .btn {
       border-radius: 10rem;
       font-size: small;
-    }
-
-    .display-5 {
-      font-size: x-large;
     }
 
     .album {
@@ -65,13 +61,13 @@ mygallery
   <div class="wrapper">
     <main>
       <div class="container">
-        <section class="py-5 text-center">
-          <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
+        <section class="text-center" id ="logo">
+          <div class="row py-lg-5 text-center">
+            <div class="col-lg-6  mx-auto">
               <p class="fw-light" style="font-size: x-large;">My Gallery</p>
               <img src="{%static '크갤로고투명.png'%}" alt="..." class="profile">
               <br><br>
-              <p class="lead text-muted" style="font-size: small;">{{user.nickname}}/{{user.email}}
+              <p class="lead text-muted" style="font-size: small;">{{user.username}}/{{user.email}}
               </p>
               <p>
                 <a href="{% url 'create' %}" class="btn btn-outline-secondary">Register</a>
@@ -86,7 +82,7 @@ mygallery
               <div class="h-100 bg-light border rounded-3">
                 <div class="bg-light text-center text-muted overflow-hidden">
                   <div class="my-3 py-3">
-                    <h3>내가 올린 작품</h3>
+                    <h3><b>내가 올린 작품</b></h3>
                     <br><br>
 
                     <div class="album">
@@ -99,13 +95,14 @@ mygallery
                               <img src="{{art.display_picture.url}}" alt="새로등록사진"
                                 style="max-width: 200px; height: 120px;">
                               <div class="card-body">
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품 이름 : {{art.name}}</text> <br>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em"><b>작품명: {{art.name}}</b></text> <br>
                                 <div style="float: right;">
                                   <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    onclick="location.href='{% url 'auction' art.id %}'">View</button>
-        <!--수정 버튼 추가-->      <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    onclick="location.href='{% url 'edit' art.id %}'">edit</button>
-                                  </div>
+                                  onclick="location.href='{% url 'auction' art.id %}'">View</button>
+                                  <!--수정 버튼 추가-->      <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                              onclick="location.href='{% url 'edit' art.id %}'">edit</button>
+                          
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -122,7 +119,7 @@ mygallery
               <div class="h-100 bg-dark border rounded-3">
                 <div class="bg-dark text-center text-muted overflow-hidden">
                   <div class="my-3 py-3">
-                    <h3 class="text-white">내가 낙찰한 작품</h3>
+                    <h3 class="text-white"><b>내가 낙찰한 작품</b></h3>
                     <br><br>
 
                     <div class="album">
@@ -135,7 +132,7 @@ mygallery
                               <img src="{{art.listing.display_picture.url}}" alt="새로등록사진"
                                 style="max-width: 200px; height: 120px;">
                               <div class="card-body">
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">작품 이름 : {{art.listing.name}}</text> <br>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em"><b>작품명: {{art.listing.name}}</b></text> <br>
                                 <div style="float: right;">
                                   <button type="button" class="btn btn-sm btn-outline-secondary"
                                     onclick="location.href='{% url 'auction' art.listing.id %}'">View</button>

@@ -7,7 +7,7 @@ crystalgallery
 
 {% block head %}
 <style>
-  @font-face {
+@font-face {
     font-family: 'IBMPlexSansKR-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
     font-weight: normal;
@@ -54,6 +54,10 @@ crystalgallery
     font-size: 1.5rem;
     color: rgb(175, 175, 175);
     font-size: 1vw;
+  }
+  
+  #popup_a:link, #popup_a:hover, #popup_a:visited, #popup_a:active {
+    color: black;
   }
 
   #popup_layer {
@@ -172,8 +176,11 @@ crystalgallery
     left: 0;
     bottom: 0;
     z-index: 1001;
-    ;
     background: rgba(0, 0, 0, 0.5);
+  }
+
+  #popup_a:link, #popup_a:hover, #popup_a:visited, #popup_a:active {
+    color: black;
   }
 </style>
 <script>
@@ -190,14 +197,13 @@ crystalgallery
     <div id="popup_layer">
       <div class="popup_box">
         <!--팝업 컨텐츠 영역-->
-        <div class="popup_cont" style="font-family: 'IBMPlexSansKR-Regular';">
-          <h2>저작권 관련 공지글</h2>
+        <div class="popup_cont" style="font-family: 'IBMPlexSansKR-Regular'; text-align:center">
+          <h2>저작권 관련 공지</h2>
           <p>
-            노트폴리오는 CCL(Creative commons License)을 통해 회원들의 창작물을 보호하고 있습니다. CCL은 자기 창작물에 대한 저작권의 범위를 본인이 직접 설정할 수 있는
-            라이선스(License)입니다.<br>
-            지적재산권, 온라인 법률, 웹 저술, 컴퓨터 과학의 전문가들이 함께 머리를 맞대고 만든 CC (Creative Commons)는 발효 이후 온라인 상 콘텐츠의 저작권을 보호하는데 큰 힘을
-            발휘했습니다. 지금은 CCL로 발전하여 전 세계 50여개 국에서 도입, 활용 중인 저작권 보호 규약입니다.<br>
-            저희 노트폴리오는 CCL에 의거하여 다음과 같은 6가지 라이선스를 지원합니다. <br> (출처 : http://cckorea.org/xe/?mid=ccl )
+            크리스탈 갤러리의 모든 자료 및 사진 이미지에 대한 저작권은<br>저작자에게 있으며, 저작 이미지의 사용 권한은 저작자에게 있습니다.<br>
+            저작권에 위배되는 이미지 편집이나 무단 복제 및 무단 전재,<br>재배포시 사전 경고 없이 형사 고발 조치될 수 있습니다.<br><br>
+            저희 크리스탈 갤러리는 CCL(Creative commons License)에 의거하여 <br>다음과 같은 6가지 라이선스를 지원합니다.<br>
+            <a href="http://cckorea.org/xe/?mid=ccl" id ="popup_a">라이선스 확인하기</a>
           </p>
         </div>
         <!--팝업 버튼 영역-->
