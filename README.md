@@ -26,4 +26,26 @@ TLC - 크리스탈갤러리
 - 등급 (등급에 따라 홈페이지를 사용하는 범위가 달라짐)
 - 작품을 올릴 때 키워드 선택 ( + 검색 기능)
 
-<img src="./img/127.0.0.1_8000_.png" width = 400>
+### main
+<img src="./img/127.0.0.1_8000_.png" width = 300>
+
+### about
+<img src ="./img/127.0.0.1_8000_about_.png" width=300>
+
+### auctionArts
+<img src="./img/127.0.0.1_8000_auctionArts_ (1).png" width = 300>
+
+### create
+<img src="./img/127.0.0.1_8000_create.png" width = 300>
+
+### myGallery
+<img src ="./img/127.0.0.1_8000_mygallery_.png" width= 300>
+
+### myPage
+<img src="./img/127.0.0.1_8000_mypage_.png" width = 300>
+
+### signup
+<img src="./img/127.0.0.1_8000_login_.png" width = 300>
+
+### login
+<img src="./img/127.0.0.1_8000_signup_.png" width = 300>
