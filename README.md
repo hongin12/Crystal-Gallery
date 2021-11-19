@@ -44,8 +44,8 @@ TLC - 크리스탈갤러리
 ### myPage
 <img src="./img/127.0.0.1_8000_mypage_.png" width = 300>
 
-### signup
+### login
 <img src="./img/127.0.0.1_8000_login_.png" width = 300>
 
-### login
+### signup
 <img src="./img/127.0.0.1_8000_signup_.png" width = 300>
