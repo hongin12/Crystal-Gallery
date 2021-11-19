@@ -36,7 +36,7 @@ TLC - 크리스탈갤러리
 <img src="./img/127.0.0.1_8000_auctionArts_ (1).png" width = 300>
 
 ### create
-<img src="./img/127.0.0.1_8000_create.png" width = 300>
+<img src="./img/127.0.0.1_8000_create_.png" width = 300>
 
 ### myGallery
 <img src ="./img/127.0.0.1_8000_mygallery_.png" width= 300>
